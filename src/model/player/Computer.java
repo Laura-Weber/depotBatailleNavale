@@ -1,9 +1,9 @@
 package model.player;
 
-public class Computer implements Player{
+public class Computer extends Player{
 
 	public Computer(){
-		
+		super("Computer");
 	}
 	
 }
