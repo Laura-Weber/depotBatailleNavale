@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class BoardManager {	
 	
 	/**
@@ -67,57 +69,43 @@ public class BoardManager {
 		assert (x>=0 & x<board.HAUTEUR & y>=0 & y<board.LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans BoardManager.PlayerPlay";
 		if (x>=0 & x<board.HAUTEUR & y>=0 & y<board.LARGEUR & board.getCell(pos) == 0 ) {
 			// On va regarder les bateaux et leur position du computer pour voir si la position donnée correspond à un morceau de bateau.
-			for (int i = 0; i < modele.getNbPos();i++) {
-				if (modele.getBoatsPositions(i).equals(pos)) {
-					board.setCell(pos, board.HIT);
-					res = true;
-				}
-			}
-			if (!res)
+			ArrayList<Position> alp = modele.play(pos,id);
+			if (alp.isEmpty())
 				board.setCell(pos, board.FAIL);
-		} 
+			else
+				for (Position p : alp) {
+					board.setCell(p, board.HIT);
+				}
+			res = true;
+		}
 		return res;
 	}
 	
-	
+	/**
+	 * 
+	 * @return true si un des deux joueurs à gagné, false sinon.
+	 */
 	public boolean isFinish() {
-		boolean bool = true;
-		for (int i = 0; i < playerBoard.HAUTEUR; i++) {
-			for (int j = 0; j < playerBoard.LARGEUR; j++) {
-				if (playerBoard.getCell(new Position(i,j))!=0 || computerBoard.getCell(new Position(i,j))!=0 ) {
-					bool = false;					
-				}
-			}
+		boolean res = false;
+		if (playerBoard.finished() || computerBoard.finished() ) {
+			res = true;					
 		}
-		
-		
-		return bool;
+		return res;
 	}
 	
+	/**
+	 * 
+	 * @param id = 1 sur c'est le joueur, 0 si c'est le computer
+	 * @return le score correspondant à l'id
+	 */
+	public int getScore(int id) {
+		assert (id == 0 || id == 1) : "l'id renseigné est incorrecte BoardManager.getScore";
+		int res = playerBoard.getScore();	// On donne le score du joueur par defaut
+		if (id == 0)	// On demande le score du computer
+			res = computerBoard.getScore();
+		return res;
+	}
 	
-	
-	
-	
-	
-	
+	public boolean newGame() { return playerBoard.reset() && computerBoard.reset(); }
 }
 
-
-/*public boolean placerBateau(String orientation, int id, Position pos) {
-	boolean res;
-	int x = pos.getX();
-	int y = pos.getY();
-	assert (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.placerBateau";
-	if (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) {
-		// Le bateau est placé verticalement
-		if (orientation.equals("v")) {
-			for (int i = x;i<x+id;i++) {
-				this.board[i][y] = B;
-			}
-		}
-		res = true;
-	}
-	else
-		res = false;
-	return res;
-}*/

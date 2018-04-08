@@ -7,29 +7,42 @@ import model.player.*;
 public class Model {
 
 	Player human, computer;
-	Epoque epoque;
-		
+	EpoqueManager epoquemanager;
+	
+	
 	public Model(){
 		human = new Human();
 		computer = new Computer();
 	}
 	
-	/**
-	 * utilisée dans BoardManager
-	 * @return
-	 */
-	public int getNbPos() {
-		return 17;
-	}
 	
 	/**
-	 * utilisée dans BoardManager
-	 * Accès au ième bateau
-	 * @param i
+	 * va chercher le résultat dans EpoqueManager
+	 * @param pos
+	 * @param id
 	 * @return
 	 */
-	public Bateau getBoatsPositions(int i) {
-		return null;
+	public ArrayList play(Position pos, int id) {
+		return epoquemanager.play(pos,id);
 	}
 	
 }
+
+/*public boolean placerBateau(String orientation, int id, Position pos) {
+boolean res;
+int x = pos.getX();
+int y = pos.getY();
+assert (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.placerBateau";
+if (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) {
+	// Le bateau est placé verticalement
+	if (orientation.equals("v")) {
+		for (int i = x;i<x+id;i++) {
+			this.board[i][y] = B;
+		}
+	}
+	res = true;
+}
+else
+	res = false;
+return res;
+}*/
