@@ -29,11 +29,9 @@ public class Board {
 		int x = pos.getX();
 		int y = pos.getY();
 		assert (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.getCell";
-		int res;
+		int res = -1;
 		if (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR)
 			res = board[x][y];
-		else 
-			res = -1;
 		return res;
 	}
 	
@@ -48,13 +46,11 @@ public class Board {
 		int x = pos.getX();
 		int y = pos.getY();
 		assert (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.setCell";
-		boolean res;
+		boolean res = false;
 		if (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) {
 			res = true;
 			this.board[x][y] = val;
 		}
-		else 
-			res = false;
 		return res;
 	}
 }
