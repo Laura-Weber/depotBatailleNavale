@@ -36,5 +36,8 @@ public class Position {
 	public String toString(){
 		return "position x : "+x +"||| position y : "+y +"\n";
 	}
+	public boolean isEqual(Position p) {
+		return this.x==p.getX() & this.y==p.getY();
+	}
 	
 }

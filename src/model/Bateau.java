@@ -28,6 +28,7 @@ public abstract class Bateau{
 		epoque = ep;
 		positions = new ArrayList<Position>();
 	}
+	public Bateau(){}
 	/*--------------------GETTEUR---------------------*/
 	public int getResistance() {return resistance;}
 	public String getNom() {return nom;}
@@ -39,7 +40,7 @@ public abstract class Bateau{
 	
 	/*--------------------SETTEUR---------------------*/
 	public boolean setResistance(int resistance) {
-		if(resistance < 1)return false;
+		if(resistance < 1 & resistance > getTaille())return false;
 		this.resistance = resistance;
 		return true;
 	}
@@ -70,5 +71,14 @@ public abstract class Bateau{
 		assert(indice < positions.size() & indice >= 0):"Cases , erreur d'assignation de position indice trop grand ou trop petit";
 		(positions.get(indice)).setX(x);
 		(positions.get(indice)).setY(y);
+	}
+	public void setDead(int i) {
+		resistance=0;
+	}
+	public boolean checkPosition(Position p) {
+		for(int i=0;i<taille;i++){
+			if(this.getPosition(i).isEqual(p))return true; 
+		}
+		return false;
 	}
 }
