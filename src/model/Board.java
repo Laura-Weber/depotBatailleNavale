@@ -3,8 +3,8 @@ package model;
 public class Board {
 
 	private int[][] board;
-	private int HAUTEUR = 10;
-	private int LARGEUR = 10;
+	public static int HAUTEUR = 10;
+	public static int LARGEUR = 10;
 	public static int WATER = 0;
 	public static int FAIL = 1;
 	public static int HIT = 2;
@@ -25,7 +25,9 @@ public class Board {
 	 * @param y Colonne ciblée sur la grille
 	 * @return retourne un entier qui correspond à WATER, FAIL ou HIT suivant l'était de la case. Si la case n'existe pas, retourne -1.
 	 */
-	public int getCell(int x, int y) {
+	public int getCell(Position pos) {
+		int x = pos.getX();
+		int y = pos.getY();
 		assert (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.getCell";
 		int res;
 		if (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR)
@@ -42,7 +44,9 @@ public class Board {
 	 * @param val 0 pour WATER, 1 pour FAIL, 2 pour HIT
 	 * @return un booléen qui indique true si les coordonnées sont correctes, la valeur val est assignée à la cellule. false si les coordonnées sont incorrectes.
 	 */
-	public boolean setCell(int x, int y, int val) {
+	public boolean setCell(Position pos, int val) {
+		int x = pos.getX();
+		int y = pos.getY();
 		assert (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.setCell";
 		boolean res;
 		if (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) {
