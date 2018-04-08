@@ -28,7 +28,7 @@ public class MenuPrincipal extends JPanel implements Observer {
 	private JButton newEpoque;
 
 	public MenuPrincipal() throws IOException{
-		this.image = ImageIO.read(new File("C:/Users/Larma/Documents/Workspace/BatailleNavale/src/vue/fond1.jpg"));
+		this.image = ImageIO.read(new File("./src/vue/fond1.jpg"));
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
