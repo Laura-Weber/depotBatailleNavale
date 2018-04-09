@@ -4,7 +4,7 @@ import model.Model;
 
 public class Computer extends Player{
 
-	public Computer(String name, Model m){
+	public Computer(Model m){
 		super("Computer",m);
 	}
 	

@@ -1,8 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class BoardManager {	
+public class BoardManager extends Observable{	
 	
 	/**
 	 * Cette classe est un singleton
@@ -104,6 +105,26 @@ public class BoardManager {
 		if (id == 0)	// On demande le score du computer
 			res = computerBoard.getScore();
 		return res;
+	}
+	
+	public int getCellPlayer(Position pos) {
+		return this.playerBoard.getCell(pos);
+	}
+	
+	public int getCellComputer(Position pos) {
+		return this.computerBoard.getCell(pos);
+	}
+	
+	public void setCellPlayer(Position pos, int i) {
+		this.playerBoard.setCell(pos, i);
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void setCellComputer(Position pos, int i) {
+		this.computerBoard.setCell(pos, i);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public boolean newGame() { return playerBoard.reset() && computerBoard.reset(); }

@@ -1,18 +1,19 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import model.player.*;
 
-public class Model {
+public class Model extends Observable{
 
 	Player human, computer;
 	EpoqueManager epoquemanager;
 	Boolean isMenu;
 	
 	public Model(){
-		human = new Human();
-		computer = new Computer();
+		this.human = new Human(this);
+		this.computer = new Computer(this);
 		this.isMenu = true;
 	}
 	

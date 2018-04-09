@@ -4,7 +4,7 @@ import model.Model;
 
 public class Human extends Player {
 
-	public Human(String name, Model m){
+	public Human(Model m){
 		super("Me",m);
 	}
 	
