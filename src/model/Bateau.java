@@ -81,4 +81,9 @@ public abstract class Bateau{
 		}
 		return false;
 	}
+	
+	
+	public String toString(){
+		return "nom bateau : "+this.nom+"|| apparence : "+ this.apparence+"|| resistance : "+this.resistance+"|| taille : "+this.taille;
+	}
 }
