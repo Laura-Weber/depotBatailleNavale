@@ -8,11 +8,12 @@ public class Model {
 
 	Player human, computer;
 	EpoqueManager epoquemanager;
-	
+	Boolean isMenu;
 	
 	public Model(){
 		human = new Human();
 		computer = new Computer();
+		this.isMenu = true;
 	}
 	
 	
@@ -25,6 +26,17 @@ public class Model {
 	public ArrayList play(Position pos, int id) {
 		return epoquemanager.play(pos,id);
 	}
+	
+	public void setIsMenu(boolean b){
+		this.isMenu = b;
+		setChanged();
+		notifyObservers();
+	}
+	
+	public boolean getIsMenu(){
+		return this.isMenu;
+	}
+	
 	
 }
 

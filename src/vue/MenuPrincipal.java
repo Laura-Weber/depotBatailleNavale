@@ -1,33 +1,39 @@
 package vue;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import model.Model;
 
-public class MenuPrincipal extends JPanel implements Observer {
+
+public class MenuPrincipal extends JPanel{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Model model;
 	private BufferedImage image;
 	private JButton newGame;
 	private JButton continueGame;
 	private JButton changeDifficulties;
 	private JButton newEpoque;
 
-	public MenuPrincipal() throws IOException{
+	public MenuPrincipal(Model m) throws IOException{
+		this.model = m;
+    	this.setSize(new Dimension(800, 600));
 		this.image = ImageIO.read(new File("./src/vue/fond1.jpg"));
 		
 		this.setLayout(new GridBagLayout());
@@ -38,28 +44,46 @@ public class MenuPrincipal extends JPanel implements Observer {
 		c.gridy = 40;
 		c.gridwidth = 4;
 		c.insets = new Insets(15,0,0,0);
+		this.newGame.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						model.setIsMenu(false);
+					}
+			});
 		this.add(this.newGame, c);
 		this.continueGame = new JButton("Reprendre la partie");
 		c.gridy = 60;
 		c.gridwidth = 4;
 		c.insets = new Insets(15,0,0,0);
+		this.continueGame.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
 		this.add(this.continueGame, c);
 		this.changeDifficulties = new JButton("Changer la difficulté");
 		c.gridy = 80;
 		c.gridwidth = 4;
 		c.insets = new Insets(15,0,0,0);
+		this.changeDifficulties.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				
+				}
+			});
 		this.add(this.changeDifficulties, c);
 		this.newEpoque = new JButton("Créer une nouvelle époque");
 		c.gridy = 100;
 		c.gridwidth = 4;
 		c.insets = new Insets(15,0,0,0);
+		this.newEpoque.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+			
+				}
+			});
 		this.add(this.newEpoque, c);
-	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	protected void paintComponent(Graphics g) {
