@@ -30,6 +30,7 @@ public class Fenetre extends JFrame implements Observer{
 		
 		this.setPreferredSize(new Dimension(800, 600));
 		this.setVisible(true);
+		this.setResizable(false);
 		this.pack();
 		
 		this.model.addObserver(this);
