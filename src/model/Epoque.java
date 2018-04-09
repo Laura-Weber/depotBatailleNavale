@@ -78,7 +78,9 @@ public class Epoque {
 		return flotteOrdi.get(i);
 	}
 	
-	
+	public String getApparence(){
+		return this.apparence;
+	}
 	
 	/*-------------SETTEUR--------------*/
 	

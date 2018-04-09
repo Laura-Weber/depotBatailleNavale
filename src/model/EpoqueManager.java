@@ -111,7 +111,7 @@ public class EpoqueManager {
 	
 	
 	public static void main(String[] args){
-		
+		//test de création d'une epoque et de ses bateaux associée
 		Epoque ep1 = new Epoque(); 
 		
 		ep1.setName("pirate");
@@ -139,6 +139,7 @@ public class EpoqueManager {
 		ep1.setResistanceBateau(ep1.ORDI, 2, 2);
 		ep1.setResistanceBateau(ep1.ORDI, 3, 2);
 		ep1.setResistanceBateau(ep1.ORDI, 4, 2);
+		
 		System.out.println(ep1.toString());
 		
 	}
