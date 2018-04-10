@@ -62,7 +62,7 @@ public class MenuPrincipal extends JPanel{
 				}
 			});
 		this.add(this.continueGame, c);
-		this.changeDifficulties = new JButton("Changer la difficulté");
+		this.changeDifficulties = new JButton("Changer la difficultï¿½");
 		c.gridy = 80;
 		c.gridwidth = 4;
 		c.insets = new Insets(15,0,0,0);
@@ -73,7 +73,7 @@ public class MenuPrincipal extends JPanel{
 				}
 			});
 		this.add(this.changeDifficulties, c);
-		this.newEpoque = new JButton("Créer une nouvelle époque");
+		this.newEpoque = new JButton("Crï¿½er une nouvelle ï¿½poque");
 		c.gridy = 100;
 		c.gridwidth = 4;
 		c.insets = new Insets(15,0,0,0);

@@ -10,11 +10,13 @@ public class Model extends Observable{
 	Player human, computer;
 	EpoqueManager epoquemanager;
 	Boolean isMenu;
+	BoardManager bm;
 	
 	public Model(){
 		this.human = new Human(this);
 		this.computer = new Computer(this);
 		this.isMenu = true;
+		bm = BoardManager.getInstance();
 	}
 	
 	
@@ -37,7 +39,40 @@ public class Model extends Observable{
 	public boolean getIsMenu(){
 		return this.isMenu;
 	}
+	public boolean newGame(){
+		return bm.newGame();
+	}
 	
+	public boolean changeEpoque(String name){
+		return epoquemanager.setActualEpoque(name);
+	}
+	public ArrayList<String> getAllNameOfEpoques(){
+		return epoquemanager.getAllNameOfEpoques();
+	}
+	public ArrayList<String> getInfoActualEpoque(){
+		return epoquemanager.getInfoActualEpoque();
+	} 
+	
+	public boolean changeDifficulty(int diff){
+		return computer.changeDifficulty(diff);
+	}
+	
+	public boolean createNewEpoque(
+			String nom, 
+			String apparence, 
+			int resistanceBateau, 
+			String apparenceBateau2, 
+			String apparenceBateau3, 
+			String apparenceBateau3Bis, 
+			String apparenceBateau4, 
+			String apparenceBateau5,
+			String nomBateau2,
+			String nomBateau3,
+			String nomBateau3Bis,
+			String nomBateau4,
+			String nomBateau5){
+		return epoquemanager.addEpoque(nom,apparence,resistanceBateau,apparenceBateau2, apparenceBateau3, apparenceBateau3Bis,apparenceBateau4, apparenceBateau5,nomBateau2,nomBateau3,nomBateau3Bis,nomBateau4,nomBateau5);
+	}
 	
 }
 

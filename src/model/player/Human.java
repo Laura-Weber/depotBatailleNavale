@@ -11,5 +11,11 @@ public class Human extends Player {
 	public void init(){
 		
 	}
+
+	@Override
+	public boolean changeDifficulty(int diff) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 	
 }

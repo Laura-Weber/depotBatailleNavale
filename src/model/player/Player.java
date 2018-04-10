@@ -17,6 +17,8 @@ public abstract class Player {
 		 this.nbProjectiles = 35;
 		 this.name = n;
 	 }
+	 
+	 public abstract boolean changeDifficulty(int diff);
 	
 	
 }

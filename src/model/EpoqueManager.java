@@ -35,18 +35,26 @@ public class EpoqueManager {
 		}
 		return unique;
 	}
-	
+
 	public boolean setActualEpoque(int i){
 		if(i > epoques.size() & i<0)return false;
 		actualEpoque = epoques.get(i);
 		return true;
+	}
+	public boolean setActualEpoque(String name){
+		for(int i=0;i<epoques.size();i++){
+			if(epoques.get(i).getName().equals(name)){
+				return setActualEpoque(i);
+			}
+		}
+		return false;
 	}
 	public boolean setModel(Model modele) {
 		if (modele == null) return false;
 		this.modele = modele;
 		return true;
 	}
-	
+
 	public ArrayList<Position> play(Position p, int id){
 		assert(p!=null & (id==ORDI | id ==JOUEUR)):"Epoque manager : erreur play() id ou pos";
 		ArrayList<Position> pos = new ArrayList<Position>();
@@ -86,12 +94,41 @@ public class EpoqueManager {
 			//epTmp.set ......
 		}
 	}
-	public boolean addEpoque(HashMap param){
+	public boolean addEpoque(String nom, 
+			String apparence, 
+			int resistanceBateau, 
+			String apparenceBateau2, 
+			String apparenceBateau3, 
+			String apparenceBateau3Bis, 
+			String apparenceBateau4, 
+			String apparenceBateau5,
+			String nomBateau2,
+			String nomBateau3,
+			String nomBateau3Bis,
+			String nomBateau4,
+			String nomBateau5){
 		//créer l'epoque ici
 		//et dit au XMLWriter de créer le fichier.
 		return false;
 	}
-	
+
+	public ArrayList<String> getAllNameOfEpoques(){
+		ArrayList<String> name = new ArrayList<String>();
+		for(int i=0;i<epoques.size();i++){
+			name.add(epoques.get(i).getName());
+		}
+		return name;
+	}
+
+	public ArrayList<String> getInfoActualEpoque(){
+		ArrayList<String> infos = new ArrayList<String>();
+		infos.add(actualEpoque.getApparence());
+		for(int i=0;i<5;i++){
+			infos.add(actualEpoque.getBateauJoueur(i).getApparence());
+		}
+		return infos;
+	}
+
 	public boolean removeEpoque(String name){
 		//get l'id associé au nom et lance un removeEpoque via l'id
 		return false;
@@ -104,31 +141,34 @@ public class EpoqueManager {
 	public int getNBEpoque(){
 		return epoques.size();
 	}
+	public Epoque getEpoque(int i){
+		return this.epoques.get(i);
+	}
 	public Epoque getActualEpoque(){
 		return this.actualEpoque;
 	}
-	
-	
-	
+
+
+
 	public static void main(String[] args){
 		//test de création d'une epoque et de ses bateaux associée
 		Epoque ep1 = new Epoque(); 
-		
+
 		ep1.setName("pirate");
 		ep1.setApparence("./ep1.jpg");
-		
+
 		ep1.setApparenceBateau(0, "b1.png");
 		ep1.setApparenceBateau(1, "b1.png");
 		ep1.setApparenceBateau(2, "b1.png");
 		ep1.setApparenceBateau(3, "b1.png");
 		ep1.setApparenceBateau(4, "b1.png");
-		
+
 		ep1.setNomBateau(0, "bateau0");
 		ep1.setNomBateau(1, "bateau1");
 		ep1.setNomBateau(2, "bateau2");
 		ep1.setNomBateau(3, "bateau3");
 		ep1.setNomBateau(4, "bateau4");
-		
+
 		ep1.setResistanceBateau(ep1.JOUEUR, 0, 2);
 		ep1.setResistanceBateau(ep1.JOUEUR, 1, 2);
 		ep1.setResistanceBateau(ep1.JOUEUR, 2, 2);
@@ -139,10 +179,10 @@ public class EpoqueManager {
 		ep1.setResistanceBateau(ep1.ORDI, 2, 2);
 		ep1.setResistanceBateau(ep1.ORDI, 3, 2);
 		ep1.setResistanceBateau(ep1.ORDI, 4, 2);
-		
+
 		System.out.println(ep1.toString());
-		
+
 	}
-	
+
 }
 
