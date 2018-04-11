@@ -18,7 +18,7 @@ public class BarreDeMenu extends JMenuBar{
 	private Model model;
 	private JMenu menu;
 	private JMenuItem sauvegarder;
-	private JMenuItem retour;
+	private JMenuItem quitter;
 	
 	public BarreDeMenu(Model m){
 		this.model = m;
@@ -33,24 +33,24 @@ public class BarreDeMenu extends JMenuBar{
 		});
 		this.menu.add(this.sauvegarder);
 		
-		this.retour = new JMenuItem("Retour");
-		this.retour.addActionListener(new ActionListener(){
+		this.quitter = new JMenuItem("Quitter la partie");
+		this.quitter.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BarreDeMenu.this.model.setIsMenu(true);
 			}			
 		});
-		this.retour.setEnabled(false);
-		this.menu.add(this.retour);
+		this.menu.add(this.quitter);
 		
+		this.menu.setEnabled(false);
 		this.add(this.menu);
 	}
 	
 	public void update(boolean isMenu){
 		if(isMenu == false){
-			this.retour.setEnabled(true);
+			this.menu.setEnabled(true);
 		}else{
-			this.retour.setEnabled(false);
+			this.menu.setEnabled(false);
 		}
 	}
 

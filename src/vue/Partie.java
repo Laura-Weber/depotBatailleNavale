@@ -19,7 +19,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.BoardManager;
 import model.Model;
+import model.Position;
 import model.player.Player;
 import model.player.Computer;
 
@@ -45,7 +47,7 @@ public class Partie extends JPanel implements Observer{
 
 	public Partie(Model m) throws IOException{
 		this.model = m;
-		this.model.addObserver(this);
+		this.model.getBoardManager().addObserver(this);
     	this.setSize(new Dimension(800, 600));
 		this.setLayout(new GridLayout(1,2));
 		this.image = ImageIO.read(new File("./src/vue/fondPartie.jpg"));
@@ -76,7 +78,7 @@ public class Partie extends JPanel implements Observer{
 		this.casesPlayer = new JButton[10][10];
 		for(int i = 0; i < this.SIZE; i++){
 			for(int j = 0; j < this.SIZE; j++){
-				this.casesPlayer[i][j] = new JButton();
+				this.casesPlayer[i][j] = new JButton(Integer.toString(this.model.getBoardManager().getCellPlayer(new Position(i, j))));
 				this.casesPlayer[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
 				this.casesPlayer[i][j].setPreferredSize(new Dimension(30,30));
 				this.casesPlayer[i][j].setBackground(Color.white);
@@ -118,7 +120,7 @@ public class Partie extends JPanel implements Observer{
 		this.casesComputer = new JButton[10][10];
 		for(int i = 0; i < this.SIZE; i++){
 			for(int j = 0; j < this.SIZE; j++){
-				this.casesComputer[i][j] = new JButton("");
+				this.casesComputer[i][j] = new JButton(Integer.toString(this.model.getBoardManager().getCellComputer(new Position(i, j))));
 				this.casesComputer[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
 				this.casesComputer[i][j].setPreferredSize(new Dimension(30,30));
 				this.casesComputer[i][j].setBackground(Color.white);
@@ -143,6 +145,9 @@ public class Partie extends JPanel implements Observer{
 		}else if(o instanceof Computer){
 			this.winComputer.setText("Tir(s) réussi(s) : " + this.model.getComputer().getWin());
 			this.looseComputer.setText("Tir(s) raté(s) : " + this.model.getComputer().getFail());
+		}else if(o instanceof BoardManager){
+			this.casesComputer[((Position) arg).getX()][((Position)arg).getY()].setText(Integer.toString(this.model.getBoardManager().getCellComputer((Position)arg)));
+			this.casesPlayer[((Position) arg).getX()][((Position)arg).getY()].setText(Integer.toString(this.model.getBoardManager().getCellPlayer((Position)arg)));
 		}
 
 	}
