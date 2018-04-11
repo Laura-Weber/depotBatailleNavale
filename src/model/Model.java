@@ -11,12 +11,14 @@ public class Model extends Observable{
 	EpoqueManager epoquemanager;
 	Boolean isMenu;
 	BoardManager bm;
+	boolean computerTurn=true;
 	
 	public Model(){
 		this.human = new Human(this);
 		this.computer = new Computer(this);
 		this.isMenu = true;
 		bm = BoardManager.getInstance();
+		epoquemanager = EpoqueManager.getInstance();
 	}
 	
 	
@@ -27,6 +29,11 @@ public class Model extends Observable{
 	 * @return
 	 */
 	public ArrayList play(Position pos, int id) {
+		if(id==0){
+			this.computerTurn=false;
+		}else{
+			this.computerTurn=true;
+		}
 		return epoquemanager.play(pos,id);
 	}
 	
@@ -40,7 +47,9 @@ public class Model extends Observable{
 		return this.isMenu;
 	}
 	public boolean newGame(){
-		return bm.newGame();
+		epoquemanager.init();
+		bm.newGame();
+		return true;
 	}
 	
 	public boolean changeEpoque(String name){
@@ -73,6 +82,17 @@ public class Model extends Observable{
 			String nomBateau5){
 		return epoquemanager.addEpoque(nom,apparence,resistanceBateau,apparenceBateau2, apparenceBateau3, apparenceBateau3Bis,apparenceBateau4, apparenceBateau5,nomBateau2,nomBateau3,nomBateau3Bis,nomBateau4,nomBateau5);
 	}
+
+
+	public boolean isFinish() {
+		return bm.isFinish();
+	}
+
+
+	public boolean playerTurn() {
+		return this.computerTurn;
+	}
+	
 	
 }
 

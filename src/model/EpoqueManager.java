@@ -13,7 +13,7 @@ public class EpoqueManager {
 	private FileXMLReader XMLr;
 	private FileXMLWriter XMLw;
 	private Model modele;
-	private Epoque actualEpoque;
+	private Epoque actualEpoque=null;
 	private List<Epoque> epoques;
 	private static int JOUEUR = 1;
 	private static int ORDI = 0;
@@ -148,13 +148,10 @@ public class EpoqueManager {
 		return this.actualEpoque;
 	}
 
-
-
-	public static void main(String[] args){
-		//test de création d'une epoque et de ses bateaux associée
+	public void createDefaultEpoque(){
 		Epoque ep1 = new Epoque(); 
-
-		ep1.setName("pirate");
+		epoques.add(ep1);
+		ep1.setName("default");
 		ep1.setApparence("./ep1.jpg");
 
 		ep1.setApparenceBateau(0, "b1.png");
@@ -179,9 +176,21 @@ public class EpoqueManager {
 		ep1.setResistanceBateau(ep1.ORDI, 2, 2);
 		ep1.setResistanceBateau(ep1.ORDI, 3, 2);
 		ep1.setResistanceBateau(ep1.ORDI, 4, 2);
-
-		System.out.println(ep1.toString());
-
+		actualEpoque=ep1;
+	}
+	
+	public void initActualEpoque(){
+		
+	}
+	
+	public boolean init() {//initialise l'epoque actuelle
+		if(actualEpoque==null){
+			this.createDefaultEpoque();
+			return true;
+		}else{
+			this.initActualEpoque();
+			return true;
+		}
 	}
 
 }
