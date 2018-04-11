@@ -28,7 +28,7 @@ public class Model extends Observable{
 	 * @param id
 	 * @return
 	 */
-	public ArrayList play(Position pos, int id) {
+	public ArrayList<Position> play(Position pos, int id) {
 		if(id==0){
 			this.computerTurn=false;
 		}else{
@@ -50,8 +50,20 @@ public class Model extends Observable{
 		return this.bm;
 	}
 	
+	public Player getHuman(){
+		return this.human;
+	}
+	
+	public Player getComputer(){
+		return this.computer;
+	}
+	
 	public boolean newGame(){
 		return bm.newGame();
+	}
+	
+	public void save(){
+		
 	}
 	
 	public boolean changeEpoque(String name){

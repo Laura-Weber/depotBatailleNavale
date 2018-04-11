@@ -8,25 +8,22 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import model.Model;
 
 
-public class MenuPrincipal extends JPanel{
+public class FenetrePrincipale extends JPanel{
 
 	/**
 	 * 
@@ -39,7 +36,7 @@ public class MenuPrincipal extends JPanel{
 	private JButton changeDifficulties;
 	private JButton newEpoque;
 
-	public MenuPrincipal(Model m) throws IOException{
+	public FenetrePrincipale(Model m) throws IOException{
 		this.model = m;
     	this.setSize(new Dimension(800, 600));
 		this.image = ImageIO.read(new File("./src/vue/fond1.jpg"));
@@ -67,7 +64,8 @@ public class MenuPrincipal extends JPanel{
 		this.continueGame.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
+					model.setIsMenu(false);
+					model.newGame();
 				}
 			});
 		this.add(this.continueGame, c);
@@ -80,7 +78,7 @@ public class MenuPrincipal extends JPanel{
 				public void actionPerformed(ActionEvent e) {
 					String[] values = {"facile", "normal", "difficile"};
 
-					Object selected = JOptionPane.showInputDialog(MenuPrincipal.this, "Choisisser le niveau de difficulté.", "Difficulté", JOptionPane.DEFAULT_OPTION, null, values, "0");	
+					Object selected = JOptionPane.showInputDialog(FenetrePrincipale.this, "Choisisser le niveau de difficulté.", "Difficulté", JOptionPane.DEFAULT_OPTION, null, values, "0");	
 					if(selected != null){
 						switch(selected.toString()){
 						case("facile") : 
@@ -104,7 +102,7 @@ public class MenuPrincipal extends JPanel{
 		this.newEpoque.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					MenuPrincipal.this.createNewEpoque();
+					FenetrePrincipale.this.createNewEpoque();
 				}
 			});
 		this.add(this.newEpoque, c);
@@ -120,7 +118,7 @@ public class MenuPrincipal extends JPanel{
         for(int i = 0; i < 10; i++){
         	items[i] = Integer.toString(i+1);
         }
-        JComboBox resistanceBateau = new JComboBox(items);
+        JComboBox<Object> resistanceBateau = new JComboBox<Object>(items);
 		JTextField apparenceBateau2 = new JTextField(); 
 		JTextField apparenceBateau3 = new JTextField(); 
 		JTextField apparenceBateau3Bis = new JTextField(); 
