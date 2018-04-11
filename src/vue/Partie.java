@@ -21,6 +21,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.Board;
+import model.BoardManager;
 import model.Model;
 
 public class Partie extends JPanel implements Observer{
@@ -148,8 +150,9 @@ public class Partie extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+		if(o instanceof BoardManager){
+		}
+
 	}
 	
 	protected void paintComponent(Graphics g) {

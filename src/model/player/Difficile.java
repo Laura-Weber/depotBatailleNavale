@@ -1,10 +1,10 @@
-package model;
+package model.player;
 
-import model.player.Computer;
+import model.Position;
 
-public class Facile extends Difficulte{
+public class Difficile extends Difficulte{
 
-	public Facile(Computer cp) {
+	public Difficile(Computer cp) {
 		super(cp);
 		// TODO Auto-generated constructor stub
 	}

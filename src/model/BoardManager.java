@@ -70,7 +70,7 @@ public class BoardManager extends Observable{
 		assert (x>=0 & x<board.HAUTEUR & y>=0 & y<board.LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans BoardManager.PlayerPlay";
 		if (x>=0 & x<board.HAUTEUR & y>=0 & y<board.LARGEUR & board.getCell(pos) == 0 ) {
 			// On va regarder les bateaux et leur position du computer pour voir si la position donnée correspond à un morceau de bateau.
-			ArrayList<Position> alp = new ArrayList<Position>(modele.play(pos,id));
+			ArrayList<Position> alp = modele.play(pos,id);
 			if (alp.isEmpty())
 				board.setCell(pos, board.FAIL);
 			else
@@ -118,13 +118,13 @@ public class BoardManager extends Observable{
 	public void setCellPlayer(Position pos, int i) {
 		this.playerBoard.setCell(pos, i);
 		setChanged();
-		notifyObservers();
+		notifyObservers(pos);
 	}
 	
 	public void setCellComputer(Position pos, int i) {
 		this.computerBoard.setCell(pos, i);
 		setChanged();
-		notifyObservers();
+		notifyObservers(pos);
 	}
 	
 	public boolean newGame() { 
@@ -132,7 +132,7 @@ public class BoardManager extends Observable{
 		computerBoard=new Board();
 		return true;
 	}
-
+	
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("plateau ordi:\n");

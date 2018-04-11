@@ -1,6 +1,6 @@
-package model;
+package model.player;
 
-import model.player.Computer;
+import model.Position;
 
 public abstract class Difficulte {
 	

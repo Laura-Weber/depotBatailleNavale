@@ -34,8 +34,7 @@ public class Model extends Observable{
 		}else{
 			this.computerTurn=true;
 		}
-		return epoquemanager.play(pos,id);
-	}
+		return epoquemanager.play(pos,id);	}
 	
 	public void setIsMenu(boolean b){
 		this.isMenu = b;
@@ -46,10 +45,13 @@ public class Model extends Observable{
 	public boolean getIsMenu(){
 		return this.isMenu;
 	}
+	
+	public BoardManager getBoardManager(){
+		return this.bm;
+	}
+	
 	public boolean newGame(){
-		epoquemanager.init();
-		bm.newGame();
-		return true;
+		return bm.newGame();
 	}
 	
 	public boolean changeEpoque(String name){
@@ -82,7 +84,7 @@ public class Model extends Observable{
 			String nomBateau5){
 		return epoquemanager.addEpoque(nom,apparence,resistanceBateau,apparenceBateau2, apparenceBateau3, apparenceBateau3Bis,apparenceBateau4, apparenceBateau5,nomBateau2,nomBateau3,nomBateau3Bis,nomBateau4,nomBateau5);
 	}
-
+	
 
 	public boolean isFinish() {
 		return bm.isFinish();
@@ -92,8 +94,6 @@ public class Model extends Observable{
 	public boolean playerTurn() {
 		return this.computerTurn;
 	}
-	
-	
 }
 
 /*public boolean placerBateau(String orientation, int id, Position pos) {

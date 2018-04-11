@@ -13,7 +13,7 @@ public class EpoqueManager {
 	private FileXMLReader XMLr;
 	private FileXMLWriter XMLw;
 	private Model modele;
-	private Epoque actualEpoque=null;
+	private Epoque actualEpoque;
 	private List<Epoque> epoques;
 	private static int JOUEUR = 1;
 	private static int ORDI = 0;
@@ -49,6 +49,7 @@ public class EpoqueManager {
 		}
 		return false;
 	}
+	
 	public boolean setModel(Model modele) {
 		if (modele == null) return false;
 		this.modele = modele;
@@ -147,6 +148,7 @@ public class EpoqueManager {
 	public Epoque getActualEpoque(){
 		return this.actualEpoque;
 	}
+
 
 	public void createDefaultEpoque(){
 		Epoque ep1 = new Epoque(); 
