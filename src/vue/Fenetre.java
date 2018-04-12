@@ -21,10 +21,15 @@ public class Fenetre extends JFrame implements Observer{
 	private FenetrePrincipale principale;
 	private Partie partie;
 	
-	public Fenetre(Model m) throws InterruptedException, IOException{
+	public Fenetre(Model m){
 		this.model = m;
 		this.principale = new FenetrePrincipale(this.model);
-		this.partie = new Partie(this.model);
+		try {
+			this.partie = new Partie(this.model);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.menu = new BarreDeMenu(this.model);
 
 		this.setJMenuBar(this.menu);

@@ -36,10 +36,15 @@ public class FenetrePrincipale extends JPanel{
 	private JButton changeDifficulties;
 	private JButton newEpoque;
 
-	public FenetrePrincipale(Model m) throws IOException{
+	public FenetrePrincipale(Model m){
 		this.model = m;
     	this.setSize(new Dimension(800, 600));
-		this.image = ImageIO.read(new File("./src/vue/fond1.jpg"));
+		try {
+			this.image = ImageIO.read(new File("./src/vue/fond1.jpg"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -76,18 +81,18 @@ public class FenetrePrincipale extends JPanel{
 		this.changeDifficulties.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String[] values = {"facile", "normal", "difficile"};
+					String[] values = {"Facile", "Normal", "Difficile"};
 
-					Object selected = JOptionPane.showInputDialog(FenetrePrincipale.this, "Choisisser le niveau de difficulté.", "Difficulté", JOptionPane.DEFAULT_OPTION, null, values, "0");	
+					Object selected = JOptionPane.showInputDialog(FenetrePrincipale.this, "Choisissez le niveau de difficulté.", "Difficulté", JOptionPane.DEFAULT_OPTION, null, values, "0");	
 					if(selected != null){
 						switch(selected.toString()){
-						case("facile") : 
+						case("Facile") : 
 							model.changeDifficulty(0);
 							break;
-						case("normal") :
+						case("Normal") :
 							model.changeDifficulty(1);
 							break;
-						case("difficile") :
+						case("Difficile") :
 							model.changeDifficulty(2);
 							break;
 						}
@@ -113,17 +118,18 @@ public class FenetrePrincipale extends JPanel{
         panel.setLayout(new GridLayout(27, 1));
         
         JTextField nom = new JTextField();
-        JTextField apparence = new JTextField();
+        BoutonBrowse apparence = new BoutonBrowse(this);
         String[] items = new String[10];
         for(int i = 0; i < 10; i++){
         	items[i] = Integer.toString(i+1);
         }
         JComboBox<Object> resistanceBateau = new JComboBox<Object>(items);
-		JTextField apparenceBateau2 = new JTextField(); 
-		JTextField apparenceBateau3 = new JTextField(); 
-		JTextField apparenceBateau3Bis = new JTextField(); 
-		JTextField apparenceBateau4 = new JTextField(); 
-		JTextField apparenceBateau5 = new JTextField();
+        BoutonBrowse apparenceBateau2 = new BoutonBrowse(this);
+        BoutonBrowse apparenceBateau3 = new BoutonBrowse(this);
+        BoutonBrowse apparenceBateau3Bis = new BoutonBrowse(this);
+        BoutonBrowse apparenceBateau4 = new BoutonBrowse(this);
+        BoutonBrowse apparenceBateau5 = new BoutonBrowse(this);
+
 		JTextField nomBateau2 = new JTextField();
 		JTextField nomBateau3 = new JTextField();
 		JTextField nomBateau3Bis = new JTextField();
@@ -134,7 +140,7 @@ public class FenetrePrincipale extends JPanel{
         panel.add(nom);
         panel.add(new JLabel("Chemin vers l'image de l'époque : "));
         panel.add(apparence);
-        panel.add(new JLabel("Resistance : "));
+        panel.add(new JLabel("Resistance des bateaux : "));
         panel.add(resistanceBateau);
         panel.add(new JLabel("Chemin vers l'image du bateau a 2 cases : "));
         panel.add(apparenceBateau2);
@@ -158,24 +164,25 @@ public class FenetrePrincipale extends JPanel{
         panel.add(nomBateau5);
 
         JOptionPane.showMessageDialog(this, panel);
+ 
         
         if(nom.getText().isEmpty() == false && 
-			apparence.getText().isEmpty() == false &&  
-			apparenceBateau2.getText().isEmpty() == false &&  
-			apparenceBateau3.getText().isEmpty() == false && 
-			apparenceBateau3Bis.getText().isEmpty() == false &&  
-			apparenceBateau4.getText().isEmpty() == false && 
-			apparenceBateau5.getText().isEmpty() == false && 
+			apparence.getString().isEmpty() == false &&  
+			apparenceBateau2.getString().isEmpty() == false &&  
+			apparenceBateau3.getString().isEmpty() == false && 
+			apparenceBateau3Bis.getString().isEmpty() == false &&  
+			apparenceBateau4.getString().isEmpty() == false && 
+			apparenceBateau5.getString().isEmpty() == false && 
 			nomBateau2.getText().isEmpty() == false && 
 			nomBateau3.getText().isEmpty() == false && 
 			nomBateau3Bis.getText().isEmpty() == false && 
 			nomBateau4.getText().isEmpty() == false && 
 			nomBateau5.getText().isEmpty() == false ){
-        	this.model.createNewEpoque(nom.getText(), apparence.getText(), resistanceBateau.getSelectedIndex()+1, apparenceBateau2.getText(), apparenceBateau3.getText(), apparenceBateau3Bis.getText(), apparenceBateau4.getText(), apparenceBateau5.getText(), nomBateau2.getText(), nomBateau3.getText(), nomBateau3Bis.getText(), nomBateau4.getText(), nomBateau5.getText());
+        	this.model.createNewEpoque(nom.getText(), apparence.getString(), resistanceBateau.getSelectedIndex()+1, apparenceBateau2.getString(), apparenceBateau3.getString(), apparenceBateau3Bis.getString(), apparenceBateau4.getString(), apparenceBateau5.getString(), nomBateau2.getText(), nomBateau3.getText(), nomBateau3Bis.getText(), nomBateau4.getText(), nomBateau5.getText());
         }else{
         	JOptionPane.showMessageDialog(this,
-        		    "Un ou plusieurs champs manquants.",
-        		    "Champ(s) manquant(s) !!",
+        		    "Un ou plusieurs champs manquants, action annulée.",
+        		    "Champ(s) manquant(s) !",
         		    JOptionPane.ERROR_MESSAGE);
         }
 	}

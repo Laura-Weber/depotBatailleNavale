@@ -7,11 +7,11 @@ import model.player.*;
 
 public class Model extends Observable{
 
-	Player human, computer;
-	EpoqueManager epoquemanager;
-	Boolean isMenu;
-	BoardManager bm;
-	boolean computerTurn=true;
+	private Player human, computer;
+	private EpoqueManager epoquemanager;
+	private Boolean isMenu;
+	private BoardManager bm;
+	private boolean computerTurn=true;	
 	
 	public Model(){
 		this.human = new Human(this);
