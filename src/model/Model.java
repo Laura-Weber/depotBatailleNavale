@@ -76,6 +76,10 @@ public class Model extends Observable{
 		return epoquemanager.getInfoActualEpoque();
 	} 
 	
+	public int getSizeEpoque(){
+		return epoquemanager.getAllNameOfEpoques().size();
+	}
+	
 	public boolean changeDifficulty(int diff){
 		return computer.changeDifficulty(diff);
 	}

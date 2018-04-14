@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -34,6 +35,7 @@ public class FenetrePrincipale extends JPanel{
 	private JButton newGame;
 	private JButton continueGame;
 	private JButton changeDifficulties;
+	private JButton changeEpoque;
 	private JButton newEpoque;
 
 	public FenetrePrincipale(Model m){
@@ -100,8 +102,31 @@ public class FenetrePrincipale extends JPanel{
 				}
 			});
 		this.add(this.changeDifficulties, c);
-		this.newEpoque = new JButton("Creer une nouvelle epoque");
+		this.changeEpoque = new JButton("Changer d'epoque");
 		c.gridy = 100;
+		c.gridwidth = 4;
+		c.insets = new Insets(15,0,0,0);
+		this.changeEpoque.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String[] values = new String[FenetrePrincipale.this.model.getSizeEpoque()];
+					ArrayList<String> allEpoque = FenetrePrincipale.this.model.getAllNameOfEpoques();
+
+					for(int i = 0; i < FenetrePrincipale.this.model.getSizeEpoque(); i++){
+						values[i] = allEpoque.get(i);
+					}
+
+					Object selected = JOptionPane.showInputDialog(FenetrePrincipale.this, "Choisissez l'epoque.", "Changer d'epoque", JOptionPane.DEFAULT_OPTION, null, values, "0");	
+					for(int i = 0; i < FenetrePrincipale.this.model.getSizeEpoque(); i++){
+						if(selected.toString().equals(allEpoque.get(i))){
+							FenetrePrincipale.this.model.changeEpoque(selected.toString());
+						}
+					}
+				}
+			});
+		this.add(this.changeEpoque, c);
+		this.newEpoque = new JButton("Creer une nouvelle epoque");
+		c.gridy = 120;
 		c.gridwidth = 4;
 		c.insets = new Insets(15,0,0,0);
 		this.newEpoque.addActionListener(new ActionListener() {

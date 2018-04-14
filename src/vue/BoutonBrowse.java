@@ -24,6 +24,9 @@ public class BoutonBrowse extends JButton implements ActionListener{
     }
     
     public String getString(){
+    	if(s == null){
+    		s = "";
+    	}
     	return this.s;
     }
     

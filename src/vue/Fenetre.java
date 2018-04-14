@@ -22,6 +22,7 @@ public class Fenetre extends JFrame implements Observer{
 	private Partie partie;
 	
 	public Fenetre(Model m){
+		super("Bataille navale");
 		this.model = m;
 		this.principale = new FenetrePrincipale(this.model);
 		try {
