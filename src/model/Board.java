@@ -8,6 +8,7 @@ public class Board {
 	public static int WATER = 0;
 	public static int FAIL = 1;
 	public static int HIT = 2;
+	public static int SHIP = 3;
 	public int NBCOUPS = 17;
 	
 	private int hits = 0;

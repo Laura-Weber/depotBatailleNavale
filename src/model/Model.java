@@ -18,9 +18,9 @@ public class Model extends Observable{
 	public Model(){
 		this.human = new Human(this);
 		this.computer = new Computer(this);		
-		epoquemanager = EpoqueManager.getInstance();
+		this.epoquemanager = EpoqueManager.getInstance();
 		this.isMenu = true;
-		bm = BoardManager.getInstance();	
+		this.bm = BoardManager.getInstance();	
 		this.isPlacement = false;
 	}
 	
@@ -87,8 +87,7 @@ public class Model extends Observable{
 	public boolean placementHuman(int type, int orient){
 		boolean res = false;
 		if(this.selectedPlacement != null){
-			this.bm.placementHuman(type, orient, selectedPlacement);
-			res = true;
+			res = this.bm.placementHuman(type, orient, selectedPlacement);
 		}
 		this.selectedPlacement = null;
 		return res;
@@ -97,11 +96,38 @@ public class Model extends Observable{
 	public boolean placementComputer(int type, int orient){
 		boolean res = false;
 		if(this.selectedPlacement != null){
-			this.bm.placementComputer(type, orient, selectedPlacement);
-			res = true;
+			res = this.bm.placementComputer(type, orient, selectedPlacement);
 		}
 		this.selectedPlacement = null;
 		return res;
+	}
+	
+	/**
+	 * click sur le plateau de Human
+	 * @param p
+	 */
+	public void clickHuman(Position p){
+		if(this.getComputerTurn() == true){
+			if(this.bm.getCellHuman(p) == Board.SHIP){
+				this.bm.setCellHuman(p, Board.HIT);
+			}else if(this.bm.getCellHuman(p) == Board.WATER){
+				this.bm.setCellHuman(p, Board.FAIL);
+			}
+		}
+	}
+	
+	/**
+	 * click sur le plateau de Computer
+	 * @param p
+	 */
+	public void clickComputer(Position p){
+		if(this.getComputerTurn() == false){
+			if(this.bm.getCellComputer(p) == Board.SHIP){
+				this.bm.setCellComputer(p, Board.HIT);
+			}else if(this.bm.getCellComputer(p) == Board.WATER){
+				this.bm.setCellComputer(p, Board.FAIL);
+			}
+		}
 	}
 	
 	/*-------------SETTEUR--------------*/
@@ -129,6 +155,10 @@ public class Model extends Observable{
 	
 	public boolean getIsMenu(){
 		return this.isMenu;
+	}
+	
+	public boolean getComputerTurn(){
+		return this.computerTurn;
 	}
 	
 	public BoardManager getBoardManager(){

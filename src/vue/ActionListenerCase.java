@@ -22,13 +22,13 @@ public class ActionListenerCase implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(this.model.getIsPlacement() == true){
+		if(this.model.getIsPlacement() == true && this.name.equals("Human")){
 			this.model.setSelectedPlacement(new Position(this.iCase, this.jCase));
 		}else{
 			if(this.name.equals("Computer")){
-				this.model.getBoardManager().setCellComputer(new Position(iCase, jCase), 1);
-			}else{
-				this.model.getBoardManager().setCellHuman(new Position(iCase, jCase), 1);
+				this.model.clickComputer(new Position(iCase, jCase));
+			}else if(this.name.equals("Human")){
+				this.model.clickHuman(new Position(iCase, jCase));
 			}
 		}
 	}

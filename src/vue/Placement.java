@@ -2,8 +2,6 @@ package vue;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -38,10 +36,10 @@ public class Placement extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(Placement.this.orient == 0){
-					Placement.this.orientation.setText("Verticale");
+					Placement.this.orientation.setText("Vertical");
 					Placement.this.orient = 1;
 				}else{
-					Placement.this.orientation.setText("Horizontale");
+					Placement.this.orientation.setText("Horizontal");
 					Placement.this.orient = 0;
 				}
 			}

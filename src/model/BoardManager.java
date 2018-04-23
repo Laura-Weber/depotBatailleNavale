@@ -10,12 +10,12 @@ public class BoardManager extends Observable{
 	 */
 	private volatile static BoardManager unique = null;
 	private Board computerBoard;
-	private Board playerBoard;
+	private Board humanBoard;
 	private Model modele;
 		
 	private BoardManager() {
 		this.computerBoard = new Board();
-		this.playerBoard = new Board();
+		this.humanBoard = new Board();
 	}
 
 	/**
@@ -46,17 +46,17 @@ public class BoardManager extends Observable{
 		if (id == 1)	// Si c'est le joueur qui joue ( id = 1 ), c'est le board du computer qui est modifié
 			board = computerBoard;
 		else 
-			board = playerBoard;
+			board = humanBoard;
 		boolean res = false;
-		assert (x>=0 & x<board.HAUTEUR & y>=0 & y<board.LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans BoardManager.PlayerPlay";
-		if (x>=0 & x<board.HAUTEUR & y>=0 & y<board.LARGEUR & board.getCell(pos) == 0 ) {
+		assert (x>=0 & x<Board.HAUTEUR & y>=0 & y<Board.LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans BoardManager.PlayerPlay";
+		if (x>=0 & x<Board.HAUTEUR & y>=0 & y<Board.LARGEUR & board.getCell(pos) == 0 ) {
 			// On va regarder les bateaux et leur position du computer pour voir si la position donnée correspond à un morceau de bateau.
 			ArrayList<Position> alp = modele.play(pos,id);
 			if (alp.isEmpty())
-				board.setCell(pos, board.FAIL);
+				board.setCell(pos, Board.FAIL);
 			else
 				for (Position p : alp) {
-					board.setCell(p, board.HIT);
+					board.setCell(p, Board.HIT);
 				}
 			res = true;
 		}
@@ -64,7 +64,7 @@ public class BoardManager extends Observable{
 	}
 	
 	public boolean newGame() { 
-		playerBoard = new Board();
+		humanBoard = new Board();
 		computerBoard = new Board();
 		return true;
 	}
@@ -75,7 +75,7 @@ public class BoardManager extends Observable{
 	 */
 	public boolean isFinish() {
 		boolean res = false;
-		if (playerBoard.finished() || computerBoard.finished() ) {
+		if (humanBoard.finished() || computerBoard.finished() ) {
 			res = true;					
 		}
 		return res;
@@ -87,16 +87,24 @@ public class BoardManager extends Observable{
 	 * @param orient  0 : horizontale, 1 : verticale
 	 * @param pos
 	 */
-	public void placementHuman(int type, int orient, Position pos){
+	public boolean placementHuman(int type, int orient, Position pos){
+		boolean res = false;
 		if(orient == 0){
-			for(int i = 0; i < type; i++){
-				this.setCellHuman(new Position(pos.getX(), pos.getY() + i), Board.HIT);
+			if(pos.getY() + type < Board.HAUTEUR + 1){
+				res = true;
+				for(int i = 0; i < type; i++){
+					this.setCellHuman(new Position(pos.getX(), pos.getY() + i), Board.SHIP);
+				}
 			}
 		}else{
-			for(int i = 0; i < type; i++){
-				this.setCellHuman(new Position(pos.getX() + i, pos.getY()), Board.HIT);
+			if(pos.getX() + type < Board.LARGEUR + 1){
+				res = true;
+				for(int i = 0; i < type; i++){
+					this.setCellHuman(new Position(pos.getX() + i, pos.getY()), Board.SHIP);
+				}
 			}
 		}
+		return res;
 	}
 	
 	/**
@@ -105,8 +113,24 @@ public class BoardManager extends Observable{
 	 * @param orient 0 : horizontale, 1 : verticale
 	 * @param pos position de la premiere case
 	 */
-	public void placementComputer(int type, int orient, Position pos){
-		
+	public boolean placementComputer(int type, int orient, Position pos){
+		boolean res = false;
+		if(orient == 0){
+			if(pos.getY() + type < Board.HAUTEUR + 1){
+				res = true;
+				for(int i = 0; i < type; i++){
+					this.setCellComputer(new Position(pos.getX(), pos.getY() + i), Board.SHIP);
+				}
+			}
+		}else{
+			if(pos.getX() + type < Board.LARGEUR + 1){
+				res = true;
+				for(int i = 0; i < type; i++){
+					this.setCellComputer(new Position(pos.getX() + i, pos.getY()), Board.SHIP);
+				}
+			}
+		}
+		return res;
 	}
 	
 	/*-------------SETTEUR--------------*/
@@ -127,7 +151,7 @@ public class BoardManager extends Observable{
 	}
 	
 	public void setCellHuman(Position pos, int i) {
-		this.playerBoard.setCell(pos, i);
+		this.humanBoard.setCell(pos, i);
 		setChanged();
 		notifyObservers(pos);
 	}
@@ -147,14 +171,14 @@ public class BoardManager extends Observable{
 	 */
 	public int getScore(int id) {
 		assert (id == 0 || id == 1) : "l'id renseigné est incorrecte BoardManager.getScore";
-		int res = playerBoard.getScore();	// On donne le score du joueur par defaut
+		int res = humanBoard.getScore();	// On donne le score du joueur par defaut
 		if (id == 0)	// On demande le score du computer
 			res = computerBoard.getScore();
 		return res;
 	}
 	
-	public int getCellPlayer(Position pos) {
-		return this.playerBoard.getCell(pos);
+	public int getCellHuman(Position pos) {
+		return this.humanBoard.getCell(pos);
 	}
 	
 	public int getCellComputer(Position pos) {
@@ -171,7 +195,7 @@ public class BoardManager extends Observable{
 			for(int j=0; j<10;j++){
 				sb.append(Integer.toString(this.getCellComputer(new Position(i,j))));
 				sb.append(" | ");
-				sb2.append(Integer.toString(this.getCellPlayer(new Position(i,j))));
+				sb2.append(Integer.toString(this.getCellHuman(new Position(i,j))));
 				sb2.append(" | ");
 			}
 			sb.append("\n");
