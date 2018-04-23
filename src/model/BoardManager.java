@@ -66,6 +66,12 @@ public class BoardManager extends Observable{
 	public boolean newGame() { 
 		humanBoard = new Board();
 		computerBoard = new Board();
+		for(int i = 0; i < Board.SIZE; i++){
+			for(int j = 0; j < Board.SIZE; j++){
+				setChanged();
+				notifyObservers(new Position(i, j));
+			}
+		}
 		return true;
 	}
 	
