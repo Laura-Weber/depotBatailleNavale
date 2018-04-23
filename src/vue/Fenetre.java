@@ -2,6 +2,9 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -23,6 +26,48 @@ public class Fenetre extends JFrame implements Observer{
 	
 	public Fenetre(Model m){
 		super("Bataille navale");
+		this.addWindowListener(new WindowListener(){
+				@Override
+				public void windowActivated(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void windowClosed(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void windowClosing(WindowEvent arg0) {
+					Fenetre.this.dispose();
+				}
+
+				@Override
+				public void windowDeactivated(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void windowDeiconified(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void windowIconified(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void windowOpened(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+		});
 		this.model = m;
 		this.principale = new FenetrePrincipale(this.model);
 		try {
