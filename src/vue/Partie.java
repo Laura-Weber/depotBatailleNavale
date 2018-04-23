@@ -152,9 +152,9 @@ public class Partie extends JPanel implements Observer{
 			this.looseComputer.setText("Tir(s) raté(s) : " + this.model.getComputer().getFail());
 		}else if(o instanceof BoardManager){
 			Position tmp = new Position(((Position) arg).getX(), ((Position)arg).getY());
-			if(this.model.getBoardManager().getCellComputer(tmp) == Board.FAIL || this.model.getBoardManager().getCellComputer(tmp) == Board.HIT){
+			//if(this.model.getBoardManager().getCellComputer(tmp) == Board.FAIL || this.model.getBoardManager().getCellComputer(tmp) == Board.HIT){
 				this.casesComputer[tmp.getX()][tmp.getY()].setText(Integer.toString(this.model.getBoardManager().getCellComputer(tmp)));
-			}
+			//}
 			this.casesHuman[tmp.getX()][tmp.getY()].setText(Integer.toString(this.model.getBoardManager().getCellHuman(tmp)));
 		}
 

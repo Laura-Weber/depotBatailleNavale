@@ -48,8 +48,8 @@ public class BoardManager extends Observable{
 		else 
 			board = humanBoard;
 		boolean res = false;
-		assert (x>=0 & x<Board.HAUTEUR & y>=0 & y<Board.LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans BoardManager.PlayerPlay";
-		if (x>=0 & x<Board.HAUTEUR & y>=0 & y<Board.LARGEUR & board.getCell(pos) == 0 ) {
+		assert (x>=0 & x<Board.SIZE & y>=0 & y<Board.SIZE) : "Coordonnées pour l'accès à la cellule incorrectes dans BoardManager.PlayerPlay";
+		if (x>=0 & x<Board.SIZE & y>=0 & y<Board.SIZE & board.getCell(pos) == 0 ) {
 			// On va regarder les bateaux et leur position du computer pour voir si la position donnée correspond à un morceau de bateau.
 			ArrayList<Position> alp = modele.play(pos,id);
 			if (alp.isEmpty())
@@ -90,14 +90,14 @@ public class BoardManager extends Observable{
 	public boolean placementHuman(int type, int orient, Position pos){
 		boolean res = false;
 		if(orient == 0){
-			if(pos.getY() + type < Board.HAUTEUR + 1){
+			if(pos.getY() + type < Board.SIZE + 1){
 				res = true;
 				for(int i = 0; i < type; i++){
 					this.setCellHuman(new Position(pos.getX(), pos.getY() + i), Board.SHIP);
 				}
 			}
 		}else{
-			if(pos.getX() + type < Board.LARGEUR + 1){
+			if(pos.getX() + type < Board.SIZE + 1){
 				res = true;
 				for(int i = 0; i < type; i++){
 					this.setCellHuman(new Position(pos.getX() + i, pos.getY()), Board.SHIP);
@@ -116,14 +116,14 @@ public class BoardManager extends Observable{
 	public boolean placementComputer(int type, int orient, Position pos){
 		boolean res = false;
 		if(orient == 0){
-			if(pos.getY() + type < Board.HAUTEUR + 1){
+			if(pos.getY() + type < Board.SIZE + 1){
 				res = true;
 				for(int i = 0; i < type; i++){
 					this.setCellComputer(new Position(pos.getX(), pos.getY() + i), Board.SHIP);
 				}
 			}
 		}else{
-			if(pos.getX() + type < Board.LARGEUR + 1){
+			if(pos.getX() + type < Board.SIZE + 1){
 				res = true;
 				for(int i = 0; i < type; i++){
 					this.setCellComputer(new Position(pos.getX() + i, pos.getY()), Board.SHIP);

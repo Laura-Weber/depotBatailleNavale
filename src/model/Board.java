@@ -3,8 +3,7 @@ package model;
 public class Board {
 
 	private int[][] board;
-	public static int HAUTEUR = 10;
-	public static int LARGEUR = 10;
+	public static int SIZE = 10;
 	public static int WATER = 0;
 	public static int FAIL = 1;
 	public static int HIT = 2;
@@ -17,9 +16,9 @@ public class Board {
 	 * Créationd d'un Board qui est représenté par un tableau de 10x10 cases
 	 */
 	public Board(){
-		board = new int[HAUTEUR][LARGEUR];
-		for (int i = 0;i<HAUTEUR;i++) 
-			for (int j = 0;j<LARGEUR;j++) 
+		board = new int[SIZE][SIZE];
+		for (int i = 0;i<SIZE;i++) 
+			for (int j = 0;j<SIZE;j++) 
 				board[i][j] = WATER;
 	}
 	
@@ -32,9 +31,9 @@ public class Board {
 	public int getCell(Position pos) {
 		int x = pos.getX();
 		int y = pos.getY();
-		assert (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.getCell";
+		assert (x>=0 & x<SIZE & y>=0 & y<SIZE) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.getCell";
 		int res = -1;
-		if (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR)
+		if (x>=0 & x<SIZE & y>=0 & y<SIZE)
 			res = board[x][y];
 		return res;
 	}
@@ -49,9 +48,9 @@ public class Board {
 	public boolean setCell(Position pos, int val) {
 		int x = pos.getX();
 		int y = pos.getY();
-		assert (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.setCell";
+		assert (x>=0 & x<SIZE & y>=0 & y<SIZE) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.setCell";
 		boolean res = false;
-		if (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) {
+		if (x>=0 & x<SIZE & y>=0 & y<SIZE) {
 			res = true;
 			this.board[x][y] = val;
 			if (val == HIT) {
@@ -69,8 +68,8 @@ public class Board {
 	public boolean reset() { 
 		boolean res = false;
 		if (board!=null) {
-			for (int i = 0;i<HAUTEUR;i++)
-				for (int j = 0;j<LARGEUR;j++)
+			for (int i = 0;i<SIZE;i++)
+				for (int j = 0;j<SIZE;j++)
 					board[i][j] = WATER;
 			hits = 0;
 			res = true;

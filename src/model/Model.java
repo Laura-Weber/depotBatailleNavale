@@ -11,17 +11,18 @@ public class Model extends Observable{
 	private EpoqueManager epoquemanager;
 	private Boolean isMenu;
 	private BoardManager bm;
-	private boolean computerTurn=true;	
+	private boolean computerTurn;	
 	private boolean isPlacement;
 	private Position selectedPlacement = null;
 	
-	public Model(){
-		this.human = new Human(this);
-		this.computer = new Computer(this);		
+	public Model(){	
 		this.epoquemanager = EpoqueManager.getInstance();
 		this.isMenu = true;
 		this.bm = BoardManager.getInstance();	
+		this.computerTurn = false;	
 		this.isPlacement = false;
+		this.human = new Human(this);
+		this.computer = new Computer(this);
 	}
 	
 	
@@ -45,8 +46,12 @@ public class Model extends Observable{
 	}
 	
 	public boolean newGame(){
+		boolean res = this.bm.newGame();
+		this.human = new Human(this);
+		this.computer = new Computer(this);
+		this.computerTurn = false;	
 		this.setIsPlacement(true);
-		return bm.newGame();
+		return res;
 	}
 	
 	public void save(){
@@ -77,11 +82,6 @@ public class Model extends Observable{
 
 	public boolean isFinish() {
 		return bm.isFinish();
-	}
-
-
-	public boolean playerTurn() {
-		return this.computerTurn;
 	}
 	
 	public boolean placementHuman(int type, int orient){
@@ -141,6 +141,10 @@ public class Model extends Observable{
 		notifyObservers();
 	}
 	
+	public void setComputerTurn(boolean b){
+		this.computerTurn = b;
+	}
+	
 	public void setIsPlacement(boolean b){
 		this.isPlacement = b;
 		setChanged();
@@ -189,22 +193,3 @@ public class Model extends Observable{
 		return epoquemanager.getAllNameOfEpoques().size();
 	}
 }
-
-/*public boolean placerBateau(String orientation, int id, Position pos) {
-boolean res;
-int x = pos.getX();
-int y = pos.getY();
-assert (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.placerBateau";
-if (x>=0 & x<HAUTEUR & y>=0 & y<LARGEUR) {
-	// Le bateau est placé verticalement
-	if (orientation.equals("v")) {
-		for (int i = x;i<x+id;i++) {
-			this.board[i][y] = B;
-		}
-	}
-	res = true;
-}
-else
-	res = false;
-return res;
-}*/
