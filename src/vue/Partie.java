@@ -22,8 +22,8 @@ import javax.swing.JPanel;
 import model.BoardManager;
 import model.Model;
 import model.Position;
-import model.player.Player;
 import model.player.Computer;
+import model.player.Human;
 
 public class Partie extends JPanel implements Observer{
 
@@ -139,7 +139,7 @@ public class Partie extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if(o instanceof Player){
+		if(o instanceof Human){
 			this.winPlayer.setText("Tir(s) réussi(s) : " + this.model.getComputer().getWin());
 			this.loosePlayer.setText("Tir(s) raté(s) : " + this.model.getComputer().getFail());
 		}else if(o instanceof Computer){

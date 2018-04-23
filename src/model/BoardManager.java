@@ -9,19 +9,15 @@ public class BoardManager extends Observable{
 	 * Cette classe est un singleton
 	 */
 	private volatile static BoardManager unique = null;
+	private Board computerBoard;
+	private Board playerBoard;
+	private Model modele;
 		
 	private BoardManager() {
 		this.computerBoard = new Board();
 		this.playerBoard = new Board();
 	}
-	
-	/**
-	 * Le Board du jouer et de l'ordi et le modele
-	 */
-	private Board computerBoard;
-	private Board playerBoard;
-	private Model modele;
-	
+
 	/**
 	 * L'instance qu'on peut récupérer de BoardManager
 	 * @return
@@ -35,21 +31,6 @@ public class BoardManager extends Observable{
 			}
 		}
 		return unique;
-	}
-	
-	/**
-	 * Permet de donner le modele au BoardManager
-	 * @param modele
-	 * @return true si le modele donné existe, false sinon
-	 */
-	public boolean setModel(Model modele) {
-		assert (modele != null) : "Le modele donné est incorrecte";
-		boolean res = false;
-		if (modele != null) {
-			res = true;
-			this.modele = modele;
-		}
-		return res;
 	}
 	
 	/**
@@ -82,6 +63,12 @@ public class BoardManager extends Observable{
 		return res;
 	}
 	
+	public boolean newGame() { 
+		playerBoard = new Board();
+		computerBoard = new Board();
+		return true;
+	}
+	
 	/**
 	 * 
 	 * @return true si un des deux joueurs à gagné, false sinon.
@@ -93,6 +80,65 @@ public class BoardManager extends Observable{
 		}
 		return res;
 	}
+	
+	/**
+	 * 
+	 * @param type
+	 * @param orient  0 : horizontale, 1 : verticale
+	 * @param pos
+	 */
+	public void placementHuman(int type, int orient, Position pos){
+		if(orient == 0){
+			for(int i = 0; i < type; i++){
+				this.setCellHuman(new Position(pos.getX(), pos.getY() + i), Board.HIT);
+			}
+		}else{
+			for(int i = 0; i < type; i++){
+				this.setCellHuman(new Position(pos.getX() + i, pos.getY()), Board.HIT);
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * @param type
+	 * @param orient 0 : horizontale, 1 : verticale
+	 * @param pos position de la premiere case
+	 */
+	public void placementComputer(int type, int orient, Position pos){
+		
+	}
+	
+	/*-------------SETTEUR--------------*/
+
+	/**
+	 * Permet de donner le modele au BoardManager
+	 * @param modele
+	 * @return true si le modele donné existe, false sinon
+	 */
+	public boolean setModel(Model m) {
+		assert (m != null) : "Le modele donné est incorrecte";
+		boolean res = false;
+		if (m != null) {
+			res = true;
+			this.modele = m;
+		}
+		return res;
+	}
+	
+	public void setCellHuman(Position pos, int i) {
+		this.playerBoard.setCell(pos, i);
+		setChanged();
+		notifyObservers(pos);
+	}
+	
+	public void setCellComputer(Position pos, int i) {
+		this.computerBoard.setCell(pos, i);
+		setChanged();
+		notifyObservers(pos);
+	}
+	
+	/*-------------GETTEUR--------------*/
 	
 	/**
 	 * 
@@ -113,24 +159,6 @@ public class BoardManager extends Observable{
 	
 	public int getCellComputer(Position pos) {
 		return this.computerBoard.getCell(pos);
-	}
-	
-	public void setCellPlayer(Position pos, int i) {
-		this.playerBoard.setCell(pos, i);
-		setChanged();
-		notifyObservers(pos);
-	}
-	
-	public void setCellComputer(Position pos, int i) {
-		this.computerBoard.setCell(pos, i);
-		setChanged();
-		notifyObservers(pos);
-	}
-	
-	public boolean newGame() { 
-		playerBoard = new Board();
-		computerBoard=new Board();
-		return true;
 	}
 	
 	public String toString(){
