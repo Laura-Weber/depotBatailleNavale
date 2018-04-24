@@ -20,8 +20,8 @@ public class Epoque {
 	public static String ORDI = "ordi";
 	public static String JOUEUR = "joueur";
 	
-	public Epoque(){
-		this.em=EpoqueManager.getInstance();
+	public Epoque(EpoqueManager em){
+		this.em=em;
 		flotteJoueur = new ArrayList<Bateau>();
 		flotteOrdi = new ArrayList<Bateau>();
 		flotteJoueur.add(new TwoCases(0, nom, false, 0, nom, this));

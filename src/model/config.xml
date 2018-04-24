@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+
+<parametre>
+	<epoques>
+		<epoque>
+			<nom>bonjour</nom>
+			<image></image>
+			<bateaux>
+				<five><nom></nom><resistance></resistance></five>
+				<four><nom></nom><resistance></resistance></four>
+				<three><nom></nom><resistance></resistance></three>
+				<threebis><nom></nom><resistance></resistance></threebis>
+				<two><nom></nom><resistance></resistance></two>
+			</bateaux>
+		</epoque>
+	</epoques>
+	
+	<sauvegarde>
+		<computerturn></computerturn>
+		<nomepoque></nomepoque>
+		<difficulte></difficulte>
+		<player>
+			<score>
+				<reussi></reussi>
+				<rate></rate>
+			</score>
+			<bateaux>
+				<two>
+					<resistance></resistance>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+				</two>
+			
+				<three>
+					<resistance></resistance>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+				</three>
+			
+				<threebis>
+					<resistance></resistance>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+				</threebis>
+			
+				<four>
+					<resistance></resistance>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+				</four>
+			
+				<five>
+					<resistance></resistance>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+				</five>
+			</bateaux>
+			<board>
+				<case00></case00><case10></case10><case20></case20><case30></case30><case40></case40><case50></case50><case60></case60><case70></case70><case80></case80><case90></case90>
+				<case01></case01><case11></case11><case21></case21><case31></case31><case41></case41><case51></case51><case61></case61><case71></case71><case81></case81><case91></case91>
+				<case02></case02><case12></case12><case22></case22><case32></case32><case42></case42><case52></case52><case62></case62><case72></case72><case82></case82><case92></case92>
+				<case03></case03><case13></case13><case23></case23><case33></case33><case43></case43><case53></case53><case63></case63><case73></case73><case83></case83><case93></case93>
+				<case04></case04><case14></case14><case24></case24><case34></case34><case44></case44><case54></case54><case64></case64><case74></case74><case84></case84><case94></case94>
+				<case05></case05><case15></case15><case25></case25><case35></case35><case45></case45><case55></case55><case65></case65><case75></case75><case85></case85><case95></case95>
+				<case06></case06><case16></case16><case26></case26><case36></case36><case46></case46><case56></case56><case66></case66><case76></case76><case86></case86><case96></case96>
+				<case07></case07><case17></case17><case27></case27><case37></case37><case47></case47><case57></case57><case67></case67><case77></case77><case87></case87><case97></case97>
+				<case08></case08><case18></case18><case28></case28><case38></case38><case48></case48><case58></case58><case68></case68><case78></case78><case88></case88><case98></case98>
+				<case09></case09><case19></case19><case29></case29><case39></case39><case49></case49><case59></case59><case69></case69><case79></case79><case89></case89><case99></case99>
+			</board>
+		</player>
+		
+		
+		<computer>
+			<score>
+				<reussi></reussi>
+				<rate></rate>
+			</score>
+			<bateaux>
+				<two>
+					<resistance></resistance>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+				</two>
+			
+				<three>
+					<resistance></resistance>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+				</three>
+			
+				<threebis>
+					<resistance></resistance>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+				</threebis>
+			
+				<four>
+					<resistance></resistance>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+				</four>
+			
+				<five>
+					<resistance></resistance>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+					<position><x></x><y></y></position>
+				</five>
+			</bateaux>
+			<board>
+				<case00></case00><case10></case10><case20></case20><case30></case30><case40></case40><case50></case50><case60></case60><case70></case70><case80></case80><case90></case90>
+				<case01></case01><case11></case11><case21></case21><case31></case31><case41></case41><case51></case51><case61></case61><case71></case71><case81></case81><case91></case91>
+				<case02></case02><case12></case12><case22></case22><case32></case32><case42></case42><case52></case52><case62></case62><case72></case72><case82></case82><case92></case92>
+				<case03></case03><case13></case13><case23></case23><case33></case33><case43></case43><case53></case53><case63></case63><case73></case73><case83></case83><case93></case93>
+				<case04></case04><case14></case14><case24></case24><case34></case34><case44></case44><case54></case54><case64></case64><case74></case74><case84></case84><case94></case94>
+				<case05></case05><case15></case15><case25></case25><case35></case35><case45></case45><case55></case55><case65></case65><case75></case75><case85></case85><case95></case95>
+				<case06></case06><case16></case16><case26></case26><case36></case36><case46></case46><case56></case56><case66></case66><case76></case76><case86></case86><case96></case96>
+				<case07></case07><case17></case17><case27></case27><case37></case37><case47></case47><case57></case57><case67></case67><case77></case77><case87></case87><case97></case97>
+				<case08></case08><case18></case18><case28></case28><case38></case38><case48></case48><case58></case58><case68></case68><case78></case78><case88></case88><case98></case98>
+				<case09></case09><case19></case19><case29></case29><case39></case39><case49></case49><case59></case59><case69></case69><case79></case79><case89></case89><case99></case99>
+			</board>
+		</computer>
+	
+	</sauvegarde>
+</parametre>

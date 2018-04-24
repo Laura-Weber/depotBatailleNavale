@@ -87,12 +87,28 @@ public class EpoqueManager {
 
 	public void readAllEpoque(){
 		this.epoques = new ArrayList<Epoque>();
-		XMLr.init();
+		XMLr.readConfigFile();
 		Epoque epTmp;
 		for(int i=0; i<XMLr.getNBEpoque();i++){
-			epTmp = new Epoque();
+			epTmp = new Epoque(this);
 			epoques.add(epTmp);
-			//epTmp.set ......
+			epTmp.setName(XMLr.getNomEpoque(i));
+			epTmp.setNomBateau(4, XMLr.getNomBateau(i,0));
+			epTmp.setNomBateau(3, XMLr.getNomBateau(i,1));
+			epTmp.setNomBateau(2, XMLr.getNomBateau(i,2));
+			epTmp.setNomBateau(1, XMLr.getNomBateau(i,3));
+			epTmp.setNomBateau(0, XMLr.getNomBateau(i,4));
+			epTmp.setApparence(XMLr.getApparenceEpoque(i));
+			epTmp.setResistanceBateau("joueur",4, XMLr.getResistanceBateau(i,0));
+			epTmp.setResistanceBateau("joueur",3, XMLr.getResistanceBateau(i,1));
+			epTmp.setResistanceBateau("joueur",2, XMLr.getResistanceBateau(i,2));
+			epTmp.setResistanceBateau("joueur",1, XMLr.getResistanceBateau(i,3));
+			epTmp.setResistanceBateau("joueur",0, XMLr.getResistanceBateau(i,4));
+			epTmp.setResistanceBateau("ordi",4, XMLr.getResistanceBateau(i,0));
+			epTmp.setResistanceBateau("ordi",3, XMLr.getResistanceBateau(i,1));
+			epTmp.setResistanceBateau("ordi",2, XMLr.getResistanceBateau(i,2));
+			epTmp.setResistanceBateau("ordi",1, XMLr.getResistanceBateau(i,3));
+			epTmp.setResistanceBateau("ordi",0, XMLr.getResistanceBateau(i,4));
 		}
 	}
 	public boolean addEpoque(String nom, 
@@ -151,7 +167,7 @@ public class EpoqueManager {
 
 
 	public void createDefaultEpoque(){
-		Epoque ep1 = new Epoque(); 
+		Epoque ep1 = new Epoque(this); 
 		epoques.add(ep1);
 		ep1.setName("default");
 		ep1.setApparence("./ep1.jpg");
