@@ -118,7 +118,7 @@ public class FenetrePrincipale extends JPanel{
 
 					Object selected = JOptionPane.showInputDialog(FenetrePrincipale.this, "Choisissez l'epoque.", "Changer d'epoque", JOptionPane.DEFAULT_OPTION, null, values, "0");	
 					for(int i = 0; i < FenetrePrincipale.this.model.getSizeEpoque(); i++){
-						if(selected.toString().equals(allEpoque.get(i))){
+						if(!(selected == null) && selected.toString().equals(allEpoque.get(i))){
 							FenetrePrincipale.this.model.changeEpoque(selected.toString());
 						}
 					}

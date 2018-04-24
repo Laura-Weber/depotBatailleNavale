@@ -52,8 +52,8 @@ public class Computer extends Player{
 
 	@Override
 	public void newGame() {
-		this.tirwin = 0;
-		this.tirFail = 0;
+		this.setWin(0);
+		this.setFail(0);
 		this.placement();
 	}
 	
