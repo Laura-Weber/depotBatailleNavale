@@ -11,23 +11,6 @@ public class Computer extends Player{
 	public Computer(Model m){
 		super("Computer",m);
 		this.changeDifficulty(FACILE);
-		this.placement();
-	}
-	
-	public boolean changeDifficulty(int diff){
-		if(diff==FACILE){
-			algo = new Facile(this);
-			return true;
-		}
-		if(diff==INTERMEDIAIRE){
-			algo = new Intermediaire(this);
-			return true;
-		}
-		if(diff==DIFFICILE){
-			algo = new Difficile(this);
-			return true;
-		}
-		return false;
 	}
 		
 	public void placement(){
@@ -46,7 +29,32 @@ public class Computer extends Player{
 	}
 	
 	public Position play(){
+		this.model.playComputer(algo.play());
 		return algo.play();
+	}
+	
+	@Override
+	public boolean changeDifficulty(int diff){
+		if(diff==FACILE){
+			algo = new Facile(this);
+			return true;
+		}
+		if(diff==INTERMEDIAIRE){
+			algo = new Intermediaire(this);
+			return true;
+		}
+		if(diff==DIFFICILE){
+			algo = new Difficile(this);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void newGame() {
+		this.tirwin = 0;
+		this.tirFail = 0;
+		this.placement();
 	}
 	
 }

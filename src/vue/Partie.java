@@ -49,7 +49,9 @@ public class Partie extends JPanel implements Observer{
 	public Partie(Model m) throws IOException{
 		this.model = m;
 		this.model.getBoardManager().addObserver(this);
-    	this.setSize(new Dimension(800, 600));
+		this.model.getComputer().addObserver(this);
+		this.model.getHuman().addObserver(this);
+		this.setSize(new Dimension(800, 600));
 		this.setLayout(new GridLayout(1,2));
 		this.image = ImageIO.read(new File("./src/vue/fondPartie.jpg"));
 			
@@ -145,8 +147,8 @@ public class Partie extends JPanel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		if(o instanceof Human){
-			this.winHuman.setText("Tir(s) réussi(s) : " + this.model.getComputer().getWin());
-			this.looseHuman.setText("Tir(s) raté(s) : " + this.model.getComputer().getFail());
+			this.winHuman.setText("Tir(s) réussi(s) : " + this.model.getHuman().getWin());
+			this.looseHuman.setText("Tir(s) raté(s) : " + this.model.getHuman().getFail());
 		}else if(o instanceof Computer){
 			this.winComputer.setText("Tir(s) réussi(s) : " + this.model.getComputer().getWin());
 			this.looseComputer.setText("Tir(s) raté(s) : " + this.model.getComputer().getFail());

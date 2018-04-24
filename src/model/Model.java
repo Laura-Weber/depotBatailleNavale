@@ -45,13 +45,12 @@ public class Model extends Observable{
 		return computer.changeDifficulty(diff);
 	}
 	
-	public boolean newGame(){
-		boolean res = this.bm.newGame();
-		this.human = new Human(this);
-		this.computer = new Computer(this);
+	public void newGame(){
+		this.bm.newGame();
+		this.human.newGame();
+		this.computer.newGame();
 		this.computerTurn = false;	
 		this.setIsPlacement(true);
-		return res;
 	}
 	
 	public void save(){
@@ -80,10 +79,20 @@ public class Model extends Observable{
 		return epoquemanager.setActualEpoque(name);
 	}
 
+	/**
+	 * La partie est finie quand il n'y a plus de bateaux à toucher
+	 * @return
+	 */
 	public boolean isFinish() {
 		return bm.isFinish();
 	}
 	
+	/**
+	 * Fonction utilisée lors du placement de l'humain
+	 * @param type
+	 * @param orient
+	 * @return
+	 */
 	public boolean placementHuman(int type, int orient){
 		boolean res = false;
 		if(this.selectedPlacement != null){
@@ -93,6 +102,12 @@ public class Model extends Observable{
 		return res;
 	}
 	
+	/**
+	 * Fonction utilisée lors du placement de l'ordinateur
+	 * @param type
+	 * @param orient
+	 * @return
+	 */
 	public boolean placementComputer(int type, int orient){
 		boolean res = false;
 		if(this.selectedPlacement != null){
@@ -103,31 +118,43 @@ public class Model extends Observable{
 	}
 	
 	/**
-	 * click sur le plateau de Human
+	 * c'est l'humain qui joue
 	 * @param p
 	 */
-	public void clickHuman(Position p){
-		if(this.getComputerTurn() == true){
-			if(this.bm.getCellHuman(p) == Board.SHIP){
-				this.bm.setCellHuman(p, Board.HIT);
-			}else if(this.bm.getCellHuman(p) == Board.WATER){
-				this.bm.setCellHuman(p, Board.FAIL);
+	public void playHuman(Position p){
+		if(this.getComputerTurn() == false && !this.isFinish()){
+			if(this.bm.getCellComputer(p) == Board.SHIP){
+				this.human.setWin(this.human.getWin() + 1);
+				this.bm.setCellComputer(p, Board.HIT);
+				this.computerTurn = true;
+				((Computer) this.computer).play();
+			}else if(this.bm.getCellComputer(p) == Board.WATER){
+				this.human.setFail(this.human.getFail() + 1);
+				this.bm.setCellComputer(p, Board.FAIL);
+				this.computerTurn = true;
+				((Computer) this.computer).play();
 			}
 		}
 	}
 	
 	/**
-	 * click sur le plateau de Computer
+	 * c'est l'ordinateur qui joue
 	 * @param p
 	 */
-	public void clickComputer(Position p){
-		if(this.getComputerTurn() == false){
-			if(this.bm.getCellComputer(p) == Board.SHIP){
-				this.bm.setCellComputer(p, Board.HIT);
-			}else if(this.bm.getCellComputer(p) == Board.WATER){
-				this.bm.setCellComputer(p, Board.FAIL);
+	public void playComputer(Position p){
+		if(this.getComputerTurn() == true && !this.isFinish()){
+			if(this.bm.getCellHuman(p) == Board.SHIP){
+				this.computer.setWin(this.computer.getWin() + 1);
+				this.bm.setCellHuman(p, Board.HIT);
+				this.computerTurn = false;
+			}else if(this.bm.getCellHuman(p) == Board.WATER){
+				this.computer.setFail(this.computer.getFail() + 1);
+				this.bm.setCellHuman(p, Board.FAIL);
+				this.computerTurn = false;
+			}else{
+				((Computer) this.computer).play();
 			}
-		}
+		}	
 	}
 	
 	/*-------------SETTEUR--------------*/

@@ -18,12 +18,15 @@ public abstract class Player extends Observable{
 		 this.tirwin = 0;
 	 }
 	 
-	 public String getName(){
-		 return this.name;
-	 }
+	 public abstract void newGame();
+	 public abstract boolean changeDifficulty(int diff);
 	 
-	 public int getFail(){
-		 return this.tirFail;
+	/*-------------SETTEUR--------------*/
+
+	 public void setWin(int i){
+		this.tirwin = i;
+		setChanged();
+		notifyObservers();
 	 }
 	 
 	 public void setFail(int i){
@@ -32,17 +35,20 @@ public abstract class Player extends Observable{
 		notifyObservers();
 	 }
 	 
+	/*-------------GETTEUR--------------*/
+
+	 public String getName(){
+		 return this.name;
+	 }
+	 
+	 public int getFail(){
+		 return this.tirFail;
+	 }
+
 	 public int getWin(){
 		return this.tirwin;
 	 }
-	 
-	 public void setWin(int i){
-		this.tirwin = i;
-		setChanged();
-		notifyObservers();
-	 }
 	 	 
-	 public abstract boolean changeDifficulty(int diff);
-	
-	
 }
+
+

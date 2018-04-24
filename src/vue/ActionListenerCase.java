@@ -26,9 +26,9 @@ public class ActionListenerCase implements ActionListener{
 			this.model.setSelectedPlacement(new Position(this.iCase, this.jCase));
 		}else if(this.model.getIsPlacement() == false){
 			if(this.name.equals("Computer")){
-				this.model.clickComputer(new Position(iCase, jCase));
+				this.model.playHuman(new Position(iCase, jCase));
 			}else if(this.name.equals("Human")){
-				this.model.clickHuman(new Position(iCase, jCase));
+				//this.model.playComputer(new Position(iCase, jCase));
 			}
 		}
 	}

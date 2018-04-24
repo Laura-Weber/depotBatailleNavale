@@ -8,7 +8,6 @@ public class Board {
 	public static int FAIL = 1;
 	public static int HIT = 2;
 	public static int SHIP = 3;
-	public int NBCOUPS = 17;
 	
 	private int hits = 0;
 	
@@ -63,7 +62,17 @@ public class Board {
 	
 	public int getScore() { return hits; }
 	
-	public boolean finished() { return hits==NBCOUPS; }
+	public boolean finished() {
+		boolean res = true;
+		for(int i = 0; i < Board.SIZE; i++){
+			for(int j = 0; j < Board.SIZE; j++){
+				if(this.board[i][j] == 3){
+					res = false;
+				}
+			}
+		}
+		return res; 
+	}
 	
 	public boolean reset() { 
 		boolean res = false;

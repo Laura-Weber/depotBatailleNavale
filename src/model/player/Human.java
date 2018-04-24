@@ -17,5 +17,11 @@ public class Human extends Player {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
+	@Override
+	public void newGame() {
+		this.tirwin = 0;
+		this.tirFail = 0;		
+	}
 	
 }

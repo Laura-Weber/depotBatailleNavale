@@ -56,8 +56,8 @@ public class BoardManager extends Observable{
 				board.setCell(pos, Board.FAIL);
 			else
 				for (Position p : alp) {
-					board.setCell(p, Board.HIT);
-				}
+				board.setCell(p, Board.HIT);
+			}
 			res = true;
 		}
 		return res;
