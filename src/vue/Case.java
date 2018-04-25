@@ -51,22 +51,7 @@ public class Case extends JButton implements Observer{
 	public void update(Observable o, Object arg) {
 		Position tmp = new Position(((Position) arg).getX(), ((Position)arg).getY());
 		if(tmp.getX() == this.position.getX() && tmp.getY() == this.position.getY()){
-			if(this.name.equals("Computer")){/*
-				switch(this.model.getBoardManager().getCellComputer(tmp)){
-				case 0 : //water
-					res = Board.iconWater;
-					break;
-				case 1 : //fail
-					res = Board.iconFail;
-					break;
-				case 2 : //hit
-					res = Board.iconHit;
-					break;
-				case 3 : //ship
-					break;
-				default : 
-					break;
-				}*/
+			if(this.name.equals("Computer")){
 				if(this.model.getBoardManager().getCellComputer(tmp) == Board.FAIL || this.model.getBoardManager().getCellComputer(tmp) == Board.HIT){
 					this.setImage(this.model.getBoardManager().getComputerImage(tmp));
 				}else{

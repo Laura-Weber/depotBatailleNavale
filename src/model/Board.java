@@ -15,6 +15,7 @@ public class Board {
 	public static Image iconHit;
 	public static Image iconFail;
 	public static Image iconWater;
+	public static Image iconShip;
 	
 	
 	private int hits = 0;
@@ -27,6 +28,7 @@ public class Board {
 		iconHit = new ImageIcon("./src/model/hit.png").getImage();
 		iconFail = new ImageIcon("./src/model/fail.png").getImage();
 		iconWater = new ImageIcon("./src/model/water.png").getImage();
+		iconShip = new ImageIcon("./src/model/ship.png").getImage();
 		for (int i = 0;i<SIZE;i++) 
 			for (int j = 0;j<SIZE;j++) 
 				board[i][j] = WATER;
@@ -118,6 +120,7 @@ public class Board {
 			res = Board.iconHit;
 			break;
 		case 3 : //ship
+			res = Board.iconShip;
 			break;
 		default : 
 			break;
