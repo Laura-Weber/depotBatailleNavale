@@ -1,17 +1,14 @@
 package vue;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import model.Board;
-import model.BoardManager;
 import model.Model;
 import model.Position;
 

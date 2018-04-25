@@ -18,7 +18,7 @@ import java.util.List;
 public class FileXMLReader{
 	public ArrayList<ArrayList<String>> epoques;
 	final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	final String configFile = "config.xml";
+	final String configFile = "./src/model/config.xml";
 	static int X = 0;
 	static int Y = 1;
 	static int RES = 0; 
