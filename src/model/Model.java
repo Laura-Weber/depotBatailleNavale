@@ -9,10 +9,12 @@ public class Model extends Observable{
 
 	private Player human, computer;
 	private EpoqueManager epoquemanager;
-	private Boolean isMenu;
+	private boolean isMenu;
 	private BoardManager bm;
 	private boolean computerTurn;	
 	private boolean isPlacement;
+	private boolean isFinish;
+	
 	private Position selectedPlacement = null;
 	
 	public Model(){	
@@ -21,6 +23,7 @@ public class Model extends Observable{
 		this.bm = BoardManager.getInstance();	
 		this.computerTurn = false;	
 		this.isPlacement = false;
+		this.isFinish = false;
 		this.human = new Human(this);
 		this.computer = new Computer(this, bm);
 	}
@@ -84,6 +87,11 @@ public class Model extends Observable{
 	 * @return
 	 */
 	public boolean isFinish() {
+		if(bm.isFinish()){
+			this.isFinish = true;
+			setChanged();
+			notifyObservers();
+		}
 		return bm.isFinish();
 	}
 	
@@ -198,6 +206,12 @@ public class Model extends Observable{
 	
 	public boolean getIsPlacement(){
 		return this.isPlacement;
+	}
+	
+	public boolean getIsFinish(){
+		boolean res = this.isFinish;
+		this.isFinish = false;
+		return res;
 	}
 	
 	public Player getHuman(){

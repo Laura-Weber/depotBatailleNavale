@@ -173,7 +173,7 @@ public class BoardManager extends Observable{
 	
 	/**
 	 * 
-	 * @param id = 1 sur c'est le joueur, 0 si c'est le computer
+	 * @param id = 0 pour le score du joueur, 1 pour le score du computer
 	 * @return le score correspondant à l'id
 	 */
 	public int getScore(int id) {

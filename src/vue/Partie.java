@@ -16,6 +16,7 @@ import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.Board;
@@ -46,11 +47,12 @@ public class Partie extends JPanel implements Observer{
 
 	public Partie(Model m) throws IOException{
 		this.model = m;
+		this.model.addObserver(this);
 		this.model.getComputer().addObserver(this);
 		this.model.getHuman().addObserver(this);
 		this.setSize(new Dimension(800, 600));
 		this.setLayout(new GridLayout(1,2));
-		this.image = ImageIO.read(new File("./src/vue/fondPartie.jpg"));
+		this.image = ImageIO.read(new File("./src/vue/fondPartie2.jpg"));
 			
 		//***** JPanel de Human *****/
 		this.human = new JPanel();
@@ -63,17 +65,15 @@ public class Partie extends JPanel implements Observer{
 		c.gridy = 20;
 		c.insets = new Insets(0,0,10,0);
 		JLabel namePlayer = new JLabel(this.model.getHuman().getName());
-		namePlayer.setOpaque(true);
 		this.human.add(namePlayer, c);
 		c.gridy = 40;
 		c.insets = new Insets(0,0,0,10);
 		this.winHuman = new JLabel("Tir(s) réussi(s) : " + this.model.getHuman().getWin());
-		this.winHuman.setOpaque(true);
 		this.human.add(this.winHuman, c);
 		this.looseHuman = new JLabel("Tir(s) raté(s) : " + this.model.getHuman().getFail());
-		this.looseHuman.setOpaque(true);
 		this.human.add(this.looseHuman, c);
 		this.boardHuman = new JPanel();
+		this.boardHuman.setBorder(BorderFactory.createLineBorder(Color.black));
 		this.boardHuman.setLayout(new GridLayout(this.SIZE, this.SIZE));
 		this.casesHuman = new Case[10][10];
 		for(int i = 0; i < this.SIZE; i++){
@@ -101,17 +101,15 @@ public class Partie extends JPanel implements Observer{
 		c.gridy = 20;
 		c.insets = new Insets(0,0,10,0);
 		JLabel nameComputer = new JLabel(this.model.getComputer().getName());
-		nameComputer.setOpaque(true);
 		this.computer.add(nameComputer, c);
 		c.insets = new Insets(0,0,0,10);
 		c.gridy = 40;
 		this.winComputer = new JLabel("Tir(s) réussi(s) : " + this.model.getComputer().getWin());
-		this.winComputer.setOpaque(true);
 		this.computer.add(this.winComputer, c);
 		this.looseComputer = new JLabel("Tir(s) raté(s) : " + this.model.getComputer().getFail());
-		this.looseComputer.setOpaque(true);
 		this.computer.add(this.looseComputer, c);
 		this.boardComputer = new JPanel();
+		this.boardComputer.setBorder(BorderFactory.createLineBorder(Color.black));
 		this.boardComputer.setLayout(new GridLayout(this.SIZE, this.SIZE));
 		this.casesComputer = new Case[10][10];
 		for(int i = 0; i < this.SIZE; i++){
@@ -144,6 +142,14 @@ public class Partie extends JPanel implements Observer{
 		}else if(o instanceof Computer){
 			this.winComputer.setText("Tir(s) réussi(s) : " + this.model.getComputer().getWin());
 			this.looseComputer.setText("Tir(s) raté(s) : " + this.model.getComputer().getFail());
+		}else if(o instanceof Model && this.model.getIsFinish()){
+			if(this.model.getBoardManager().getScore(0) > this.model.getBoardManager().getScore(1)){// id = 0 sur c'est le joueur, 1 si c'est le computer
+				//Humain gagne
+				JOptionPane.showMessageDialog(this, "Felicitations !! Vous avez gagné ! :D", "Vous avez fini !", 0);	
+			}else{
+				//Computer gagne
+				JOptionPane.showMessageDialog(this, "Malheureusement, vous avez perdu.. Une autre fois peut etre ?", "Vous avez fini !", 0);	
+			}
 		}
 	}
 	
