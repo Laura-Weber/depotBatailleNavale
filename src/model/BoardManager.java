@@ -184,6 +184,19 @@ public class BoardManager extends Observable{
 		return res;
 	}
 	
+	/**
+	 * 
+	 * @param id = 0 pour le score du joueur, 1 pour le score du computer
+	 * @return le score correspondant à l'id
+	 */
+	public int getScoreFail(int id) {
+		assert (id == 0 || id == 1) : "l'id renseigné est incorrecte BoardManager.getScore";
+		int res = humanBoard.getScoreFail();	// On donne le score du joueur par defaut
+		if (id == 0)	// On demande le score du computer
+			res = computerBoard.getScoreFail();
+		return res;
+	}
+	
 	public int getCellHuman(Position pos) {
 		return this.humanBoard.getCell(pos);
 	}

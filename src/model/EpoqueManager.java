@@ -198,9 +198,23 @@ public class EpoqueManager {
 	}
 	
 	public void initActualEpoque(){
-		
+
 	}
-	
+	public void save(boolean isComputerTurn, int diff){
+		int[][] boardJoueur = new int[10][10];
+		int[][] boardComputer = new int[10][10];
+		for(int i=0;i<10;i++){
+			for(int j=0;j<10;j++){
+				boardJoueur[i][j]=modele.getBoardManager().getCellHuman(new Position(i,j));
+				boardComputer[i][j]=modele.getBoardManager().getCellComputer(new Position(i,j));
+			}
+		}
+		int winPlayer = modele.getBoardManager().getScore(0);
+		int winComputer = modele.getBoardManager().getScore(1);
+		int failPlayer = modele.getBoardManager().getScoreFail(0);
+		int failComputer = modele.getBoardManager().getScoreFail(1);
+		this.XMLw.Save(actualEpoque, boardJoueur, boardComputer, isComputerTurn, winPlayer, failPlayer, winComputer, failComputer, diff);
+	}
 	public boolean init() {//initialise l'epoque actuelle
 		if(actualEpoque==null){
 			this.createDefaultEpoque();

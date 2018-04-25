@@ -14,6 +14,7 @@ public class Model extends Observable{
 	private boolean computerTurn;	
 	private boolean isPlacement;
 	private boolean isFinish;
+	private int difficulty;
 	
 	private Position selectedPlacement = null;
 	
@@ -45,8 +46,10 @@ public class Model extends Observable{
 	}
 	
 	public boolean changeDifficulty(int diff){
+		difficulty = diff;
 		return computer.changeDifficulty(diff);
 	}
+	
 	
 	public void newGame(){
 		this.bm.newGame();
@@ -57,7 +60,7 @@ public class Model extends Observable{
 	}
 	
 	public void save(){
-		
+		epoquemanager.save(computerTurn,difficulty);
 	}
 	
 	public boolean createNewEpoque(
