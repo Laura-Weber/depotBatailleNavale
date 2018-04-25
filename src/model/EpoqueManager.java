@@ -210,6 +210,13 @@ public class EpoqueManager {
 			return true;
 		}
 	}
-
+	/* Main de test de l'ecriture et lecture dans le fichier xml .
+	public static void main(String[] args){
+		int[][] boardPlayer = new int[10][10];
+		int[][] boardComputer = new int[10][10];
+		EpoqueManager em = EpoqueManager.getInstance();
+		em.XMLw.Save(em.epoques.get(0), boardPlayer, boardComputer, false, 12, 3, 7, 1, 0);
+	}
+	*/
 }
 

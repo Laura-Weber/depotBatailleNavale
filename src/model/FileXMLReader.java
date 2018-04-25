@@ -136,27 +136,28 @@ public class FileXMLReader{
 			tmp=0;
 			for (int i = 1 ; i<epoques.getLength();i=i+2){//pour chaque epoque
 				epoque = epoques.item(i).getChildNodes();
-				epoquesTab[tmp][NOM][NOM][NOM] = epoque.item(1).getTextContent();//nom époque
-				epoquesTab[tmp][IM][IM][IM] = epoque.item(3).getTextContent(); // url image
-				NodeList bateaux = epoque.item(5).getChildNodes(); // recuperation des enfants bateaux
+				epoquesTab[tmp][NOM][NOM][NOM] = epoque.item(0).getTextContent();//nom époque
+				epoquesTab[tmp][IM][IM][IM] = epoque.item(1).getTextContent(); // url image
+
+				NodeList bateaux = epoque.item(2).getChildNodes(); // recuperation des enfants bateaux
 				
-				five = bateaux.item(1);//five
+				five = bateaux.item(0);//five
 				epoquesTab[tmp][BATEAU][0][NOM] = five.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][0][RES] = five.getChildNodes().item(1).getTextContent();//resistance
 				
-				four = bateaux.item(3);//four
+				four = bateaux.item(1);//four
 				epoquesTab[tmp][BATEAU][1][NOM] = four.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][1][RES] = four.getChildNodes().item(1).getTextContent();//resistance
 				
-				three = bateaux.item(5);//three
+				three = bateaux.item(2);//three
 				epoquesTab[tmp][BATEAU][2][NOM] = three.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][2][RES] = three.getChildNodes().item(1).getTextContent();//resistance
 				
-				threebis = bateaux.item(7);//threebis
+				threebis = bateaux.item(3);//threebis
 				epoquesTab[tmp][BATEAU][3][NOM] = threebis.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][3][RES] = threebis.getChildNodes().item(1).getTextContent();//resistance
 				
-				two = bateaux.item(9);//two
+				two = bateaux.item(4);//two
 				epoquesTab[tmp][BATEAU][4][NOM] = two.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][4][RES] = two.getChildNodes().item(1).getTextContent();//resistance
 				tmp++;
