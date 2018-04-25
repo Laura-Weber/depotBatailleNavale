@@ -85,7 +85,7 @@ public class FenetrePrincipale extends JPanel{
 				public void actionPerformed(ActionEvent e) {
 					String[] values = {"Facile", "Normal", "Difficile"};
 
-					Object selected = JOptionPane.showInputDialog(FenetrePrincipale.this, "Choisissez le niveau de difficulté.", "Difficulté", JOptionPane.DEFAULT_OPTION, null, values, "0");	
+					Object selected = JOptionPane.showInputDialog(FenetrePrincipale.this, "Choisissez le niveau de difficulte.", "Difficulte de l'ordinateur", JOptionPane.DEFAULT_OPTION, null, values, "0");	
 					if(selected != null){
 						switch(selected.toString()){
 						case("Facile") : 

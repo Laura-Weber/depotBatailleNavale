@@ -1,5 +1,9 @@
 package model;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 public class Board {
 
 	private int[][] board;
@@ -8,6 +12,10 @@ public class Board {
 	public static int FAIL = 1;
 	public static int HIT = 2;
 	public static int SHIP = 3;
+	public static Image iconHit;
+	public static Image iconFail;
+	public static Image iconWater;
+	
 	
 	private int hits = 0;
 	
@@ -16,27 +24,44 @@ public class Board {
 	 */
 	public Board(){
 		board = new int[SIZE][SIZE];
+		iconHit = new ImageIcon("./src/model/hit.png").getImage();
+		iconFail = new ImageIcon("./src/model/fail.png").getImage();
+		iconWater = new ImageIcon("./src/model/water.png").getImage();
 		for (int i = 0;i<SIZE;i++) 
 			for (int j = 0;j<SIZE;j++) 
 				board[i][j] = WATER;
 	}
 	
 	/**
-	 * 
-	 * @param x Ligne ciblée sur la grille
-	 * @param y Colonne ciblée sur la grille
-	 * @return retourne un entier qui correspond à WATER, FAIL ou HIT suivant l'était de la case. Si la case n'existe pas, retourne -1.
+	 * Test si il reste des bateaux non touch�s 
+	 * @return
 	 */
-	public int getCell(Position pos) {
-		int x = pos.getX();
-		int y = pos.getY();
-		assert (x>=0 & x<SIZE & y>=0 & y<SIZE) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.getCell";
-		int res = -1;
-		if (x>=0 & x<SIZE & y>=0 & y<SIZE)
-			res = board[x][y];
+	public boolean finished() {
+		boolean res = true;
+		for(int i = 0; i < Board.SIZE; i++){
+			for(int j = 0; j < Board.SIZE; j++){
+				if(this.board[i][j] == Board.SHIP){
+					res = false;
+				}
+			}
+		}
+		return res; 
+	}
+	
+	public boolean reset() { 
+		boolean res = false;
+		if (board!=null) {
+			for (int i = 0;i<SIZE;i++)
+				for (int j = 0;j<SIZE;j++)
+					board[i][j] = WATER;
+			hits = 0;
+			res = true;
+		}
 		return res;
 	}
 	
+	/*-------------SETTEUR--------------*/
+
 	/**
 	 * 
 	 * @param x Ligne ciblée sur la grille
@@ -60,29 +85,44 @@ public class Board {
 		return res;
 	}
 	
-	public int getScore() { return hits; }
+	/*-------------GETTEUR--------------*/
 	
-	public boolean finished() {
-		boolean res = true;
-		for(int i = 0; i < Board.SIZE; i++){
-			for(int j = 0; j < Board.SIZE; j++){
-				if(this.board[i][j] == 3){
-					res = false;
-				}
-			}
-		}
-		return res; 
+	/**
+	 * 
+	 * @param x Ligne ciblée sur la grille
+	 * @param y Colonne ciblée sur la grille
+	 * @return retourne un entier qui correspond à WATER, FAIL ou HIT suivant l'était de la case. Si la case n'existe pas, retourne -1.
+	 */
+	public int getCell(Position pos) {
+		int x = pos.getX();
+		int y = pos.getY();
+		assert (x>=0 & x<SIZE & y>=0 & y<SIZE) : "Coordonnées pour l'accès à la cellule incorrectes dans Board.getCell";
+		int res = -1;
+		if (x>=0 & x<SIZE & y>=0 & y<SIZE)
+			res = board[x][y];
+		return res;
 	}
 	
-	public boolean reset() { 
-		boolean res = false;
-		if (board!=null) {
-			for (int i = 0;i<SIZE;i++)
-				for (int j = 0;j<SIZE;j++)
-					board[i][j] = WATER;
-			hits = 0;
-			res = true;
+	public int getScore() { return hits; }
+	
+	public Image getImage(Position p){
+		Image res = null;
+		switch(this.getCell(p)){
+		case 0 : //water
+			res = Board.iconWater;
+			break;
+		case 1 : //fail
+			res = Board.iconFail;
+			break;
+		case 2 : //hit
+			res = Board.iconHit;
+			break;
+		case 3 : //ship
+			break;
+		default : 
+			break;
 		}
 		return res;
 	}
+
 }

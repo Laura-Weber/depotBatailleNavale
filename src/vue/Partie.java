@@ -15,12 +15,10 @@ import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.Board;
-import model.BoardManager;
 import model.Model;
 import model.Position;
 import model.player.Computer;
@@ -39,16 +37,15 @@ public class Partie extends JPanel implements Observer{
 	private JLabel winHuman;
 	private JLabel looseHuman;
 	private JPanel boardHuman;
-	private JButton casesHuman[][];
+	private Case casesHuman[][];
 	private JPanel computer;
 	private JLabel winComputer;
 	private JLabel looseComputer;
 	private JPanel boardComputer;
-	private JButton casesComputer[][];
+	private Case casesComputer[][];
 
 	public Partie(Model m) throws IOException{
 		this.model = m;
-		this.model.getBoardManager().addObserver(this);
 		this.model.getComputer().addObserver(this);
 		this.model.getHuman().addObserver(this);
 		this.setSize(new Dimension(800, 600));
@@ -78,14 +75,10 @@ public class Partie extends JPanel implements Observer{
 		this.human.add(this.looseHuman, c);
 		this.boardHuman = new JPanel();
 		this.boardHuman.setLayout(new GridLayout(this.SIZE, this.SIZE));
-		this.casesHuman = new JButton[10][10];
+		this.casesHuman = new Case[10][10];
 		for(int i = 0; i < this.SIZE; i++){
 			for(int j = 0; j < this.SIZE; j++){
-				this.casesHuman[i][j] = new JButton(Integer.toString(this.model.getBoardManager().getCellHuman(new Position(i, j))));
-				this.casesHuman[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-				this.casesHuman[i][j].setPreferredSize(new Dimension(30,30));
-				this.casesHuman[i][j].setBackground(Color.white);
-				this.casesHuman[i][j].setOpaque(true);
+				this.casesHuman[i][j] = new Case(this.model, i, j, "Human");
 				this.casesHuman[i][j].addActionListener(new ActionListenerCase(this.model, i, j, "Human"));
 				this.boardHuman.add(casesHuman[i][j]);
 			}
@@ -120,18 +113,14 @@ public class Partie extends JPanel implements Observer{
 		this.computer.add(this.looseComputer, c);
 		this.boardComputer = new JPanel();
 		this.boardComputer.setLayout(new GridLayout(this.SIZE, this.SIZE));
-		this.casesComputer = new JButton[10][10];
+		this.casesComputer = new Case[10][10];
 		for(int i = 0; i < this.SIZE; i++){
 			for(int j = 0; j < this.SIZE; j++){
 				if(this.model.getBoardManager().getCellComputer(new Position(i, j)) == Board.FAIL || this.model.getBoardManager().getCellComputer(new Position(i, j)) == Board.HIT){
-					this.casesComputer[i][j] = new JButton(Integer.toString(this.model.getBoardManager().getCellComputer(new Position(i, j))));
+					this.casesComputer[i][j] = new Case(this.model, i, j, "Computer");
 				}else{
-					this.casesComputer[i][j] = new JButton();
+					this.casesComputer[i][j] = new Case(this.model, i, j, "Computer");
 				}
-				this.casesComputer[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-				this.casesComputer[i][j].setPreferredSize(new Dimension(30,30));
-				this.casesComputer[i][j].setBackground(Color.white);
-				this.casesComputer[i][j].setOpaque(true);
 				this.casesComputer[i][j].addActionListener(new ActionListenerCase(this.model, i, j, "Computer"));
 				this.boardComputer.add(casesComputer[i][j]);
 			}
@@ -143,7 +132,10 @@ public class Partie extends JPanel implements Observer{
 		this.computer.add(this.boardComputer, c);
 		this.add(this.computer);
 	}
-
+	
+	/**
+	 * arg ici est une Position
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		if(o instanceof Human){
@@ -152,16 +144,7 @@ public class Partie extends JPanel implements Observer{
 		}else if(o instanceof Computer){
 			this.winComputer.setText("Tir(s) réussi(s) : " + this.model.getComputer().getWin());
 			this.looseComputer.setText("Tir(s) raté(s) : " + this.model.getComputer().getFail());
-		}else if(o instanceof BoardManager){
-			Position tmp = new Position(((Position) arg).getX(), ((Position)arg).getY());
-			if(this.model.getBoardManager().getCellComputer(tmp) == Board.FAIL || this.model.getBoardManager().getCellComputer(tmp) == Board.HIT){
-				this.casesComputer[tmp.getX()][tmp.getY()].setText(Integer.toString(this.model.getBoardManager().getCellComputer(tmp)));
-			}else{
-				this.casesComputer[tmp.getX()][tmp.getY()].setText("");
-			}
-			this.casesHuman[tmp.getX()][tmp.getY()].setText(Integer.toString(this.model.getBoardManager().getCellHuman(tmp)));
 		}
-
 	}
 	
 	protected void paintComponent(Graphics g) {

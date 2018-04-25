@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -167,7 +168,7 @@ public class BoardManager extends Observable{
 		setChanged();
 		notifyObservers(pos);
 	}
-	
+		
 	/*-------------GETTEUR--------------*/
 	
 	/**
@@ -189,6 +190,14 @@ public class BoardManager extends Observable{
 	
 	public int getCellComputer(Position pos) {
 		return this.computerBoard.getCell(pos);
+	}
+	
+	public Image getHumanImage(Position p){
+		return this.humanBoard.getImage(p);
+	}
+
+	public Image getComputerImage(Position p){
+		return this.computerBoard.getImage(p);
 	}
 	
 	public String toString(){
