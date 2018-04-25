@@ -7,10 +7,12 @@ public class Computer extends Player{
 	private static int FACILE = 0;
 	private static int INTERMEDIAIRE=1;
 	private static int DIFFICILE=2;
-
-	public Computer(Model m){
+	private static BoardManager bm;
+	
+	public Computer(Model m, BoardManager bom){
 		super("Computer",m);
 		this.changeDifficulty(FACILE);
+		bm = bom;
 	}
 		
 	public void placement(){
@@ -40,11 +42,11 @@ public class Computer extends Player{
 			return true;
 		}
 		if(diff==INTERMEDIAIRE){
-			algo = new Intermediaire(this);
+			algo = new Intermediaire(this, bm);
 			return true;
 		}
 		if(diff==DIFFICILE){
-			algo = new Difficile(this);
+			algo = new Difficile(this, bm);
 			return true;
 		}
 		return false;

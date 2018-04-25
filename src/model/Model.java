@@ -22,7 +22,7 @@ public class Model extends Observable{
 		this.computerTurn = false;	
 		this.isPlacement = false;
 		this.human = new Human(this);
-		this.computer = new Computer(this);
+		this.computer = new Computer(this, bm);
 	}
 	
 	
@@ -80,7 +80,7 @@ public class Model extends Observable{
 	}
 
 	/**
-	 * La partie est finie quand il n'y a plus de bateaux à toucher
+	 * La partie est finie quand il n'y a plus de bateaux ï¿½ toucher
 	 * @return
 	 */
 	public boolean isFinish() {
@@ -88,7 +88,7 @@ public class Model extends Observable{
 	}
 	
 	/**
-	 * Fonction utilisée lors du placement de l'humain
+	 * Fonction utilisï¿½e lors du placement de l'humain
 	 * @param type
 	 * @param orient
 	 * @return
@@ -103,7 +103,7 @@ public class Model extends Observable{
 	}
 	
 	/**
-	 * Fonction utilisée lors du placement de l'ordinateur
+	 * Fonction utilisï¿½e lors du placement de l'ordinateur
 	 * @param type
 	 * @param orient
 	 * @return

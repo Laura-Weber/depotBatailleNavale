@@ -1,11 +1,15 @@
 package model.player;
 
+import model.BoardManager;
 import model.Position;
 
 public class Difficile extends Difficulte{
 
-	public Difficile(Computer cp) {
+	private static BoardManager bm;
+	
+	public Difficile(Computer cp, BoardManager bom) {
 		super(cp);
+		bm = bom;
 		// TODO Auto-generated constructor stub
 	}
 
