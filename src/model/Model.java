@@ -27,6 +27,7 @@ public class Model extends Observable{
 		this.isFinish = false;
 		this.human = new Human(this);
 		this.computer = new Computer(this, bm);
+		this.changeDifficulty(0);
 	}
 	
 	
