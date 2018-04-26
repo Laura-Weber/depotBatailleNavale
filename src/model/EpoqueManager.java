@@ -139,6 +139,7 @@ public class EpoqueManager {
 			String nom4,
 			String nom5){
 		this.XMLw.addEpoque(nom, apparence, nom5, nom4, nom3, nom2, res5, res4, res3, res2);
+		this.readAllEpoque();
 		return true;
 	}
 
