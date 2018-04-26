@@ -75,7 +75,7 @@ public class FileXMLReader{
 	public List<Position> getPositionBateauPlayer(int i){
 		List<Position> tmp = new ArrayList<Position>();
 		int j=1;
-		while(!bateauxPlayer[i][j][0].isEmpty() & j<6){
+		while(j<6 && bateauxPlayer[i][j][0]!=null ){
 			tmp.add(new Position(Integer.parseInt(bateauxPlayer[i][j][0]),Integer.parseInt(bateauxPlayer[i][j][1])));
 			j++;
 		}
@@ -85,7 +85,7 @@ public class FileXMLReader{
 	public List<Position> getPositionBateauComputer(int i){
 		List<Position> tmp = new ArrayList<Position>();
 		int j=1;
-		while(!bateauxPlayer[i][j][0].isEmpty() & j<6){
+		while(j<6 && bateauxPlayer[i][j][0]!=null ){
 			tmp.add(new Position(Integer.parseInt(bateauxComputer[i][j][0]),Integer.parseInt(bateauxComputer[i][j][1])));
 			j++;
 		}

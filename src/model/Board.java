@@ -85,7 +85,7 @@ public class Board {
 				this.hits ++;
 				assert (hits <= 17) : "Nombre de touché supérieur au nombre max dans Board.setCell";
 			}else{
-				fails++;
+				if(val == FAIL)fails++;
 			}
 		}
 		return res;
@@ -131,6 +131,14 @@ public class Board {
 			break;
 		}
 		return res;
+	}
+
+	public void setWin(int i) {
+		this.hits=i;
+	}
+
+	public void setFail(int i) {
+		this.fails=i;
 	}
 
 }

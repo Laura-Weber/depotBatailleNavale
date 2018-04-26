@@ -72,7 +72,7 @@ public class FenetrePrincipale extends JPanel{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					model.setIsMenu(false);
-					model.newGame();
+					model.loadGame();
 				}
 			});
 		this.add(this.continueGame, c);

@@ -98,32 +98,32 @@ public class EpoqueManager {
 			epTmp = new Epoque(this);
 			epoques.add(epTmp);
 			epTmp.setName(XMLr.getNomEpoque(i));
-			epTmp.setNomBateau(4, XMLr.getNomBateau(i,0));
-			epTmp.setNomBateau(3, XMLr.getNomBateau(i,1));
+			epTmp.setNomBateau(0, XMLr.getNomBateau(i,0));
+			epTmp.setNomBateau(1, XMLr.getNomBateau(i,1));
 			epTmp.setNomBateau(2, XMLr.getNomBateau(i,2));
-			epTmp.setNomBateau(1, XMLr.getNomBateau(i,3));
-			epTmp.setNomBateau(0, XMLr.getNomBateau(i,4));
+			epTmp.setNomBateau(3, XMLr.getNomBateau(i,3));
+			epTmp.setNomBateau(4, XMLr.getNomBateau(i,4));
 			epTmp.setApparence(XMLr.getApparenceEpoque(i));
-			epTmp.setResistanceBateau("joueur",4, XMLr.getResistanceBateau(i,0));
-			epTmp.setResistanceBateau("joueur",3, XMLr.getResistanceBateau(i,1));
+			epTmp.setResistanceBateau("joueur",0, XMLr.getResistanceBateau(i,0));
+			epTmp.setResistanceBateau("joueur",1, XMLr.getResistanceBateau(i,1));
 			epTmp.setResistanceBateau("joueur",2, XMLr.getResistanceBateau(i,2));
-			epTmp.setResistanceBateau("joueur",1, XMLr.getResistanceBateau(i,3));
-			epTmp.setResistanceBateau("joueur",0, XMLr.getResistanceBateau(i,4));
-			epTmp.setResistanceBateau("ordi",4, XMLr.getResistanceBateau(i,0));
-			epTmp.setResistanceBateau("ordi",3, XMLr.getResistanceBateau(i,1));
+			epTmp.setResistanceBateau("joueur",3, XMLr.getResistanceBateau(i,3));
+			epTmp.setResistanceBateau("joueur",4, XMLr.getResistanceBateau(i,4));
+			epTmp.setResistanceBateau("ordi",0, XMLr.getResistanceBateau(i,0));
+			epTmp.setResistanceBateau("ordi",1, XMLr.getResistanceBateau(i,1));
 			epTmp.setResistanceBateau("ordi",2, XMLr.getResistanceBateau(i,2));
-			epTmp.setResistanceBateau("ordi",1, XMLr.getResistanceBateau(i,3));
-			epTmp.setResistanceBateau("ordi",0, XMLr.getResistanceBateau(i,4));
-			epTmp.getBateauJoueur(4).setTaille(2);
-			epTmp.getBateauJoueur(3).setTaille(3);
+			epTmp.setResistanceBateau("ordi",3, XMLr.getResistanceBateau(i,3));
+			epTmp.setResistanceBateau("ordi",4, XMLr.getResistanceBateau(i,4));
+			epTmp.getBateauJoueur(0).setTaille(2);
+			epTmp.getBateauJoueur(1).setTaille(3);
 			epTmp.getBateauJoueur(2).setTaille(3);
-			epTmp.getBateauJoueur(1).setTaille(4);
-			epTmp.getBateauJoueur(0).setTaille(5);
-			epTmp.getBateauOrdi(4).setTaille(2);
-			epTmp.getBateauOrdi(3).setTaille(3);
+			epTmp.getBateauJoueur(3).setTaille(4);
+			epTmp.getBateauJoueur(4).setTaille(5);
+			epTmp.getBateauOrdi(0).setTaille(2);
+			epTmp.getBateauOrdi(1).setTaille(3);
 			epTmp.getBateauOrdi(2).setTaille(3);
-			epTmp.getBateauOrdi(1).setTaille(4);
-			epTmp.getBateauOrdi(0).setTaille(5);
+			epTmp.getBateauOrdi(3).setTaille(4);
+			epTmp.getBateauOrdi(4).setTaille(5);
 		}
 	}
 	public boolean addEpoque(String nom, 
@@ -236,6 +236,38 @@ public class EpoqueManager {
 			this.initActualEpoque();
 			return true;
 		}
+	}
+	
+	public void loadGame(){
+		setActualEpoque(XMLr.getNomEpoque());
+		int[][] bC = XMLr.getBoardComputer();
+		int[][] bP = XMLr.getBoardPlayer();
+		for(int i=0;i<10;i++){
+			for (int j=0;j<10;j++){
+				modele.getBoardManager().setCellComputer(new Position(i,j), bC[i][j] );
+				modele.getBoardManager().setCellHuman(new Position(i,j), bP[i][j] );
+			}
+		}
+		for(int i=0; i<5; i++){
+			Bateau bateauTmpJ = actualEpoque.getBateauJoueur(i);
+			Bateau bateauTmpC = actualEpoque.getBateauOrdi(i);			
+			for(int j=0; j<bateauTmpJ.getTaille();j++){
+				int xC = XMLr.getPositionBateauComputer(i).get(j).getX();
+				int yC = XMLr.getPositionBateauComputer(i).get(j).getY();
+				int xP = XMLr.getPositionBateauPlayer(i).get(j).getX();
+				int yP = XMLr.getPositionBateauPlayer(i).get(j).getY();
+				bateauTmpJ.setPosition(j, xP, yP);
+				bateauTmpC.setPosition(j, xC, yC);
+			}
+			this.actualEpoque.getBateauJoueur(i).setResistance(XMLr.getResistanceBateauPlayer(i));
+			this.actualEpoque.getBateauOrdi(i).setResistance(XMLr.getResistanceBateauComputer(i));
+		}
+		modele.getBoardManager().setScorePlayer(XMLr.getreussiPlayer(), XMLr.getratePlayer());
+		modele.getBoardManager().setScoreComputer(XMLr.getreussiComputer(), XMLr.getrateComputer());
+		
+	}
+	public int getDifficultySaved(){
+		return Integer.parseInt(XMLr.getDifficulty());
 	}
 	/* Main de test de l'ecriture et lecture dans le fichier xml .
 	public static void main(String[] args){

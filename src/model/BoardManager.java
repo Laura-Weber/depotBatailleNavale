@@ -232,5 +232,15 @@ public class BoardManager extends Observable{
 		
 		return sb.toString() + sb2.toString();
 	}
+
+	public void setScorePlayer(String getreussiPlayer, String getratePlayer) {
+		this.computerBoard.setWin(Integer.parseInt(getreussiPlayer));
+		this.computerBoard.setFail(Integer.parseInt(getratePlayer));		
+	}
+
+	public void setScoreComputer(String getreussiComputer, String getrateComputer) {
+		this.computerBoard.setWin(Integer.parseInt(getreussiComputer));
+		this.computerBoard.setFail(Integer.parseInt(getrateComputer));
+	}
 }
 

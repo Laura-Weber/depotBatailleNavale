@@ -216,8 +216,8 @@ public class FileXMLWriter{
 				for(int j=0; j<10;j++){
 					casePlayer = plateauPlayer.item(l);
 					caseComputer = plateauComputer.item(l);
-					casePlayer.setTextContent(Integer.toString(boardPlayer[i][j]));
-					caseComputer.setTextContent(Integer.toString(boardPlayer[i][j]));
+					casePlayer.setTextContent(Integer.toString(boardPlayer[j][i]));
+					caseComputer.setTextContent(Integer.toString(boardComputer[j][i]));
 					l++;
 				}
 			}
