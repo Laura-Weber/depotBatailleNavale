@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><parametre>
 	<epoques>
-	<epoque><nom>epoque1</nom><image>imageep2</image><bateaux><five><nom>B5</nom><resistance>555</resistance></five><four><nom>B4</nom><resistance>444</resistance></four><three><nom>B3</nom><resistance>333</resistance></three><threebis><nom>B3</nom><resistance>333</resistance></threebis><two><nom>B2</nom><resistance>222</resistance></two></bateaux></epoque></epoques>
+	<epoque><nom>epoque1</nom><image>imageep2</image><bateaux><five><nom>B5</nom><resistance>111</resistance></five><four><nom>B4</nom><resistance>444</resistance></four><three><nom>B3</nom><resistance>333</resistance></three><threebis><nom>B3</nom><resistance>333</resistance></threebis><two><nom>B2</nom><resistance>222</resistance></two></bateaux></epoque></epoques>
 	
 	<sauvegarde>
 		<computerturn>0</computerturn>

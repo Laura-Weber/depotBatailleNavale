@@ -104,9 +104,9 @@ public class Partie extends JPanel implements Observer{
 		this.computer.add(nameComputer, c);
 		c.insets = new Insets(0,0,0,10);
 		c.gridy = 40;
-		this.winComputer = new JLabel("Tir(s) réussi(s) : " + this.model.getComputer().getWin());
+		this.winComputer = new JLabel("Tir(s) reussi(s) : " + this.model.getComputer().getWin());
 		this.computer.add(this.winComputer, c);
-		this.looseComputer = new JLabel("Tir(s) raté(s) : " + this.model.getComputer().getFail());
+		this.looseComputer = new JLabel("Tir(s) rate(s) : " + this.model.getComputer().getFail());
 		this.computer.add(this.looseComputer, c);
 		this.boardComputer = new JPanel();
 		this.boardComputer.setBorder(BorderFactory.createLineBorder(Color.black));
