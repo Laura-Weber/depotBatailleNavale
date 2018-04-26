@@ -1,0 +1,32 @@
+Projet de conception
+
+MAGGIOLI Steve
+WEBER Laura
+LE CAM Doriane
+
+Pour exécuter le projet : Se placer à la racine et utiliser "ant"
+
+Pour compiler le projet : Se placer à la racine et utiliser "ant default compile"
+
+Pour exécuter le projet : Se placer à la racine et utiliser "ant" (par defaut, ant utilise la cible "default run"
+
+Le configuration pour ant est dans le fichier build.xml situé à la racine du projet.
+
+Comment jouer ?
+
+Vous arrivez sur la page d'accueil. De là vous pouvez choisir de commencer une nouvelle partie, continuer une partie enregistrée, changer la difficulté, changer d'époque ou créer une époque.
+
+Nouvelle partie chosie : 
+	Premièrement vous placez vos bateaux en choisissant une position "horizontale" ou "vertivale", en choisissant le bateau puis cliquez sur "Valider"
+	Vous avez 5 bateaux à placer.
+
+	Une fois les bateaux placés, sélectionnez une case sur la grille adverse. 
+	L'adversaire joue automatiquement.
+	La partie finie quand un joueur à abattue tous les bateaux ennemis.
+
+
+Nouvelle époque choisie :
+	Vous devez entrer le nom de votre époque.
+	Sélectionnez une image pour votre époque dans vos dossiers.
+	Entrez le nom des différents bateaux ainsi que leur résistance.
+
