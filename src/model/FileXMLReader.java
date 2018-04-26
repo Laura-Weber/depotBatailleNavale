@@ -19,6 +19,7 @@ public class FileXMLReader{
 	public ArrayList<ArrayList<String>> epoques;
 	final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	final String configFile = "./src/model/config.xml";
+	int nbEpoque = 0;
 	static int X = 0;
 	static int Y = 1;
 	static int RES = 0; 
@@ -43,7 +44,7 @@ public class FileXMLReader{
 	public FileXMLReader(){}
 /*getter lié aux époques*/
 	public int getNBEpoque() {
-		return epoquesTab.length;
+		return nbEpoque;
 	}
 	public String getNomEpoque(int i){
 		return epoquesTab[i][NOM][NOM][NOM];
@@ -134,7 +135,9 @@ public class FileXMLReader{
 			}
 			epoquesTab = new String[tmp][3][5][2];
 			tmp=0;
+			nbEpoque=0;
 			for (int i = 1 ; i<epoques.getLength();i=i+2){//pour chaque epoque
+				nbEpoque++;
 				epoque = epoques.item(i).getChildNodes();
 				epoquesTab[tmp][NOM][NOM][NOM] = epoque.item(0).getTextContent();//nom époque
 				epoquesTab[tmp][IM][IM][IM] = epoque.item(1).getTextContent(); // url image
