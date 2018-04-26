@@ -1,0 +1,96 @@
+<!--
+
+    clean : suppression du dossier build/, ancien dossier de compilation cree
+    compile : creation des dossiers build/classes/ et compilation des classes dans ceux-ci
+    init : copie des fichiers parametrages et ressources dans build/classes/
+    jar : creation du dossier build/jar/ et creation du jar dans ce dossier
+    run : lancement du jar
+
+    default run : execution de toutes les commandes (clean compile init jar run)
+    default compile : execution des commandes de compilation (clean compile init jar)
+
+    ant : lance par defaut l'argument 'default run'
+
+-->
+
+
+<project name="BatailleNavale" default="default run">
+
+
+
+    <!-- Suppression de l'ancien dossier de compilation -->
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+
+
+     <!-- Creation du dossier de destination des classes compilees  et compilation -->
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes">
+            <exclude name="**/*Test*"/>
+        </javac>
+    </target>
+
+
+
+    <!-- Copie des fichiers de parametrages et de ressources --> 
+
+    <target name="init">
+        <copy todir="build/classes/" >
+          <fileset dir="src" >
+            <include name="**/config.xml"/>
+            <include name="**/*.png"/>
+            <include name="**/*.jpg"/>
+          </fileset>
+        </copy>
+    </target>
+
+
+
+    <!-- Creation et constitution du dossier du jar avec le jar -->
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/BatailleNavale.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="BatailleNavale"/>
+            </manifest>
+        </jar>
+    </target>
+
+
+
+    <!-- Lancement du jar -->
+
+    <target name="run">
+        <java jar="build/jar/BatailleNavale.jar" fork="true"/>
+    </target>
+
+
+
+
+    <!-- Lancement par defaut de toutes les commandes 
+            a l'execution de ant sans arguments -->
+
+    <target name="default run">
+        <exec executable="ant">
+            <arg line ="clean init compile jar run"/>
+        </exec>
+    </target>
+
+
+
+    <!-- Lancement de toutes les procedures de compilation -->
+
+    <target name="default compile">
+        <exec executable="ant">
+            <arg line ="clean init compile jar"/>
+        </exec>
+    </target>
+
+
+</project>
