@@ -190,7 +190,7 @@ public class FenetrePrincipale extends JPanel{
 			nomBateau4.getText().isEmpty() == false && 
 			nomBateau5.getText().isEmpty() == false ){
         	this.model.createNewEpoque(nom.getText(), 
-        			apparence.toString(), 
+        			apparence.getString(), 
         			Integer.toString(resistanceBateau2.getSelectedIndex()+1), 
         			Integer.toString(resistanceBateau3.getSelectedIndex()+1), 
         			Integer.toString(resistanceBateau4.getSelectedIndex()+1), 

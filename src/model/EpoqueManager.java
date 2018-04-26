@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class EpoqueManager {	
@@ -129,7 +128,6 @@ public class EpoqueManager {
 	}
 	public boolean addEpoque(String nom, 
 			String apparence, 
-			int resistanceBateau, 
 			String res2, 
 			String res3, 
 			String res4, 
@@ -198,16 +196,16 @@ public class EpoqueManager {
 		ep1.setNomBateau(3, "bateau3");
 		ep1.setNomBateau(4, "bateau4");
 
-		ep1.setResistanceBateau(ep1.JOUEUR, 0, 2);
-		ep1.setResistanceBateau(ep1.JOUEUR, 1, 2);
-		ep1.setResistanceBateau(ep1.JOUEUR, 2, 2);
-		ep1.setResistanceBateau(ep1.JOUEUR, 3, 2);
-		ep1.setResistanceBateau(ep1.JOUEUR, 4, 2);
-		ep1.setResistanceBateau(ep1.ORDI, 0, 2);
-		ep1.setResistanceBateau(ep1.ORDI, 1, 2);
-		ep1.setResistanceBateau(ep1.ORDI, 2, 2);
-		ep1.setResistanceBateau(ep1.ORDI, 3, 2);
-		ep1.setResistanceBateau(ep1.ORDI, 4, 2);
+		ep1.setResistanceBateau(Epoque.JOUEUR, 0, 2);
+		ep1.setResistanceBateau(Epoque.JOUEUR, 1, 2);
+		ep1.setResistanceBateau(Epoque.JOUEUR, 2, 2);
+		ep1.setResistanceBateau(Epoque.JOUEUR, 3, 2);
+		ep1.setResistanceBateau(Epoque.JOUEUR, 4, 2);
+		ep1.setResistanceBateau(Epoque.ORDI, 0, 2);
+		ep1.setResistanceBateau(Epoque.ORDI, 1, 2);
+		ep1.setResistanceBateau(Epoque.ORDI, 2, 2);
+		ep1.setResistanceBateau(Epoque.ORDI, 3, 2);
+		ep1.setResistanceBateau(Epoque.ORDI, 4, 2);
 		actualEpoque=ep1;
 	}
 	
