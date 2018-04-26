@@ -207,6 +207,17 @@ public class Model extends Observable{
 		this.selectedPlacement = p;
 	}
 	
+	public void setScorePlayer(String getreussiPlayer, String getratePlayer) {
+		this.human.setWin(Integer.parseInt(getreussiPlayer));
+		this.human.setFail(Integer.parseInt(getratePlayer));
+	}
+	
+	public void setScoreComputer(String getreussiComputer, String getrateComputer) {
+		this.computer.setWin(Integer.parseInt(getreussiComputer));
+		this.computer.setFail(Integer.parseInt(getrateComputer));
+	}
+
+	
 	/*-------------GETTEUR--------------*/
 	
 	public boolean getIsMenu(){

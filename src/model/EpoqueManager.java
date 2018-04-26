@@ -239,6 +239,7 @@ public class EpoqueManager {
 	}
 	
 	public void loadGame(){
+		XMLr.readConfigFile();
 		setActualEpoque(XMLr.getNomEpoque());
 		int[][] bC = XMLr.getBoardComputer();
 		int[][] bP = XMLr.getBoardPlayer();
@@ -262,8 +263,8 @@ public class EpoqueManager {
 			this.actualEpoque.getBateauJoueur(i).setResistance(XMLr.getResistanceBateauPlayer(i));
 			this.actualEpoque.getBateauOrdi(i).setResistance(XMLr.getResistanceBateauComputer(i));
 		}
-		modele.getBoardManager().setScorePlayer(XMLr.getreussiPlayer(), XMLr.getratePlayer());
-		modele.getBoardManager().setScoreComputer(XMLr.getreussiComputer(), XMLr.getrateComputer());
+		modele.setScorePlayer(XMLr.getreussiPlayer(), XMLr.getratePlayer());
+		modele.setScoreComputer(XMLr.getreussiComputer(), XMLr.getrateComputer());
 		
 	}
 	public int getDifficultySaved(){

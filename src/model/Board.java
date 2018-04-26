@@ -17,10 +17,6 @@ public class Board {
 	public static Image iconWater;
 	public static Image iconShip;
 	
-	
-	private int hits = 0;
-	private int fails = 0;
-	
 	/**
 	 * Créationd d'un Board qui est représenté par un tableau de 10x10 cases
 	 */
@@ -57,8 +53,6 @@ public class Board {
 			for (int i = 0;i<SIZE;i++)
 				for (int j = 0;j<SIZE;j++)
 					board[i][j] = WATER;
-			hits = 0;
-			fails = 0;
 			res = true;
 		}
 		return res;
@@ -81,12 +75,6 @@ public class Board {
 		if (x>=0 & x<SIZE & y>=0 & y<SIZE) {
 			res = true;
 			this.board[x][y] = val;
-			if (val == HIT) {
-				this.hits ++;
-				assert (hits <= 17) : "Nombre de touché supérieur au nombre max dans Board.setCell";
-			}else{
-				if(val == FAIL)fails++;
-			}
 		}
 		return res;
 	}
@@ -109,8 +97,6 @@ public class Board {
 		return res;
 	}
 	
-	public int getScore() { return hits; }
-	public int getScoreFail(){return fails;}
 	
 	public Image getImage(Position p){
 		Image res = null;
@@ -131,14 +117,6 @@ public class Board {
 			break;
 		}
 		return res;
-	}
-
-	public void setWin(int i) {
-		this.hits=i;
-	}
-
-	public void setFail(int i) {
-		this.fails=i;
 	}
 
 }

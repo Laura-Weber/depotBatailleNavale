@@ -168,34 +168,8 @@ public class BoardManager extends Observable{
 		setChanged();
 		notifyObservers(pos);
 	}
-		
+	
 	/*-------------GETTEUR--------------*/
-	
-	/**
-	 * 
-	 * @param id = 0 pour le score du joueur, 1 pour le score du computer
-	 * @return le score correspondant à l'id
-	 */
-	public int getScore(int id) {
-		assert (id == 0 || id == 1) : "l'id renseigné est incorrecte BoardManager.getScore";
-		int res = humanBoard.getScore();	// On donne le score du joueur par defaut
-		if (id == 0)	// On demande le score du computer
-			res = computerBoard.getScore();
-		return res;
-	}
-	
-	/**
-	 * 
-	 * @param id = 0 pour le score du joueur, 1 pour le score du computer
-	 * @return le score correspondant à l'id
-	 */
-	public int getScoreFail(int id) {
-		assert (id == 0 || id == 1) : "l'id renseigné est incorrecte BoardManager.getScore";
-		int res = humanBoard.getScoreFail();	// On donne le score du joueur par defaut
-		if (id == 0)	// On demande le score du computer
-			res = computerBoard.getScoreFail();
-		return res;
-	}
 	
 	public int getCellHuman(Position pos) {
 		return this.humanBoard.getCell(pos);
@@ -233,14 +207,5 @@ public class BoardManager extends Observable{
 		return sb.toString() + sb2.toString();
 	}
 
-	public void setScorePlayer(String getreussiPlayer, String getratePlayer) {
-		this.computerBoard.setWin(Integer.parseInt(getreussiPlayer));
-		this.computerBoard.setFail(Integer.parseInt(getratePlayer));		
-	}
-
-	public void setScoreComputer(String getreussiComputer, String getrateComputer) {
-		this.computerBoard.setWin(Integer.parseInt(getreussiComputer));
-		this.computerBoard.setFail(Integer.parseInt(getrateComputer));
-	}
 }
 

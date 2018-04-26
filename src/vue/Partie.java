@@ -143,7 +143,7 @@ public class Partie extends JPanel implements Observer{
 			this.winComputer.setText("Tir(s) reussi(s) : " + this.model.getComputer().getWin());
 			this.looseComputer.setText("Tir(s) rate(s) : " + this.model.getComputer().getFail());
 		}else if(o instanceof Model && this.model.getIsFinish()){
-			if(this.model.getBoardManager().getScore(0) > this.model.getBoardManager().getScore(1)){// id = 0 sur c'est le joueur, 1 si c'est le computer
+			if(this.model.getHuman().getWin() > this.model.getComputer().getWin()){// id = 0 sur c'est le joueur, 1 si c'est le computer
 				//Humain gagne
 				JOptionPane.showMessageDialog(this, "Felicitations !! Vous avez gagne ! :D", "Vous avez fini !", 0);	
 			}else{
