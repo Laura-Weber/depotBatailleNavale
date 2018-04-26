@@ -98,7 +98,7 @@ public abstract class Bateau{
 	}
 	public void hit(){
 		this.resistance= this.resistance-1;
-		this.isDead = true;
+		if(resistance==0)this.isDead = true;
 	}
 	public boolean isDead(){
 		return isDead;
