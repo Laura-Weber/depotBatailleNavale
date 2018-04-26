@@ -121,19 +121,16 @@ public class EpoqueManager {
 	public boolean addEpoque(String nom, 
 			String apparence, 
 			int resistanceBateau, 
-			String apparenceBateau2, 
-			String apparenceBateau3, 
-			String apparenceBateau3Bis, 
-			String apparenceBateau4, 
-			String apparenceBateau5,
-			String nomBateau2,
-			String nomBateau3,
-			String nomBateau3Bis,
-			String nomBateau4,
-			String nomBateau5){
-		//créer l'epoque ici
-		//et dit au XMLWriter de créer le fichier.
-		return false;
+			String res2, 
+			String res3, 
+			String res4, 
+			String res5,
+			String nom2,
+			String nom3,
+			String nom4,
+			String nom5){
+		this.XMLw.addEpoque(nom, apparence, nom5, nom4, nom3, nom2, res5, res4, res3, res2);
+		return true;
 	}
 
 	public ArrayList<String> getAllNameOfEpoques(){

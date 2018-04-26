@@ -71,17 +71,15 @@ public class Model extends Observable{
 			String nom, 
 			String apparence, 
 			int resistanceBateau, 
-			String apparenceBateau2, 
-			String apparenceBateau3, 
-			String apparenceBateau3Bis, 
-			String apparenceBateau4, 
-			String apparenceBateau5,
+			String resistanceBateau2, 
+			String resistanceBateau3,
+			String resistanceBateau4, 
+			String resistanceBateau5,
 			String nomBateau2,
 			String nomBateau3,
-			String nomBateau3Bis,
 			String nomBateau4,
 			String nomBateau5){
-		return epoquemanager.addEpoque(nom,apparence,resistanceBateau,apparenceBateau2, apparenceBateau3, apparenceBateau3Bis,apparenceBateau4, apparenceBateau5,nomBateau2,nomBateau3,nomBateau3Bis,nomBateau4,nomBateau5);
+		return epoquemanager.addEpoque(nom,apparence,resistanceBateau,resistanceBateau2, resistanceBateau3,resistanceBateau4, resistanceBateau5,nomBateau2,nomBateau3,nomBateau4,nomBateau5);
 	}
 	
 	
