@@ -189,7 +189,16 @@ public class FenetrePrincipale extends JPanel{
 			nomBateau3.getText().isEmpty() == false && 
 			nomBateau4.getText().isEmpty() == false && 
 			nomBateau5.getText().isEmpty() == false ){
-        	//this.model.createNewEpoque(nom.getText(), apparence.getString(), resistanceBateau.getSelectedIndex()+1, apparenceBateau2.getString(), apparenceBateau3.getString(), apparenceBateau3Bis.getString(), apparenceBateau4.getString(), apparenceBateau5.getString(), nomBateau2.getText(), nomBateau3.getText(), nomBateau3Bis.getText(), nomBateau4.getText(), nomBateau5.getText());
+        	this.model.createNewEpoque(nom.getText(), 
+        			apparence.toString(), 
+        			Integer.toString(resistanceBateau2.getSelectedIndex()+1), 
+        			Integer.toString(resistanceBateau3.getSelectedIndex()+1), 
+        			Integer.toString(resistanceBateau4.getSelectedIndex()+1), 
+        			Integer.toString(resistanceBateau5.getSelectedIndex()+1), 
+        			nomBateau2.getText(), 
+        			nomBateau3.getText(), 
+        			nomBateau4.getText(), 
+        			nomBateau5.getText());
         }else{
         	JOptionPane.showMessageDialog(this,
         		    "Un ou plusieurs champs manquants, action annulee.",

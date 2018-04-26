@@ -70,16 +70,15 @@ public class Model extends Observable{
 	public boolean createNewEpoque(
 			String nom, 
 			String apparence, 
-			int resistanceBateau, 
-			String resistanceBateau2, 
-			String resistanceBateau3,
-			String resistanceBateau4, 
-			String resistanceBateau5,
-			String nomBateau2,
-			String nomBateau3,
-			String nomBateau4,
-			String nomBateau5){
-		return epoquemanager.addEpoque(nom,apparence,resistanceBateau,resistanceBateau2, resistanceBateau3,resistanceBateau4, resistanceBateau5,nomBateau2,nomBateau3,nomBateau4,nomBateau5);
+			String res2, 
+			String res3, 
+			String res4, 
+			String res5,
+			String nom2,
+			String nom3,
+			String nom4,
+			String nom5){
+		return epoquemanager.addEpoque(nom,apparence,res2,res3,res4,res5,nom2,nom3,nom4,nom5);
 	}
 	
 	
