@@ -246,4 +246,11 @@ public class Model extends Observable{
 	public int getSizeEpoque(){
 		return epoquemanager.getAllNameOfEpoques().size();
 	}
+	public int getResistanceOrdi(int bateau){
+		return this.epoquemanager.getActualEpoque().getBateauOrdi(bateau).getResistance();
+	}
+	public int getResistanceJoueur(int bateau){
+		return this.epoquemanager.getActualEpoque().getBateauJoueur(bateau).getResistance();
+	}
+	
 }
