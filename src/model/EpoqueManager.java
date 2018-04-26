@@ -217,8 +217,8 @@ public class EpoqueManager {
 		int[][] boardComputer = new int[10][10];
 		for(int i=0;i<10;i++){
 			for(int j=0;j<10;j++){
-				boardJoueur[i][j]	= modele.getBoardManager().getCellHuman(new Position(i,j));
-				boardComputer[i][j]	= modele.getBoardManager().getCellComputer(new Position(i,j));
+				boardJoueur[j][i]	= modele.getBoardManager().getCellHuman(new Position(j,i));
+				boardComputer[j][i]	= modele.getBoardManager().getCellComputer(new Position(j,i));
 			}
 		}
 		
@@ -244,8 +244,8 @@ public class EpoqueManager {
 		int[][] bP = XMLr.getBoardPlayer();
 		for(int i=0;i<10;i++){
 			for (int j=0;j<10;j++){
-				modele.getBoardManager().setCellComputer(new Position(i,j), bC[i][j] );
-				modele.getBoardManager().setCellHuman(new Position(i,j), bP[i][j] );
+				modele.getBoardManager().setCellComputer(new Position(j,i), bC[j][i] );
+				modele.getBoardManager().setCellHuman(new Position(j,i), bP[j][i] );
 			}
 		}
 		for(int i=0; i<5; i++){

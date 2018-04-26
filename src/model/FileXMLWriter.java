@@ -181,14 +181,14 @@ public class FileXMLWriter{
 			for(int i=1; i<bateauxPlayer.getLength();i=i+2){
 				bateauPlayer = bateauxPlayer.item(i).getChildNodes();
 				resistance = bateauPlayer.item(1);
-				resistance.setTextContent(Integer.toString(ep.getBateauJoueur(k).getResistance()));
+				resistance.setTextContent(Integer.toString(ep.getBateauJoueur(4-k).getResistance()));
 				l=0;
 				for(int j=3;j<bateauPlayer.getLength();j=j+2){
 					position = bateauPlayer.item(j).getChildNodes();
 					x = position.item(0);
 					y = position.item(1);
-					x.setTextContent(Integer.toString(ep.getBateauJoueur(k).getPosition(l).getX()));
-					y.setTextContent(Integer.toString(ep.getBateauJoueur(k).getPosition(l).getY()));
+					y.setTextContent(Integer.toString(ep.getBateauJoueur(k).getPosition(l).getX()));
+					x.setTextContent(Integer.toString(ep.getBateauJoueur(k).getPosition(l).getY()));
 					l++;
 				}
 				

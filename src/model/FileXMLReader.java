@@ -214,18 +214,20 @@ public class FileXMLReader{
 			int t = 0;
 			int x = 0;
 			int y = 0;
-			for(int i=1; i<boardPlayer.getLength()-1;i++){
+			for(int i=0; i<boardPlayer.getLength()-2;i++){
 				if(boardPlayer.item(i).getTextContent().isEmpty())boardP[x][y]=0;
 				else boardP[x][y] = Integer.parseInt(boardPlayer.item(i).getTextContent());
 				if(boardComputer.item(i).getTextContent().isEmpty()) boardC[x][y] = 0;
 				else boardC[x][y] = Integer.parseInt(boardComputer.item(i).getTextContent());
 				x++;
-				if(x==10){
+				if(x>9){
 					x=0;
 					y++;
 				}
+				
 			}		
-			/* fin des boards*/
+			System.out.println();System.out.println();
+			System.out.println();			/* fin des boards*/
 			/*-----------------------FIN LECTURE SAUVEGARDE JOUEUR---------------------*/
 		}
 		catch (final ParserConfigurationException e) {
