@@ -60,6 +60,9 @@ public abstract class Bateau{
 		this.taille = positions.size();
 		return true;
 	}
+	public void setTaille(int t){
+		this.taille = t;
+	}
 	public boolean setApparence(String apparence) {
 		if(apparence.isEmpty())return false;
 		this.apparence = apparence;

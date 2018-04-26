@@ -9,7 +9,7 @@ public class FourCases extends Bateau{
 		this.positions.add(new Position());
 		this.positions.add(new Position());
 		this.positions.add(new Position());
-		this.setTaille();
+		this.setTaille(4);
 	}	
 	
 }

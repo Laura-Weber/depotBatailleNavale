@@ -6,7 +6,7 @@ public class TwoCases extends Bateau{
 		super(res, name, computer, image, ep);
 		this.positions.add(new Position());
 		this.positions.add(new Position());
-		this.setTaille();
+		this.setTaille(2);
 	}	
 	
 }

@@ -10,7 +10,7 @@ public class FiveCases extends Bateau{
 		this.positions.add(new Position());
 		this.positions.add(new Position());
 		this.positions.add(new Position());
-		this.setTaille();
+		this.setTaille(5);
 	}	
 	
 }

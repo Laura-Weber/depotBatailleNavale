@@ -8,7 +8,7 @@ public class ThreeCasesBis extends Bateau{
 		this.positions.add(new Position());
 		this.positions.add(new Position());
 		this.positions.add(new Position());
-		this.setTaille();
+		this.setTaille(3);
 	}	
 	
 }

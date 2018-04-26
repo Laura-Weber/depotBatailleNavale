@@ -66,7 +66,6 @@ public class EpoqueManager {
 			}else{
 				b = actualEpoque.getBateauOrdi(i);
 			}
-			b.setTaille();
 			if(b.checkPosition(p)){
 				b.hit();
 				if(b.isDead()){
@@ -116,6 +115,16 @@ public class EpoqueManager {
 			epTmp.setResistanceBateau("ordi",2, XMLr.getResistanceBateau(i,2));
 			epTmp.setResistanceBateau("ordi",1, XMLr.getResistanceBateau(i,3));
 			epTmp.setResistanceBateau("ordi",0, XMLr.getResistanceBateau(i,4));
+			epTmp.getBateauJoueur(4).setTaille(2);
+			epTmp.getBateauJoueur(3).setTaille(3);
+			epTmp.getBateauJoueur(2).setTaille(3);
+			epTmp.getBateauJoueur(1).setTaille(4);
+			epTmp.getBateauJoueur(0).setTaille(5);
+			epTmp.getBateauOrdi(4).setTaille(2);
+			epTmp.getBateauOrdi(3).setTaille(3);
+			epTmp.getBateauOrdi(2).setTaille(3);
+			epTmp.getBateauOrdi(1).setTaille(4);
+			epTmp.getBateauOrdi(0).setTaille(5);
 		}
 	}
 	public boolean addEpoque(String nom, 
