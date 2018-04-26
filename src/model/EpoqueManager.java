@@ -66,6 +66,7 @@ public class EpoqueManager {
 			}else{
 				b = actualEpoque.getBateauOrdi(i);
 			}
+			b.setTaille();
 			if(b.checkPosition(p)){
 				b.hit();
 				if(b.isDead()){
