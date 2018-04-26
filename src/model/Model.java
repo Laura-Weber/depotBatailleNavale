@@ -15,6 +15,7 @@ public class Model extends Observable{
 	private boolean isPlacement;
 	private boolean isFinish;
 	private int difficulty;
+	private static int DEFAULT = 0 ;
 	
 	private Position selectedPlacement = null;
 	
@@ -28,6 +29,9 @@ public class Model extends Observable{
 		this.human = new Human(this);
 		this.computer = new Computer(this, bm);
 		this.changeDifficulty(0);
+		this.epoquemanager.setModel(this);
+		epoquemanager.readAllEpoque();
+		epoquemanager.setActualEpoque(DEFAULT);
 	}
 	
 	
@@ -109,6 +113,7 @@ public class Model extends Observable{
 		boolean res = false;
 		if(this.selectedPlacement != null){
 			res = this.bm.placementHuman(type, orient, selectedPlacement);
+			epoquemanager.getActualEpoque().placementHuman(type, orient, selectedPlacement);
 		}
 		this.selectedPlacement = null;
 		return res;
@@ -120,10 +125,12 @@ public class Model extends Observable{
 	 * @param orient
 	 * @return
 	 */
-	public boolean placementComputer(int type, int orient){
+	public boolean placementComputer(int type, int orient, Position p){
 		boolean res = false;
-		if(this.selectedPlacement != null){
-			res = this.bm.placementComputer(type, orient, selectedPlacement);
+		if(p != null){
+			res = this.bm.placementComputer(type, orient, p);
+			epoquemanager.getActualEpoque().placementComputer(type, orient, p);
+
 		}
 		this.selectedPlacement = null;
 		return res;
@@ -136,6 +143,7 @@ public class Model extends Observable{
 	public void playHuman(Position p){
 		if(this.getComputerTurn() == false && !this.isFinish()){
 			if(this.bm.getCellComputer(p) == Board.SHIP){
+				epoquemanager.getActualEpoque().hitBoatComputer(p);
 				this.human.setWin(this.human.getWin() + 1);
 				this.bm.setCellComputer(p, Board.HIT);
 				this.computerTurn = true;
@@ -156,6 +164,7 @@ public class Model extends Observable{
 	public void playComputer(Position p){
 		if(this.getComputerTurn() == true && !this.isFinish()){
 			if(this.bm.getCellHuman(p) == Board.SHIP){
+				epoquemanager.getActualEpoque().hitBoatPlayer(p);
 				this.computer.setWin(this.computer.getWin() + 1);
 				this.bm.setCellHuman(p, Board.HIT);
 				this.computerTurn = false;

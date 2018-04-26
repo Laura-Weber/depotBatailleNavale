@@ -18,9 +18,13 @@ public abstract class Bateau{
 	private String apparence;
 	private Epoque epoque;
 	protected List<Position> positions;
+	private boolean isPlaced = false;
+	private int resInit;
+	private boolean isDead = false;
 	
 	public Bateau(int res, String name, boolean computer, String image, Epoque ep){
 		resistance = res;
+		resInit = res;
 		nom = name;
 		isComputer = computer;
 		taille = 0;
@@ -71,6 +75,7 @@ public abstract class Bateau{
 		assert(indice < positions.size() & indice >= 0):"Cases , erreur d'assignation de position indice trop grand ou trop petit";
 		(positions.get(indice)).setX(x);
 		(positions.get(indice)).setY(y);
+		isPlaced=true;
 	}
 	public void setDead(int i) {
 		resistance=0;
@@ -81,7 +86,23 @@ public abstract class Bateau{
 		}
 		return false;
 	}
-	
+	public boolean isPlaced(){
+		return isPlaced;
+	}
+	public void reset(){
+		isPlaced=false;
+		resistance=resInit;
+		positions = new ArrayList<Position>();
+		this.isDead = false;
+		
+	}
+	public void hit(){
+		this.resistance= this.resistance-1;
+		this.isDead = true;
+	}
+	public boolean isDead(){
+		return isDead;
+	}
 	
 	public String toString(){
 		return "nom bateau : "+this.nom+"|| apparence : "+ this.apparence+"|| resistance : "+this.resistance+"|| taille : "+this.taille;

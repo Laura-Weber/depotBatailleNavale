@@ -22,7 +22,7 @@ public class Computer extends Player{
 			orient = 0 + (int)(Math.random() * ((1 - 0) + 1));
 			x = 0 + (int)(Math.random() * ((Board.SIZE - 1) + 1));
 			y = 0 + (int)(Math.random() * ((Board.SIZE - 1) + 1));
-			while(this.model.getBoardManager().placementComputer(values[i], orient, new Position(x, y)) == false){
+			while(this.model.placementComputer(values[i], orient, new Position(x, y)) == false){
 				orient = 0 + (int)(Math.random() * ((1 - 0) + 1));
 				x = 0 + (int)(Math.random() * ((Board.SIZE - 1) + 1));
 				y = 0 + (int)(Math.random() * ((Board.SIZE - 1) + 1));

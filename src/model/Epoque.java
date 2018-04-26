@@ -128,6 +128,100 @@ public class Epoque {
 		return true;
 		
 	}
+	
+	/*fin setter*/
+	
+	/*----placements des bateaux -----*/
+	/**
+	 * 
+	 * @param type
+	 * @param orient  0 : horizontale, 1 : verticale
+	 * @param pos
+	 */
+	public boolean placementHuman(int type, int orient, Position pos){
+		int bateau = 0;
+		switch (type){
+			case 2: bateau = 0;break;
+			case 3: if(!this.flotteJoueur.get(1).isPlaced())bateau=1;else bateau=2; break;
+			case 4: bateau = 3; break;
+			case 5: bateau = 4; break;
+		}
+		boolean res = false;
+		if(orient == 0){
+			if(pos.getY() + type < Board.SIZE + 1){
+				res = true;
+				for(int i = 0; i < type; i++){
+					this.flotteJoueur.get(bateau).setPosition(i, pos.getX(), pos.getY()+i);
+				}
+			}
+		}else{
+			if(pos.getX() + type < Board.SIZE + 1){
+				res = true;
+				for(int i = 0; i < type; i++){
+					this.flotteJoueur.get(bateau).setPosition(i, pos.getX()+i, pos.getY());
+				}
+			}
+		}
+		return res;
+	}
+	
+	/**
+	 * 
+	 * @param type
+	 * @param orient 0 : horizontale, 1 : verticale
+	 * @param pos position de la premiere case
+	 */
+	
+	public boolean placementComputer(int type, int orient, Position pos){
+		int bateau = 0;
+		switch (type){
+			case 2: bateau = 0;break;
+			case 3: if(!this.flotteOrdi.get(1).isPlaced())bateau=1;else bateau=2; break;
+			case 4: bateau = 3; break;
+			case 5: bateau = 4; break;
+		}
+		boolean res = false;
+		if(orient == 0){
+			if(pos.getY() + type < Board.SIZE + 1){
+				res = true;
+				for(int i = 0; i < type; i++){
+					this.flotteOrdi.get(bateau).setPosition(i, pos.getX(), pos.getY()+i);
+				}
+			}
+		}else{
+			if(pos.getX() + type < Board.SIZE + 1){
+				res = true;
+				for(int i = 0; i < type; i++){
+					this.flotteOrdi.get(bateau).setPosition(i, pos.getX()+i, pos.getY());
+				}
+			}
+		}
+		return res;
+	}
+	
+	
+	public void resetPartie(){
+		for(int i=0;i<5;i++){
+			this.flotteJoueur.get(i).reset();
+			this.flotteOrdi.get(i).reset();
+		}
+	}
+	
+	public void hitBoatPlayer(Position p){
+		for( int i=0; i<this.flotteJoueur.size();i++){
+			if(this.flotteJoueur.get(i).checkPosition(p)) this.flotteJoueur.get(i).hit();
+		}
+	}
+	public void hitBoatComputer(Position p){
+		for( int i=0; i<this.flotteOrdi.size();i++){
+			if(this.flotteOrdi.get(i).checkPosition(p)) this.flotteOrdi.get(i).hit();
+		}
+	}
+	
+	
+	
+	
+	
 
 	public String toString(){
 		return "nom de l'epoque : "+this.getName() + "\n info du bateau 2 du joueur:" +this.getBateauJoueur(0).toString() ; 
