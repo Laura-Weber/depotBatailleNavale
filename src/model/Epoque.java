@@ -85,13 +85,13 @@ public class Epoque {
 	/*-------------SETTEUR--------------*/
 	
 	public boolean setName(String name){
-		if(name.isEmpty())return false;
+		if(name == null)return false;
 		nom = name;
 		return true;
 	}
 	
 	public boolean setApparence(String app){
-		if(app.isEmpty() | app == null)return false;
+		if(app == null)return false;
 		this.apparence = app;		
 		return true;
 	}
@@ -122,7 +122,7 @@ public class Epoque {
 	}
 	
 	public boolean setNomBateau(int indice, String nom){
-		if(indice<0 | indice>4 | nom.isEmpty() | nom ==null ) return false;
+		if( nom ==null && indice<0 && indice>4 && nom.isEmpty() ) return false;
 		flotteJoueur.get(indice).setNom(nom); 
 		flotteOrdi.get(indice).setNom(nom);
 		return true;

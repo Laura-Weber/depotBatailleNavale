@@ -18,8 +18,8 @@ import java.util.List;
 public class FileXMLReader{
 	public ArrayList<ArrayList<String>> epoques;
 	final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	final String configFile = "./src/model/config.xml";
-	int nbEpoque = 0;
+	final String configFile = "config.xml";
+	int nbEpoque = 1;
 	static int X = 0;
 	static int Y = 1;
 	static int RES = 0; 
@@ -38,11 +38,11 @@ public class FileXMLReader{
 	String ratePlayer;	
 	String reussiComputer; 	
 	String rateComputer;	
-	
+
 
 
 	public FileXMLReader(){}
-/*getter lié aux époques*/
+	/*getter lié aux époques*/
 	public int getNBEpoque() {
 		return nbEpoque;
 	}
@@ -58,10 +58,10 @@ public class FileXMLReader{
 	public int getResistanceBateau(int ep, int bateau){
 		return Integer.parseInt(epoquesTab[ep][BATEAU][bateau][RES]);
 	}
-/*fin des getters epoques*/
-	
-/*getters liés a la sauvegarde*/
-	
+	/*fin des getters epoques*/
+
+	/*getters liés a la sauvegarde*/
+
 	public String getDifficulty(){return difficulte;}
 	public String getreussiPlayer(){return reussiPlayer;}
 	public String getratePlayer(){return ratePlayer;}
@@ -71,7 +71,7 @@ public class FileXMLReader{
 	public String getTourOrdi(){return tourOrdi;}
 	public int[][] getBoardPlayer(){return boardP;}
 	public int[][] getBoardComputer(){return boardC;}
-	
+
 	public List<Position> getPositionBateauPlayer(int i){
 		List<Position> tmp = new ArrayList<Position>();
 		int j=1;
@@ -81,7 +81,7 @@ public class FileXMLReader{
 		}
 		return tmp;
 	}
-	
+
 	public List<Position> getPositionBateauComputer(int i){
 		List<Position> tmp = new ArrayList<Position>();
 		int j=1;
@@ -93,8 +93,8 @@ public class FileXMLReader{
 	}
 	public int getResistanceBateauPlayer(int i){return Integer.parseInt(bateauxPlayer[i][0][0]);}
 	public int getResistanceBateauComputer(int i){return Integer.parseInt(bateauxComputer[i][0][0]);}
-	
-/*fin getters de la sauvegarde*/
+
+	/*fin getters de la sauvegarde*/
 
 
 	public void readConfigFile(){
@@ -125,60 +125,60 @@ public class FileXMLReader{
 			final Node noeudSauvegarde = racineNoeuds.item(3);//noeud Sauvegarde
 			final NodeList epoques = noeudEpoques.getChildNodes();
 			final NodeList sauvegarde = noeudSauvegarde.getChildNodes();
-			
+
 			/*------------------PARTIE DE LECTURE DES EPOQUES--------------------*/
 			NodeList epoque ;
 			Node five,four,three,threebis,two;
 			int tmp=0;
-			for(int i=1;i<epoques.getLength();i=i+2){
-				tmp++;
+			for(int i=0;i<epoques.getLength();i=i+1){
+				tmp=tmp+1;
 			}
 			epoquesTab = new String[tmp][3][5][2];
+			nbEpoque = tmp;
 			tmp=0;
-			nbEpoque=0;
-			for (int i = 1 ; i<epoques.getLength();i=i+2){//pour chaque epoque
-				nbEpoque++;
+			for (int i = 0 ; i<epoques.getLength();i=i+1){//pour chaque epoque
 				epoque = epoques.item(i).getChildNodes();
 				epoquesTab[tmp][NOM][NOM][NOM] = epoque.item(0).getTextContent();//nom époque
 				epoquesTab[tmp][IM][IM][IM] = epoque.item(1).getTextContent(); // url image
 
 				NodeList bateaux = epoque.item(2).getChildNodes(); // recuperation des enfants bateaux
-				
+
 				five = bateaux.item(0);//five
 				epoquesTab[tmp][BATEAU][0][NOM] = five.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][0][RES] = five.getChildNodes().item(1).getTextContent();//resistance
-				
+
 				four = bateaux.item(1);//four
 				epoquesTab[tmp][BATEAU][1][NOM] = four.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][1][RES] = four.getChildNodes().item(1).getTextContent();//resistance
-				
+
 				three = bateaux.item(2);//three
 				epoquesTab[tmp][BATEAU][2][NOM] = three.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][2][RES] = three.getChildNodes().item(1).getTextContent();//resistance
-				
+
 				threebis = bateaux.item(3);//threebis
 				epoquesTab[tmp][BATEAU][3][NOM] = threebis.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][3][RES] = threebis.getChildNodes().item(1).getTextContent();//resistance
-				
+
 				two = bateaux.item(4);//two
 				epoquesTab[tmp][BATEAU][4][NOM] = two.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][4][RES] = two.getChildNodes().item(1).getTextContent();//resistance
-				tmp++;
+				tmp=tmp+1;
 				//sauvegarde des données a faire plus tard
-				
+
 			}
+
 			/*------------------------FIN LECTURE EPOQUE-------------------------*/
-			
-			
+
+
 			/*----------------------DEBUT LECTURE SAUVEGARDE JOUEUR------------------*/
 			tourOrdi 	= sauvegarde.item(1).getTextContent(); 
 			nomEpoque 	= sauvegarde.item(3).getTextContent();
 			difficulte 	= sauvegarde.item(5).getTextContent();
-			
+
 			NodeList player, computer, scorePlayer, scoreComputer;
 			player = sauvegarde.item(7).getChildNodes();
 			computer = sauvegarde.item(9).getChildNodes();
-			
+
 			/*les scores*/
 			scorePlayer 			= player.item(1).getChildNodes();
 			scoreComputer 			= computer.item(1).getChildNodes();
@@ -187,7 +187,7 @@ public class FileXMLReader{
 			reussiComputer 	= scoreComputer.item(1).getTextContent();
 			rateComputer 	= scoreComputer.item(3).getTextContent();
 			/*fin scores*/
-			
+
 			/*  les bateaux */
 			NodeList bateauxPlayer 		= player.item(3).getChildNodes();
 			NodeList bateauxComputer 	= computer.item(3).getChildNodes();
@@ -207,7 +207,7 @@ public class FileXMLReader{
 				j++;
 			}
 			/* fin des bateaux */
-			
+
 			/* les boards */
 			NodeList boardPlayer 	= player.item(5).getChildNodes();
 			NodeList boardComputer	= computer.item(5).getChildNodes();
@@ -227,7 +227,6 @@ public class FileXMLReader{
 			}		
 			/* fin des boards*/
 			/*-----------------------FIN LECTURE SAUVEGARDE JOUEUR---------------------*/
-
 		}
 		catch (final ParserConfigurationException e) {
 			e.printStackTrace();
