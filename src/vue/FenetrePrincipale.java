@@ -161,7 +161,7 @@ public class FenetrePrincipale extends JPanel{
 
         panel.add(new JLabel("Nom de l'epoque : "));
         panel.add(nom);
-        panel.add(new JLabel("Chemin vers l'image de l'époque : "));
+        panel.add(new JLabel("Chemin vers l'image de l'epoque : "));
         panel.add(apparence);
         panel.add(new JLabel("Nom du bateau a 2 cases : "));
         panel.add(nomBateau2);
@@ -192,7 +192,7 @@ public class FenetrePrincipale extends JPanel{
         	//this.model.createNewEpoque(nom.getText(), apparence.getString(), resistanceBateau.getSelectedIndex()+1, apparenceBateau2.getString(), apparenceBateau3.getString(), apparenceBateau3Bis.getString(), apparenceBateau4.getString(), apparenceBateau5.getString(), nomBateau2.getText(), nomBateau3.getText(), nomBateau3Bis.getText(), nomBateau4.getText(), nomBateau5.getText());
         }else{
         	JOptionPane.showMessageDialog(this,
-        		    "Un ou plusieurs champs manquants, action annulée.",
+        		    "Un ou plusieurs champs manquants, action annulee.",
         		    "Champ(s) manquant(s) !",
         		    JOptionPane.ERROR_MESSAGE);
         }

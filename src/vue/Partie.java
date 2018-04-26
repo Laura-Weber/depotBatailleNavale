@@ -68,9 +68,9 @@ public class Partie extends JPanel implements Observer{
 		this.human.add(namePlayer, c);
 		c.gridy = 40;
 		c.insets = new Insets(0,0,0,10);
-		this.winHuman = new JLabel("Tir(s) réussi(s) : " + this.model.getHuman().getWin());
+		this.winHuman = new JLabel("Tir(s) reussi(s) : " + this.model.getHuman().getWin());
 		this.human.add(this.winHuman, c);
-		this.looseHuman = new JLabel("Tir(s) raté(s) : " + this.model.getHuman().getFail());
+		this.looseHuman = new JLabel("Tir(s) rate(s) : " + this.model.getHuman().getFail());
 		this.human.add(this.looseHuman, c);
 		this.boardHuman = new JPanel();
 		this.boardHuman.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -137,15 +137,15 @@ public class Partie extends JPanel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		if(o instanceof Human){
-			this.winHuman.setText("Tir(s) réussi(s) : " + this.model.getHuman().getWin());
-			this.looseHuman.setText("Tir(s) raté(s) : " + this.model.getHuman().getFail());
+			this.winHuman.setText("Tir(s) reussi(s) : " + this.model.getHuman().getWin());
+			this.looseHuman.setText("Tir(s) rate(s) : " + this.model.getHuman().getFail());
 		}else if(o instanceof Computer){
-			this.winComputer.setText("Tir(s) réussi(s) : " + this.model.getComputer().getWin());
-			this.looseComputer.setText("Tir(s) raté(s) : " + this.model.getComputer().getFail());
+			this.winComputer.setText("Tir(s) reussi(s) : " + this.model.getComputer().getWin());
+			this.looseComputer.setText("Tir(s) rate(s) : " + this.model.getComputer().getFail());
 		}else if(o instanceof Model && this.model.getIsFinish()){
 			if(this.model.getBoardManager().getScore(0) > this.model.getBoardManager().getScore(1)){// id = 0 sur c'est le joueur, 1 si c'est le computer
 				//Humain gagne
-				JOptionPane.showMessageDialog(this, "Felicitations !! Vous avez gagné ! :D", "Vous avez fini !", 0);	
+				JOptionPane.showMessageDialog(this, "Felicitations !! Vous avez gagne ! :D", "Vous avez fini !", 0);	
 			}else{
 				//Computer gagne
 				JOptionPane.showMessageDialog(this, "Malheureusement, vous avez perdu.. Une autre fois peut etre ?", "Vous avez fini !", 0);	
