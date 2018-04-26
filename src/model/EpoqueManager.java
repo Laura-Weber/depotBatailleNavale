@@ -67,14 +67,14 @@ public class EpoqueManager {
 				b = actualEpoque.getBateauOrdi(i);
 			}
 			if(b.checkPosition(p)){
-				if(b.getResistance()<2){
+				b.hit();
+				if(b.isDead()){
 					for(int j=0; j<b.getTaille();j++){
 						pos.add(b.getPosition(j));
 					}
 					b.setDead(0);
 					return pos;
 				}else{
-					b.setResistance(b.getResistance()-1);
 					pos.add(p);
 					return pos;
 				}
@@ -84,6 +84,12 @@ public class EpoqueManager {
 		return pos;
 	}
 
+	public Epoque getEpoqueSave(){
+		for(int i=0;i<this.epoques.size();i++){
+			if(this.XMLr.getNomEpoque().equals(epoques.get(i).getName()))return epoques.get(i);
+		}
+		return null;
+	}
 
 	public void readAllEpoque(){
 		this.epoques = new ArrayList<Epoque>();
