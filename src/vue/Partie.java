@@ -86,8 +86,13 @@ public class Partie extends JPanel implements Observer{
 		c.gridy = 60;
 		c.gridheight = this.SIZE;
 		c.gridwidth = this.SIZE;
-		c.insets = new Insets(50,0,0,0);
+		c.insets = new Insets(30,0,0,0);
 		this.human.add(this.boardHuman, c);
+		c = new GridBagConstraints();
+		c.gridy = 120;
+		c.gridwidth = this.SIZE;
+		c.insets = new Insets(10,10,10,10);
+		this.human.add(new Bateaux(this.model, "Human"), c);
 		this.add(this.human);
 		
 		//***** JPanel de Computer *****/
@@ -126,8 +131,13 @@ public class Partie extends JPanel implements Observer{
 		c.gridy = 60;
 		c.gridheight = this.SIZE;
 		c.gridwidth = this.SIZE;
-		c.insets = new Insets(50,0,0,0);
+		c.insets = new Insets(30,0,0,0);
 		this.computer.add(this.boardComputer, c);
+		c = new GridBagConstraints();
+		c.gridy = 120;
+		c.gridwidth = this.SIZE;
+		c.insets = new Insets(10,10,10,10);
+		this.computer.add(new Bateaux(this.model, "Computer"), c);
 		this.add(this.computer);
 	}
 	
