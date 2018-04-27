@@ -55,9 +55,8 @@ public class EpoqueManager {
 		return true;
 	}
 
-	public ArrayList<Position> play(Position po, int id){
-		assert(po!=null & (id==ORDI | id ==JOUEUR)):"Epoque manager : erreur play() id ou pos";
-		Position p = new Position(po.getY(),po.getX()); 
+	public ArrayList<Position> play(Position p, int id){
+		assert(p!=null & (id==ORDI | id ==JOUEUR)):"Epoque manager : erreur play() id ou pos";
 		ArrayList<Position> pos = new ArrayList<Position>();
 		Bateau b;
 		for(int i=0;i<5;i++){
