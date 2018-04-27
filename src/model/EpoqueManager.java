@@ -279,7 +279,7 @@ public class EpoqueManager {
 		}
 		return -1;
 	}
-	public boolean checkPlacementPossible(Position pos, int type, int orient){
+	public boolean checkPlacementPossiblePlayer(Position pos, int type, int orient){
 		Position tmp = new Position(pos.getX(),pos.getY());
 		int res=-1;
 		for(int i=0; i<type;i++){
@@ -289,6 +289,22 @@ public class EpoqueManager {
 				tmp.setX(tmp.getX()+1);
 			}else{
 				res = this.getIndiceBateauPlayer(tmp);
+				if(res>=0)return false;
+				tmp.setY(tmp.getY()+1);				
+			}
+		}
+		return true;
+	}
+	public boolean checkPlacementPossibleComputer(Position pos, int type, int orient){
+		Position tmp = new Position(pos.getX(),pos.getY());
+		int res=-1;
+		for(int i=0; i<type;i++){
+			if(orient==1){
+				res = this.getIndiceBateauComputer(tmp);
+				if(res>=0)return false;
+				tmp.setX(tmp.getX()+1);
+			}else{
+				res = this.getIndiceBateauComputer(tmp);
 				if(res>=0)return false;
 				tmp.setY(tmp.getY()+1);				
 			}

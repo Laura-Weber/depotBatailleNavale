@@ -111,7 +111,7 @@ public class Model extends Observable{
 	 */
 	public boolean placementHuman(int type, int orient){
 		boolean res = false;
-		if(this.selectedPlacement != null && this.checkPlacementPossible(selectedPlacement, type, orient)){
+		if(this.selectedPlacement != null && this.checkPlacementPossiblePlayer(selectedPlacement, type, orient)){
 			res = this.bm.placementHuman(type, orient, selectedPlacement);
 			if(res)epoquemanager.getActualEpoque().placementHuman(type, orient, selectedPlacement);
 		}
@@ -127,7 +127,7 @@ public class Model extends Observable{
 	 */
 	public boolean placementComputer(int type, int orient, Position p){
 		boolean res = false;
-		if(p != null){
+		if(p != null && this.checkPlacementPossiblePlayer(p, type, orient)){
 			res = this.bm.placementComputer(type, orient, p);
 			epoquemanager.getActualEpoque().placementComputer(type, orient, p);
 
@@ -135,8 +135,11 @@ public class Model extends Observable{
 		this.selectedPlacement = null;
 		return res;
 	}
-	public boolean checkPlacementPossible(Position pos, int type, int orient){
-		return epoquemanager.checkPlacementPossible(pos,type,orient);
+	public boolean checkPlacementPossiblePlayer(Position pos, int type, int orient){
+		return epoquemanager.checkPlacementPossiblePlayer(pos,type,orient);
+	}
+	public boolean checkPlacementPossibleComputer(Position pos, int type, int orient){
+		return epoquemanager.checkPlacementPossibleComputer(pos,type,orient);
 	}
 	/**
 	 * c'est l'humain qui joue
