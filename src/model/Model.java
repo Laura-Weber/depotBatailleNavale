@@ -268,4 +268,7 @@ public class Model extends Observable{
 		return this.epoquemanager.getActualEpoque().getBateauJoueur(bateau).getResistance();
 	}
 	
+	public int getIndiceBateauPlayer(Position p ){return epoquemanager.getIndiceBateauPlayer(p);}
+	public int getIndiceBateauComputer(Position p ){return epoquemanager.getIndiceBateauComputer(p);}
+	
 }

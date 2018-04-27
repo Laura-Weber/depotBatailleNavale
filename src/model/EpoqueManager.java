@@ -267,6 +267,19 @@ public class EpoqueManager {
 		modele.setScoreComputer(XMLr.getreussiComputer(), XMLr.getrateComputer());
 		
 	}
+	public int getIndiceBateauPlayer(Position p ){
+		for(int i=0;i<5;i++){
+			if(actualEpoque.getBateauJoueur(i).checkPosition(p))return i;
+		}
+		return -1;
+	}
+	public int getIndiceBateauComputer(Position p ){
+		for(int i=0;i<5;i++){
+			if(actualEpoque.getBateauOrdi(i).checkPosition(p))return i;
+		}
+		return -1;
+	}
+	
 	public int getDifficultySaved(){
 		return Integer.parseInt(XMLr.getDifficulty());
 	}
