@@ -144,19 +144,33 @@ public class FenetrePrincipale extends JPanel{
         
         JTextField nom = new JTextField();
         BoutonBrowse apparence = new BoutonBrowse(this);
-        String[] items = new String[5];
-        for(int i = 0; i < 5; i++){
-        	items[i] = Integer.toString(i+1);
-        }
         
 		JTextField nomBateau2 = new JTextField();
 		JTextField nomBateau3 = new JTextField();
 		JTextField nomBateau4 = new JTextField();
 		JTextField nomBateau5 = new JTextField();
 		
+        String[] items = new String[2];
+    	items[0] = Integer.toString(1);
+    	items[1] = Integer.toString(2);
 		JComboBox<Object> resistanceBateau2 = new JComboBox<Object>(items);
+		items = new String[3];
+    	items[0] = Integer.toString(1);
+    	items[1] = Integer.toString(2);
+    	items[2] = Integer.toString(3);
 		JComboBox<Object> resistanceBateau3 = new JComboBox<Object>(items);
+		items = new String[4];
+    	items[0] = Integer.toString(1);
+    	items[1] = Integer.toString(2);
+    	items[2] = Integer.toString(3);
+    	items[3] = Integer.toString(4);
 		JComboBox<Object> resistanceBateau4 = new JComboBox<Object>(items);
+		items = new String[5];
+    	items[0] = Integer.toString(1);
+    	items[1] = Integer.toString(2);
+    	items[2] = Integer.toString(3);
+    	items[3] = Integer.toString(4);
+    	items[4] = Integer.toString(5);
 		JComboBox<Object> resistanceBateau5 = new JComboBox<Object>(items);
 
         panel.add(new JLabel("Nom de l'epoque : "));

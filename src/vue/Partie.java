@@ -52,7 +52,7 @@ public class Partie extends JPanel implements Observer{
 		this.model.getHuman().addObserver(this);
 		this.setSize(new Dimension(800, 600));
 		this.setLayout(new GridLayout(1,2));
-		this.image = ImageIO.read(new File("./src/vue/fondPartie2.jpg"));
+		this.image = ImageIO.read(new File("./src/vue/fondPartie3.jpg"));
 			
 		//***** JPanel de Human *****/
 		this.human = new JPanel();
