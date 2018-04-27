@@ -279,7 +279,22 @@ public class EpoqueManager {
 		}
 		return -1;
 	}
-	
+	public boolean checkPlacementPossible(Position pos, int type, int orient){
+		Position tmp = new Position(pos.getX(),pos.getY());
+		int res=-1;
+		for(int i=0; i<type;i++){
+			if(orient==1){
+				res = this.getIndiceBateauPlayer(tmp);
+				if(res>=0)return false;
+				tmp.setX(tmp.getX()+1);
+			}else{
+				res = this.getIndiceBateauPlayer(tmp);
+				if(res>=0)return false;
+				tmp.setY(tmp.getY()+1);				
+			}
+		}
+		return true;
+	}
 	public int getDifficultySaved(){
 		return Integer.parseInt(XMLr.getDifficulty());
 	}

@@ -111,9 +111,9 @@ public class Model extends Observable{
 	 */
 	public boolean placementHuman(int type, int orient){
 		boolean res = false;
-		if(this.selectedPlacement != null){
+		if(this.selectedPlacement != null && this.checkPlacementPossible(selectedPlacement, type, orient)){
 			res = this.bm.placementHuman(type, orient, selectedPlacement);
-			epoquemanager.getActualEpoque().placementHuman(type, orient, selectedPlacement);
+			if(res)epoquemanager.getActualEpoque().placementHuman(type, orient, selectedPlacement);
 		}
 		this.selectedPlacement = null;
 		return res;
@@ -135,7 +135,9 @@ public class Model extends Observable{
 		this.selectedPlacement = null;
 		return res;
 	}
-	
+	public boolean checkPlacementPossible(Position pos, int type, int orient){
+		return epoquemanager.checkPlacementPossible(pos,type,orient);
+	}
 	/**
 	 * c'est l'humain qui joue
 	 * @param p
