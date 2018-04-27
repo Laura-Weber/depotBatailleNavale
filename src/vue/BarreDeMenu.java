@@ -62,11 +62,13 @@ public class BarreDeMenu extends JMenuBar implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		if(arg0 instanceof Model){
 			if(this.model.getIsPlacement() == true){
+				this.sauvegarder.setEnabled(false);
 				this.placement = new Placement(this.model);
 				this.add(this.placement);
 				this.repaint();
 				this.revalidate();
 			}else if(this.model.getIsPlacement() == false && this.placement != null){
+				this.sauvegarder.setEnabled(true);
 				this.remove(this.placement);
 			}
 		}
