@@ -28,7 +28,7 @@ public class ActionListenerCase implements ActionListener{
 			if(this.name.equals("Computer")){
 				this.model.playHuman(new Position(iCase, jCase));
 			}else if(this.name.equals("Human")){
-				//this.model.playComputer(new Position(iCase, jCase));
+				this.model.playComputer(new Position(iCase, jCase));
 			}
 		}
 	}

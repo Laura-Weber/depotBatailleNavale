@@ -142,12 +142,12 @@ public class Model extends Observable{
 	 */
 	public void playHuman(Position p){
 		if(this.getComputerTurn() == false && !this.isFinish()){
-			if(this.bm.getCellComputer(p) == Board.SHIP){
-				ArrayList<Position> res = this.play(p, 1); // 1 player, 0 computer
-				this.human.setWin(this.human.getWin() + 1);
-				for(Position pos : res){
-					this.bm.setCellComputer(pos, Board.HIT);
-				}
+			if(this.bm.getCellComputer(p) == Board.SHIP){				
+				ArrayList<Position> res = this.play(p, 0); // 1 player, 0 computer
+				//for(Position pos : res){
+					this.bm.setCellComputer(p, Board.HIT);
+					this.human.setWin(this.human.getWin() + 1);
+				//}
 				this.computerTurn = true;
 				((Computer) this.computer).play();
 			}else if(this.bm.getCellComputer(p) == Board.WATER){
@@ -166,11 +166,11 @@ public class Model extends Observable{
 	public void playComputer(Position p){
 		if(this.getComputerTurn() == true && !this.isFinish()){
 			if(this.bm.getCellHuman(p) == Board.SHIP){
-				ArrayList<Position> res = this.play(p, 0); // 1 player, 0 computer
-				this.computer.setWin(this.computer.getWin() + 1);
-				for(Position pos : res){
-					this.bm.setCellHuman(pos, Board.HIT);
-				}
+				ArrayList<Position> res = this.play(p, 1); // 1 player, 0 computer
+				//for(Position pos : res){
+					this.bm.setCellHuman(p, Board.HIT);
+					this.computer.setWin(this.computer.getWin() + 1);
+				//}
 				this.computerTurn = false;
 			}else if(this.bm.getCellHuman(p) == Board.WATER){
 				this.computer.setFail(this.computer.getFail() + 1);

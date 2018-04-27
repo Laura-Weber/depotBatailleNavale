@@ -113,8 +113,6 @@ public class Board {
 		case 3 : //ship
 			res = Board.iconShip;
 			break;
-		default : 
-			break;
 		}
 		return res;
 	}
