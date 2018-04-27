@@ -153,7 +153,7 @@ public class EpoqueManager {
 		ArrayList<String> infos = new ArrayList<String>();
 		infos.add(actualEpoque.getApparence());
 		for(int i=0;i<5;i++){
-			infos.add(actualEpoque.getBateauJoueur(i).getApparence());
+			infos.add(actualEpoque.getBateauJoueur(i).getNom());
 		}
 		return infos;
 	}
