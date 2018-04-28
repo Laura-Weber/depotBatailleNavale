@@ -252,8 +252,8 @@ public class EpoqueManager {
 		actualEpoque.setApparence(epoques.get(i).getApparence());
 		for(int j = 0; j < 5; j++){
 			actualEpoque.setNomBateau(j, epoques.get(i).getBateauJoueur(j).getNom());
-			actualEpoque.setResistanceBateau("joueur", j, epoques.get(i).getBateauJoueur(j).getResistance());
-			actualEpoque.setResistanceBateau("ordi", j, epoques.get(i).getBateauOrdi(j).getResistance());
+			actualEpoque.setResistanceInitBateau("joueur", j, epoques.get(i).getBateauJoueur(4-j).getResistance());
+			actualEpoque.setResistanceInitBateau("ordi", j, epoques.get(i).getBateauOrdi(4-j).getResistance());
 		}
 		return true;
 	}
