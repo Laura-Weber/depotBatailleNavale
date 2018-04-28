@@ -12,6 +12,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -24,7 +26,7 @@ import javax.swing.JTextField;
 import model.Model;
 
 
-public class FenetrePrincipale extends JPanel{
+public class FenetrePrincipale extends JPanel implements Observer{
 
 	/**
 	 * 
@@ -32,6 +34,7 @@ public class FenetrePrincipale extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private Model model;
 	private BufferedImage image;
+	private String src;
 	private JButton newGame;
 	private JButton continueGame;
 	private JButton changeDifficulties;
@@ -40,9 +43,11 @@ public class FenetrePrincipale extends JPanel{
 
 	public FenetrePrincipale(Model m){
 		this.model = m;
+		this.model.getEpoqueManager().getActualEpoque().addObserver(this);
     	this.setSize(new Dimension(800, 600));
+    	this.src = "./src/vue/fond1.jpg";
 		try {
-			this.image = ImageIO.read(new File("./src/vue/fond1.jpg"));
+			this.image = ImageIO.read(new File(this.src));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -224,6 +229,20 @@ public class FenetrePrincipale extends JPanel{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(image, 0, 0, 800, 600, null);
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		if(!this.src.equals(this.model.getEpoqueManager().getActualEpoque().getApparence())){
+			this.src = this.model.getEpoqueManager().getActualEpoque().getApparence();
+			try {
+				this.image = ImageIO.read(new File(this.src));
+				this.repaint();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}	
+		}	
 	}
 
 }
