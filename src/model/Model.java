@@ -239,6 +239,10 @@ public class Model extends Observable{
 		return this.bm;
 	}
 	
+	public EpoqueManager getEpoqueManager(){
+		return this.epoquemanager;
+	}
+	
 	public boolean getIsPlacement(){
 		return this.isPlacement;
 	}

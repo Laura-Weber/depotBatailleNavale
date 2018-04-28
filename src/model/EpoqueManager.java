@@ -19,6 +19,7 @@ public class EpoqueManager {
 
 	private EpoqueManager() {
 		epoques = new ArrayList<Epoque>();
+		actualEpoque = new Epoque();
 		XMLr = new FileXMLReader();
 		XMLw = new FileXMLWriter();
 		readAllEpoque();
@@ -34,33 +35,14 @@ public class EpoqueManager {
 		}
 		return unique;
 	}
-
-	public boolean setActualEpoque(int i){
-		if(i > epoques.size() & i<0)return false;
-		actualEpoque = epoques.get(i);
-		return true;
-	}
-	public boolean setActualEpoque(String name){
-		for(int i=0;i<epoques.size();i++){
-			if(epoques.get(i).getName().equals(name)){
-				return setActualEpoque(i);
-			}
-		}
-		return false;
-	}
 	
-	public boolean setModel(Model modele) {
-		if (modele == null) return false;
-		this.modele = modele;
-		return true;
-	}
-
 	public void newGame(){
 		for (int i=0;i<5;i++){
 			actualEpoque.getBateauJoueur(i).reset();
 			actualEpoque.getBateauOrdi(i).reset();
 		}
 	}
+	
 	public ArrayList<Position> play(Position p, int id){
 		assert(p!=null & (id==ORDI | id ==JOUEUR)):"Epoque manager : erreur play() id ou pos";
 		ArrayList<Position> pos = new ArrayList<Position>();
@@ -88,20 +70,13 @@ public class EpoqueManager {
 
 		return pos;
 	}
-
-	public Epoque getEpoqueSave(){
-		for(int i=0;i<this.epoques.size();i++){
-			if(this.XMLr.getNomEpoque().equals(epoques.get(i).getName()))return epoques.get(i);
-		}
-		return null;
-	}
-
+	
 	public void readAllEpoque(){
 		this.epoques = new ArrayList<Epoque>();
 		XMLr.readConfigFile();
 		Epoque epTmp;
 		for(int i=0; i<XMLr.getNBEpoque();i++){
-			epTmp = new Epoque(this);
+			epTmp = new Epoque();
 			epTmp.setName(XMLr.getNomEpoque(i));
 			epTmp.setNomBateau(0, XMLr.getNomBateau(i,0));
 			epTmp.setNomBateau(1, XMLr.getNomBateau(i,1));
@@ -123,6 +98,7 @@ public class EpoqueManager {
 
 		}
 	}
+	
 	public boolean addEpoque(String nom, 
 			String apparence, 
 			String res2, 
@@ -137,46 +113,10 @@ public class EpoqueManager {
 		this.readAllEpoque();
 		return true;
 	}
-
-	public ArrayList<String> getAllNameOfEpoques(){
-		ArrayList<String> name = new ArrayList<String>();
-		for(int i=0;i<epoques.size();i++){
-			name.add(epoques.get(i).getName());
-		}
-		return name;
-	}
-
-	public ArrayList<String> getInfoActualEpoque(){
-		ArrayList<String> infos = new ArrayList<String>();
-		infos.add(actualEpoque.getApparence());
-		for(int i=0;i<5;i++){
-			infos.add(actualEpoque.getBateauJoueur(i).getNom());
-		}
-		return infos;
-	}
-
-	public boolean removeEpoque(String name){
-		//get l'id associé au nom et lance un removeEpoque via l'id
-		return false;
-	}
-	public boolean removeEpoque(int id){
-		//remove ici 
-		// et remove le fichier .xml aussi
-		return false;
-	}
-	public int getNBEpoque(){
-		return epoques.size();
-	}
-	public Epoque getEpoque(int i){
-		return this.epoques.get(i);
-	}
-	public Epoque getActualEpoque(){
-		return this.actualEpoque;
-	}
-
+	
 
 	public void createDefaultEpoque(){
-		Epoque ep1 = new Epoque(this); 
+		Epoque ep1 = new Epoque(); 
 		epoques.add(ep1);
 		ep1.setName("default");
 		ep1.setApparence("./ep1.jpg");
@@ -209,6 +149,7 @@ public class EpoqueManager {
 	public void initActualEpoque(){
 
 	}
+	
 	public void save(boolean isComputerTurn, int diff){
 		int[][] boardJoueur = new int[10][10];
 		int[][] boardComputer = new int[10][10];
@@ -225,6 +166,7 @@ public class EpoqueManager {
 		int failComputer = modele.getComputer().getFail();
 		this.XMLw.Save(actualEpoque, boardJoueur, boardComputer, isComputerTurn, winPlayer, failPlayer, winComputer, failComputer, diff);
 	}
+	
 	public boolean init() {//initialise l'epoque actuelle
 		if(actualEpoque==null){
 			this.createDefaultEpoque();
@@ -245,7 +187,6 @@ public class EpoqueManager {
 				modele.getBoardManager().setCellComputer(new Position(i,j), bC[i][j] );
 				modele.getBoardManager().setCellHuman(new Position(i,j), bP[i][j] );
 			}
-			System.out.println();
 		}
 		for(int i=0; i<5; i++){			
 			Bateau bateauTmpJ = actualEpoque.getBateauJoueur(i);
@@ -267,18 +208,7 @@ public class EpoqueManager {
 		modele.setScoreComputer(XMLr.getreussiComputer(), XMLr.getrateComputer());
 		
 	}
-	public int getIndiceBateauPlayer(Position p ){
-		for(int i=0;i<5;i++){
-			if(actualEpoque.getBateauJoueur(i).checkPosition(p))return i;
-		}
-		return -1;
-	}
-	public int getIndiceBateauComputer(Position p ){
-		for(int i=0;i<5;i++){
-			if(actualEpoque.getBateauOrdi(i).checkPosition(p))return i;
-		}
-		return -1;
-	}
+	
 	public boolean checkPlacementPossiblePlayer(Position pos, int type, int orient){
 		Position tmp = new Position(pos.getX(),pos.getY());
 		int res=-1;
@@ -295,6 +225,7 @@ public class EpoqueManager {
 		}
 		return true;
 	}
+	
 	public boolean checkPlacementPossibleComputer(Position pos, int type, int orient){
 		Position tmp = new Position(pos.getX(),pos.getY());
 		int res=-1;
@@ -311,9 +242,92 @@ public class EpoqueManager {
 		}
 		return true;
 	}
+	
+	
+	/*-------------SETTEUR--------------*/
+
+	public boolean setActualEpoque(int i){
+		if(i > epoques.size() & i<0)return false;
+		actualEpoque.setName(epoques.get(i).getName());
+		actualEpoque.setApparence(epoques.get(i).getApparence());
+		for(int j = 0; j < 5; j++){
+			actualEpoque.setNomBateau(j, epoques.get(i).getBateauJoueur(j).getNom());
+			actualEpoque.setResistanceBateau("joueur", j, epoques.get(i).getBateauJoueur(j).getResistance());
+			actualEpoque.setResistanceBateau("ordi", j, epoques.get(i).getBateauOrdi(j).getResistance());
+		}
+		return true;
+	}
+	public boolean setActualEpoque(String name){
+		for(int i=0;i<epoques.size();i++){
+			if(epoques.get(i).getName().equals(name)){
+				return setActualEpoque(i);
+			}
+		}
+		return false;
+	}
+	
+	public boolean setModel(Model modele) {
+		if (modele == null) return false;
+		this.modele = modele;
+		return true;
+	}
+	
+	/*-------------GETTEUR--------------*/
+
+	public Epoque getEpoqueSave(){
+		for(int i=0;i<this.epoques.size();i++){
+			if(this.XMLr.getNomEpoque().equals(epoques.get(i).getName()))return epoques.get(i);
+		}
+		return null;
+	}
+
+	public ArrayList<String> getAllNameOfEpoques(){
+		ArrayList<String> name = new ArrayList<String>();
+		for(int i=0;i<epoques.size();i++){
+			name.add(epoques.get(i).getName());
+		}
+		return name;
+	}
+
+	public ArrayList<String> getInfoActualEpoque(){
+		ArrayList<String> infos = new ArrayList<String>();
+		infos.add(actualEpoque.getApparence());
+		for(int i=0;i<5;i++){
+			infos.add(actualEpoque.getBateauJoueur(i).getNom());
+		}
+		return infos;
+	}
+
+	public int getNBEpoque(){
+		return epoques.size();
+	}
+	
+	public Epoque getEpoque(int i){
+		return this.epoques.get(i);
+	}
+	
+	public Epoque getActualEpoque(){
+		return this.actualEpoque;
+	}
+
+	public int getIndiceBateauPlayer(Position p ){
+		for(int i=0;i<5;i++){
+			if(actualEpoque.getBateauJoueur(i).checkPosition(p))return i;
+		}
+		return -1;
+	}
+	
+	public int getIndiceBateauComputer(Position p ){
+		for(int i=0;i<5;i++){
+			if(actualEpoque.getBateauOrdi(i).checkPosition(p))return i;
+		}
+		return -1;
+	}
+	
 	public int getDifficultySaved(){
 		return Integer.parseInt(XMLr.getDifficulty());
 	}
+	
 	/* Main de test de l'ecriture et lecture dans le fichier xml .
 	public static void main(String[] args){
 		int[][] boardPlayer = new int[10][10];

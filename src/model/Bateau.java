@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * classe de création des bateaux et de leurs caractéristiques.
@@ -9,7 +10,7 @@ import java.util.List;
  * @version 1.0
  *
  */
-public abstract class Bateau{
+public abstract class Bateau extends Observable{
 	
 	private int resistance;
 	private String nom;
@@ -46,11 +47,15 @@ public abstract class Bateau{
 	public boolean setResistance(int resistance) {
 		if(resistance < 1 & resistance > getTaille())return false;
 		this.resistance = resistance;
+		setChanged();
+		notifyObservers();
 		return true;
 	}
 	public void setResInit(int res){
 		this.resInit = res;
 		this.resistance = res;
+		setChanged();
+		notifyObservers();
 	}
 	public boolean setNom(String nom) {
 		this.nom = nom;
@@ -83,7 +88,7 @@ public abstract class Bateau{
 		isPlaced=true;
 	}
 	public void setDead(int i) {
-		resistance=0;
+		this.setResistance(0);
 	}
 	public boolean checkPosition(Position p) {
 		if(isPlaced()){
@@ -98,13 +103,13 @@ public abstract class Bateau{
 	}
 	public void reset(){
 		isPlaced=false;
-		resistance=resInit;
+		this.setResistance(resInit);
 		positions = new ArrayList<Position>();
 		this.isDead = false;
 		
 	}
 	public void hit(){
-		this.resistance= this.resistance-1;
+		this.setResistance(this.resistance-1);
 		if(resistance==0)this.isDead = true;
 	}
 	public boolean isDead(){

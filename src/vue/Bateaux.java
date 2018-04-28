@@ -29,6 +29,11 @@ public class Bateaux extends JPanel implements Observer{
 	
 	public Bateaux(Model m, String s){
 		this.model = m;
+		this.model.getEpoqueManager().getActualEpoque().addObserver(this);
+		for(int i = 0; i < 5; i++){
+			this.model.getEpoqueManager().getActualEpoque().getBateauJoueur(i).addObserver(this);
+			this.model.getEpoqueManager().getActualEpoque().getBateauOrdi(i).addObserver(this);
+		}
 		this.player = s;
 		this.infos = this.model.getInfoActualEpoque();
 		this.infos.remove(0);
@@ -60,6 +65,9 @@ public class Bateaux extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		this.infos = this.model.getInfoActualEpoque();
+		this.infos.remove(0);
+		Collections.reverse(this.infos);
 		if(this.player.equals("Computer")){
 			this.b2.setText(this.infos.get(0) + " : " + this.model.getResistanceOrdi(0));
 			this.b31.setText(this.infos.get(1) + " : " + this.model.getResistanceOrdi(1));

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 
 /**
@@ -10,18 +11,16 @@ import java.util.List;
  * @version 1.0
  *
  */
-public class Epoque {
+public class Epoque extends Observable{
 	
 	private String nom;
 	private List<Bateau> flotteJoueur;
 	private List<Bateau> flotteOrdi;
 	private String apparence;
-	private EpoqueManager em;
 	public static String ORDI = "ordi";
 	public static String JOUEUR = "joueur";
 	
-	public Epoque(EpoqueManager em){
-		this.em=em;
+	public Epoque(){
 		flotteJoueur = new ArrayList<Bateau>();
 		flotteOrdi = new ArrayList<Bateau>();
 		flotteJoueur.add(new TwoCases(0, nom, false, 0, nom, this));
@@ -59,6 +58,7 @@ public class Epoque {
 		}
 		return null;
 	}
+	
 	public Position getPositionOrdi(int indice){
 		switch(indice){
 		case 0: case 1: return flotteOrdi.get(0).getPosition(indice);
@@ -69,10 +69,12 @@ public class Epoque {
 		}
 		return null;
 	}
+	
 	public Bateau getBateauJoueur(int i){
 		assert(i>=0 & i<5):"erreur epoque getBateau";
 		return flotteJoueur.get(i);
 	}
+	
 	public Bateau getBateauOrdi(int i){
 		assert(i>=0 & i<5):"erreur epoque getBateau";
 		return flotteOrdi.get(i);
@@ -103,6 +105,8 @@ public class Epoque {
 		case "ordi" : flotteOrdi.get(indice).setResistance(res); break;
 		default:break;
 		}
+		setChanged();
+		notifyObservers();
 		return true;
 	}
 	
@@ -113,6 +117,8 @@ public class Epoque {
 		case "ordi" : flotteOrdi.get(indice).setResInit(res); break;
 		default:break;
 		}
+		setChanged();
+		notifyObservers();
 		return true;
 	}
 	
@@ -133,9 +139,11 @@ public class Epoque {
 	}
 	
 	public boolean setNomBateau(int indice, String nom){
-		if( nom ==null && indice<0 && indice>4 && nom.isEmpty() ) return false;
+		if( nom ==null && indice<0 && indice>4) return false;
 		flotteJoueur.get(indice).setNom(nom); 
 		flotteOrdi.get(indice).setNom(nom);
+		setChanged();
+		notifyObservers();
 		return true;
 		
 	}
