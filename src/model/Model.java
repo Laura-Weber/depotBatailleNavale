@@ -61,10 +61,11 @@ public class Model extends Observable{
 	}
 	
 	public void loadGame(){
+		this.changeDifficulty(epoquemanager.getDifficultySaved());
 		this.newGame();
+		this.epoquemanager.newGame();
 		this.setIsPlacement(false);
 		epoquemanager.loadGame();
-		this.changeDifficulty(epoquemanager.getDifficultySaved());
 		
 	}
 	

@@ -48,6 +48,10 @@ public abstract class Bateau{
 		this.resistance = resistance;
 		return true;
 	}
+	public void setResInit(int res){
+		this.resInit = res;
+		this.resistance = res;
+	}
 	public boolean setNom(String nom) {
 		this.nom = nom;
 		return nom.isEmpty();
@@ -56,10 +60,7 @@ public abstract class Bateau{
 		this.isComputer = isComputer;
 		return true;
 	}
-	public boolean setTaille() {
-		this.taille = positions.size();
-		return true;
-	}
+
 	public void setTaille(int t){
 		this.taille = t;
 	}

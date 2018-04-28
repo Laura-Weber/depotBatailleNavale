@@ -105,6 +105,17 @@ public class Epoque {
 		}
 		return true;
 	}
+	
+	public boolean setResistanceInitBateau(String personnage, int indice,int res){
+		if(indice<0 | indice>4 | personnage.isEmpty() | personnage == null) return false;
+		switch(personnage){
+		case "joueur" : flotteJoueur.get(indice).setResInit(res); break;
+		case "ordi" : flotteOrdi.get(indice).setResInit(res); break;
+		default:break;
+		}
+		return true;
+	}
+	
 	public boolean setApparenceBateau(int indice,String image){
 		if(indice<0 | indice>4 | image.isEmpty() | image ==null) return false;
 		flotteJoueur.get(indice).setApparence(image);
