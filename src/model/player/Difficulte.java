@@ -4,10 +4,7 @@ import model.Position;
 
 public abstract class Difficulte {
 	
-	private Computer computer;
-	
-	public Difficulte(Computer cp){
-		computer = cp;
+	public Difficulte(){
 	}
 	
 	public abstract Position play();

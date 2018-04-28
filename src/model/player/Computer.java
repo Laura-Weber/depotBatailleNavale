@@ -30,23 +30,22 @@ public class Computer extends Player{
 		}
 	}
 	
-	public Position play(){
+	public void play(){
 		this.model.playComputer(algo.play());
-		return algo.play();
 	}
 	
 	@Override
 	public boolean changeDifficulty(int diff){
 		if(diff==FACILE){
-			algo = new Facile(this);
+			algo = new Facile();
 			return true;
 		}
 		if(diff==INTERMEDIAIRE){
-			algo = new Intermediaire(this, bm);
+			algo = new Intermediaire(bm);
 			return true;
 		}
 		if(diff==DIFFICILE){
-			algo = new Difficile(this, bm);
+			algo = new Difficile(bm);
 			return true;
 		}
 		return false;

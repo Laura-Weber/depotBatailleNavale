@@ -12,8 +12,7 @@ public class Intermediaire extends Difficulte{
 	private BoardManager bm = BoardManager.getInstance();
 	private static int HIT = 2;
 
-	public Intermediaire(Computer cp, BoardManager bom) {
-		super(cp);
+	public Intermediaire(BoardManager bom) {
 		this.bm = bom;
 	}
 
