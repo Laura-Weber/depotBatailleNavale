@@ -55,6 +55,12 @@ public class EpoqueManager {
 		return true;
 	}
 
+	public void newGame(){
+		for (int i=0;i<5;i++){
+			actualEpoque.getBateauJoueur(i).reset();
+			actualEpoque.getBateauOrdi(i).reset();
+		}
+	}
 	public ArrayList<Position> play(Position p, int id){
 		assert(p!=null & (id==ORDI | id ==JOUEUR)):"Epoque manager : erreur play() id ou pos";
 		ArrayList<Position> pos = new ArrayList<Position>();

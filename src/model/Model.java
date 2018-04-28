@@ -55,7 +55,8 @@ public class Model extends Observable{
 		this.bm.newGame();
 		this.human.newGame();
 		this.computer.newGame();
-		this.computerTurn = false;	
+		this.computerTurn = false;
+		this.epoquemanager.newGame();
 		this.setIsPlacement(true);
 	}
 	

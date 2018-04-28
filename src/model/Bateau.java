@@ -76,16 +76,19 @@ public abstract class Bateau{
 	
 	public void setPosition(int indice, int x, int y){
 		assert(indice < positions.size() & indice >= 0):"Cases , erreur d'assignation de position indice trop grand ou trop petit";
-		(positions.get(indice)).setX(x);
-		(positions.get(indice)).setY(y);
+		//(positions.get(indice)).setX(x);
+		//(positions.get(indice)).setY(y);
+		positions.add(new Position(x,y));
 		isPlaced=true;
 	}
 	public void setDead(int i) {
 		resistance=0;
 	}
 	public boolean checkPosition(Position p) {
-		for(int i=0;i<taille;i++){
-			if(this.getPosition(i).isEqual(p))return true; 
+		if(isPlaced()){
+			for(int i=0;i<taille;i++){
+				if(this.getPosition(i).isEqual(p))return true; 
+			}
 		}
 		return false;
 	}
