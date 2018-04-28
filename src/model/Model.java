@@ -52,11 +52,11 @@ public class Model extends Observable{
 	
 	
 	public void newGame(){
+		this.epoquemanager.newGame();
 		this.bm.newGame();
 		this.human.newGame();
 		this.computer.newGame();
 		this.computerTurn = false;
-		this.epoquemanager.newGame();
 		this.setIsPlacement(true);
 	}
 	
@@ -128,7 +128,7 @@ public class Model extends Observable{
 	 */
 	public boolean placementComputer(int type, int orient, Position p){
 		boolean res = false;
-		if(p != null && this.checkPlacementPossiblePlayer(p, type, orient)){
+		if(p != null && this.checkPlacementPossibleComputer(p, type, orient)){
 			res = this.bm.placementComputer(type, orient, p);
 			epoquemanager.getActualEpoque().placementComputer(type, orient, p);
 
