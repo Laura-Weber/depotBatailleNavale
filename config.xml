@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><parametre>
-	<epoques><epoque><nom>epoque1</nom><image>./src/vue/fond1.jpg</image><bateaux><five><nom>B5</nom><resistance>555</resistance></five><four><nom>B4</nom><resistance>444</resistance></four><three><nom>B3</nom><resistance>333</resistance></three><threebis><nom>B3</nom><resistance>333</resistance></threebis><two><nom>B2</nom><resistance>222</resistance></two></bateaux></epoque><epoque><nom>test</nom><image>/home/steve/Bureau/dossier TIVO/Question1.png</image><bateaux><five><nom>bat5</nom><resistance>5</resistance></five><four><nom>bat4</nom><resistance>4</resistance></four><three><nom>bat3</nom><resistance>3</resistance></three><threebis><nom>bat3</nom><resistance>3</resistance></threebis><two><nom>bat2</nom><resistance>2</resistance></two></bateaux></epoque></epoques>
+	<epoques><epoque><nom>One Piece</nom><image>src/vue/fond1.jpg</image><bateaux><five><nom>Sunny</nom><resistance>4</resistance></five><four><nom>Salamandre</nom><resistance>2</resistance></four><three><nom>Battle Franky</nom><resistance>2</resistance></three><threebis><nom>Battle Franky</nom><resistance>2</resistance></threebis><two><nom>Barque Mortuaire</nom><resistance>1</resistance></two></bateaux></epoque><epoque><nom>Pirates des caraibes</nom><image>src/vue/Pirates_des_Caraibes.png</image><bateaux><five><nom>Black Pearl</nom><resistance>4</resistance></five><four><nom>Hollandais Volant</nom><resistance>2</resistance></four><three><nom>Silent Mary</nom><resistance>1</resistance></three><threebis><nom>Silent Mary</nom><resistance>1</resistance></threebis><two><nom>Otter</nom><resistance>1</resistance></two></bateaux></epoque></epoques>
 	
 	<sauvegarde>
 		<computerturn>0</computerturn>
-		<nomepoque>epoque1</nomepoque>
-		<difficulte>0</difficulte>
+		<nomepoque>Pirates des caraibes</nomepoque>
+		<difficulte>2</difficulte>
 		<player>
 			<score>
 				<reussi>0</reussi>
@@ -12,43 +12,43 @@
 			</score>
 			<bateaux>
 				<two>
-					<resistance>222</resistance>
-					<position><x>0</x><y>0</y></position>
-					<position><x>1</x><y>0</y></position>
+					<resistance>4</resistance>
+					<position><x>1</x><y>1</y></position>
+					<position><x>1</x><y>2</y></position>
 				</two>
 			
 				<three>
-					<resistance>333</resistance>
-					<position><x>1</x><y>1</y></position>
-					<position><x>2</x><y>1</y></position>
+					<resistance>2</resistance>
 					<position><x>3</x><y>1</y></position>
+					<position><x>3</x><y>2</y></position>
+					<position><x>3</x><y>3</y></position>
 				</three>
 			
 				<threebis>
-					<resistance>333</resistance>
-					<position><x>2</x><y>2</y></position>
-					<position><x>3</x><y>2</y></position>
-					<position><x>4</x><y>2</y></position>
+					<resistance>1</resistance>
+					<position><x>5</x><y>1</y></position>
+					<position><x>5</x><y>2</y></position>
+					<position><x>5</x><y>3</y></position>
 				</threebis>
 			
 				<four>
-					<resistance>444</resistance>
-					<position><x>3</x><y>3</y></position>
-					<position><x>4</x><y>3</y></position>
-					<position><x>5</x><y>3</y></position>
-					<position><x>6</x><y>3</y></position>
+					<resistance>1</resistance>
+					<position><x>7</x><y>1</y></position>
+					<position><x>7</x><y>2</y></position>
+					<position><x>7</x><y>3</y></position>
+					<position><x>7</x><y>4</y></position>
 				</four>
 			
 				<five>
-					<resistance>555</resistance>
-					<position><x>4</x><y>4</y></position>
-					<position><x>5</x><y>4</y></position>
-					<position><x>6</x><y>4</y></position>
-					<position><x>7</x><y>4</y></position>
-					<position><x>8</x><y>4</y></position>
+					<resistance>1</resistance>
+					<position><x>2</x><y>8</y></position>
+					<position><x>3</x><y>8</y></position>
+					<position><x>4</x><y>8</y></position>
+					<position><x>5</x><y>8</y></position>
+					<position><x>6</x><y>8</y></position>
 				</five>
 			</bateaux>
-			<board>3<case00>0</case00><case10>0</case10><case20>0</case20><case30>0</case30><case40>0</case40><case50>0</case50><case60>0</case60><case70>0</case70><case80>0</case80><case90>3</case90><case01>3</case01><case11>0</case11><case21>0</case21><case31>0</case31><case41>0</case41><case51>0</case51><case61>0</case61><case71>0</case71><case81>0</case81><case91>0</case91><case02>3</case02><case12>3</case12><case22>0</case22><case32>0</case32><case42>0</case42><case52>0</case52><case62>0</case62><case72>0</case72><case82>0</case82><case92>0</case92><case03>3</case03><case13>3</case13><case23>3</case23><case33>0</case33><case43>0</case43><case53>0</case53><case63>0</case63><case73>0</case73><case83>0</case83><case93>0</case93><case04>0</case04><case14>3</case14><case24>3</case24><case34>3</case34><case44>0</case44><case54>0</case54><case64>0</case64><case74>0</case74><case84>0</case84><case94>0</case94><case05>0</case05><case15>0</case15><case25>3</case25><case35>3</case35><case45>0</case45><case55>0</case55><case65>0</case65><case75>0</case75><case85>0</case85><case95>0</case95><case06>0</case06><case16>0</case16><case26>3</case26><case36>3</case36><case46>0</case46><case56>0</case56><case66>0</case66><case76>0</case76><case86>0</case86><case96>0</case96><case07>0</case07><case17>0</case17><case27>0</case27><case37>3</case37><case47>0</case47><case57>0</case57><case67>0</case67><case77>0</case77><case87>0</case87><case97>0</case97><case08>0</case08><case18>0</case18><case28>0</case28><case38>3</case38><case48>0</case48><case58>0</case58><case68>0</case68><case78>0</case78><case88>0</case88><case98>0</case98><case09>0</case09><case19>0</case19><case29>0</case29><case39>0</case39><case49>0</case49><case59>0</case59><case69>0</case69><case79>0</case79><case89>0</case89><case99/>
+			<board>0<case00>0</case00><case10>0</case10><case20>0</case20><case30>0</case30><case40>0</case40><case50>0</case50><case60>0</case60><case70>0</case70><case80>0</case80><case90>0</case90><case01>3</case01><case11>0</case11><case21>3</case21><case31>0</case31><case41>3</case41><case51>0</case51><case61>3</case61><case71>0</case71><case81>0</case81><case91>0</case91><case02>3</case02><case12>0</case12><case22>3</case22><case32>0</case32><case42>3</case42><case52>0</case52><case62>3</case62><case72>0</case72><case82>0</case82><case92>0</case92><case03>0</case03><case13>0</case13><case23>3</case23><case33>0</case33><case43>3</case43><case53>0</case53><case63>3</case63><case73>0</case73><case83>0</case83><case93>0</case93><case04>0</case04><case14>0</case14><case24>0</case24><case34>0</case34><case44>0</case44><case54>0</case54><case64>3</case64><case74>0</case74><case84>0</case84><case94>0</case94><case05>0</case05><case15>0</case15><case25>0</case25><case35>0</case35><case45>0</case45><case55>0</case55><case65>0</case65><case75>0</case75><case85>0</case85><case95>0</case95><case06>0</case06><case16>0</case16><case26>0</case26><case36>0</case36><case46>0</case46><case56>0</case56><case66>0</case66><case76>0</case76><case86>0</case86><case96>0</case96><case07>0</case07><case17>0</case17><case27>0</case27><case37>0</case37><case47>0</case47><case57>0</case57><case67>0</case67><case77>0</case77><case87>0</case87><case97>0</case97><case08>0</case08><case18>3</case18><case28>3</case28><case38>3</case38><case48>3</case48><case58>3</case58><case68>0</case68><case78>0</case78><case88>0</case88><case98>0</case98><case09>0</case09><case19>0</case19><case29>0</case29><case39>0</case39><case49>0</case49><case59>0</case59><case69>0</case69><case79>0</case79><case89>0</case89><case99/>
 			</board>
 		</player>
 		
@@ -60,43 +60,43 @@
 			</score>
 			<bateaux>
 				<two>
-					<resistance>555</resistance>
-					<position><x>1</x><y>3</y></position>
-					<position><x>2</x><y>3</y></position>
+					<resistance>4</resistance>
+					<position><x>5</x><y>3</y></position>
+					<position><x>6</x><y>3</y></position>
 				</two>
 			
 				<three>
-					<resistance>444</resistance>
-					<position><x>5</x><y>2</y></position>
-					<position><x>5</x><y>3</y></position>
-					<position><x>5</x><y>4</y></position>
+					<resistance>2</resistance>
+					<position><x>6</x><y>6</y></position>
+					<position><x>7</x><y>6</y></position>
+					<position><x>8</x><y>6</y></position>
 				</three>
 			
 				<threebis>
-					<resistance>333</resistance>
-					<position><x>3</x><y>0</y></position>
-					<position><x>4</x><y>0</y></position>
-					<position><x>5</x><y>0</y></position>
+					<resistance>1</resistance>
+					<position><x>2</x><y>7</y></position>
+					<position><x>3</x><y>7</y></position>
+					<position><x>4</x><y>7</y></position>
 				</threebis>
 			
 				<four>
-					<resistance>333</resistance>
-					<position><x>0</x><y>2</y></position>
-					<position><x>1</x><y>2</y></position>
-					<position><x>2</x><y>2</y></position>
-					<position><x>3</x><y>2</y></position>
+					<resistance>1</resistance>
+					<position><x>5</x><y>9</y></position>
+					<position><x>6</x><y>9</y></position>
+					<position><x>7</x><y>9</y></position>
+					<position><x>8</x><y>9</y></position>
 				</four>
 			
 				<five>
-					<resistance>222</resistance>
-					<position><x>3</x><y>1</y></position>
-					<position><x>4</x><y>1</y></position>
-					<position><x>5</x><y>1</y></position>
-					<position><x>6</x><y>1</y></position>
-					<position><x>7</x><y>1</y></position>
+					<resistance>1</resistance>
+					<position><x>0</x><y>1</y></position>
+					<position><x>0</x><y>2</y></position>
+					<position><x>0</x><y>3</y></position>
+					<position><x>0</x><y>4</y></position>
+					<position><x>0</x><y>5</y></position>
 				</five>
 			</bateaux>
-			<board>0<case00>0</case00><case10>0</case10><case20>3</case20><case30>3</case30><case40>3</case40><case50>0</case50><case60>0</case60><case70>0</case70><case80>0</case80><case90>0</case90><case01>0</case01><case11>0</case11><case21>3</case21><case31>3</case31><case41>3</case41><case51>3</case51><case61>3</case61><case71>0</case71><case81>0</case81><case91>3</case91><case02>3</case02><case12>3</case12><case22>3</case22><case32>0</case32><case42>3</case42><case52>0</case52><case62>0</case62><case72>0</case72><case82>0</case82><case92>0</case92><case03>3</case03><case13>3</case13><case23>0</case23><case33>0</case33><case43>3</case43><case53>0</case53><case63>0</case63><case73>0</case73><case83>0</case83><case93>0</case93><case04>0</case04><case14>0</case14><case24>0</case24><case34>0</case34><case44>3</case44><case54>0</case54><case64>0</case64><case74>0</case74><case84>0</case84><case94>0</case94><case05>0</case05><case15>0</case15><case25>0</case25><case35>0</case35><case45>0</case45><case55>0</case55><case65>0</case65><case75>0</case75><case85>0</case85><case95>0</case95><case06>0</case06><case16>0</case16><case26>0</case26><case36>0</case36><case46>0</case46><case56>0</case56><case66>0</case66><case76>0</case76><case86>0</case86><case96>0</case96><case07>0</case07><case17>0</case17><case27>0</case27><case37>0</case37><case47>0</case47><case57>0</case57><case67>0</case67><case77>0</case77><case87>0</case87><case97>0</case97><case08>0</case08><case18>0</case18><case28>0</case28><case38>0</case38><case48>0</case48><case58>0</case58><case68>0</case68><case78>0</case78><case88>0</case88><case98>0</case98><case09>0</case09><case19>0</case19><case29>0</case29><case39>0</case39><case49>0</case49><case59>0</case59><case69>0</case69><case79>0</case79><case89>0</case89><case99/>
+			<board>0<case00>0</case00><case10>0</case10><case20>0</case20><case30>0</case30><case40>0</case40><case50>0</case50><case60>0</case60><case70>0</case70><case80>0</case80><case90>3</case90><case01>0</case01><case11>0</case11><case21>0</case21><case31>0</case31><case41>0</case41><case51>0</case51><case61>0</case61><case71>0</case71><case81>0</case81><case91>3</case91><case02>0</case02><case12>0</case12><case22>0</case22><case32>0</case32><case42>0</case42><case52>0</case52><case62>0</case62><case72>0</case72><case82>0</case82><case92>3</case92><case03>0</case03><case13>0</case13><case23>0</case23><case33>0</case33><case43>3</case43><case53>3</case53><case63>0</case63><case73>0</case73><case83>0</case83><case93>3</case93><case04>0</case04><case14>0</case14><case24>0</case24><case34>0</case34><case44>0</case44><case54>0</case54><case64>0</case64><case74>0</case74><case84>0</case84><case94>3</case94><case05>0</case05><case15>0</case15><case25>0</case25><case35>0</case35><case45>0</case45><case55>0</case55><case65>0</case65><case75>0</case75><case85>0</case85><case95>0</case95><case06>0</case06><case16>0</case16><case26>0</case26><case36>0</case36><case46>0</case46><case56>3</case56><case66>3</case66><case76>3</case76><case86>0</case86><case96>0</case96><case07>0</case07><case17>3</case17><case27>3</case27><case37>3</case37><case47>0</case47><case57>0</case57><case67>0</case67><case77>0</case77><case87>0</case87><case97>0</case97><case08>0</case08><case18>0</case18><case28>0</case28><case38>0</case38><case48>0</case48><case58>0</case58><case68>0</case68><case78>0</case78><case88>0</case88><case98>0</case98><case09>0</case09><case19>0</case19><case29>0</case29><case39>0</case39><case49>3</case49><case59>3</case59><case69>3</case69><case79>3</case79><case89>0</case89><case99/>
 			</board>
 		</computer>
 	
