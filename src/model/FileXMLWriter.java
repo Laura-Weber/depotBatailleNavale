@@ -25,9 +25,21 @@ public class FileXMLWriter{
 	final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	final String configFile = "config.xml";
 
-	public FileXMLWriter(){
-		
-	}
+	public FileXMLWriter(){}
+	
+	/**
+	 * Fonction permettant d'ecrire une nouvelle époque dans le fichier XML
+	 * @param name nom de l'epoque
+	 * @param im apparence de l'epoque
+	 * @param nom5 nom du bateau de taille 5
+	 * @param nom4 nom du bateau de taille 4
+	 * @param nom3 nom du bateau de taille 3
+	 * @param nom2 nom du bateau de taille 3
+	 * @param res5 resistance du bateau de taille 5
+	 * @param res4 resistance du bateau de taille 4
+	 * @param res3 resistance du bateau de taille 3
+	 * @param res2 resistance du bateau de taille 2
+	 */
 	public void addEpoque(String name, String im, String nom5, String nom4, String nom3, String nom2, String res5, String res4, String res3, String res2){
 		try {
 			/*
@@ -117,7 +129,18 @@ public class FileXMLWriter{
 		}		
 	}
 	
-	
+	/**
+	 * Fonction permettant la sauvegarde de la partie en cours
+	 * @param ep nom de l'epoque utilisé lors de la partie
+	 * @param boardPlayer board du joueur 
+	 * @param boardComputer board de l'ordinateur
+	 * @param isComputerTurn boolean qui dit si c'est le tour de l'ordi
+	 * @param winPlayer nombre de touché pour le joueur
+	 * @param failPlayer nombre de non-touché pour le joueur
+	 * @param winComputer nombre de touché pour l'ordi
+	 * @param failComputer nombre de non-touché pour l'ordi
+	 * @param diff diffculté lors de la partie (0,1,2)
+	 */
 	public void Save(Epoque ep, int[][] boardPlayer, int[][] boardComputer, boolean isComputerTurn, int winPlayer ,int failPlayer, int winComputer, int failComputer, int diff){
 		try {
 			/*

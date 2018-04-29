@@ -6,7 +6,7 @@ import java.util.Observable;
 
 
 /**
- * Classe caractéristique d'une époque
+ * Classe caractéristique d'une époque 
  * @author steve
  * @version 1.0
  *
@@ -98,18 +98,6 @@ public class Epoque extends Observable{
 		return true;
 	}
 	
-	public boolean setResistanceBateau(String personnage, int indice,int res){
-		if(indice<0 | indice>4 | personnage.isEmpty() | personnage == null) return false;
-		switch(personnage){
-		case "joueur" : flotteJoueur.get(indice).setResistance(res); break;
-		case "ordi" : flotteOrdi.get(indice).setResistance(res); break;
-		default:break;
-		}
-		setChanged();
-		notifyObservers();
-		return true;
-	}
-	
 	public boolean setResistanceInitBateau(String personnage, int indice,int res){
 		if(indice<0 | indice>4 | personnage.isEmpty() | personnage == null) return false;
 		switch(personnage){
@@ -119,22 +107,6 @@ public class Epoque extends Observable{
 		}
 		setChanged();
 		notifyObservers();
-		return true;
-	}
-	
-	public boolean setApparenceBateau(int indice,String image){
-		if(indice<0 | indice>4 | image.isEmpty() | image ==null) return false;
-		flotteJoueur.get(indice).setApparence(image);
-		flotteOrdi.get(indice).setApparence(image);
-		return true;
-	}
-	public boolean setAppartenance(String personnage, int indice,boolean isComputer){
-		if(indice<0 | indice>4 | personnage.isEmpty() | personnage == null) return false;
-		switch(personnage){
-		case "joueur" : flotteJoueur.get(indice).setComputer(isComputer); break;
-		case "ordi" : flotteOrdi.get(indice).setComputer(isComputer); break;
-		default:break;
-		}
 		return true;
 	}
 	
@@ -152,7 +124,7 @@ public class Epoque extends Observable{
 	
 	/*----placements des bateaux -----*/
 	/**
-	 * 
+	 * fonction qui place le bateaux de l'ordi en fonction de l'orientation et de la taille
 	 * @param type
 	 * @param orient  0 : horizontale, 1 : verticale
 	 * @param pos
@@ -185,7 +157,7 @@ public class Epoque extends Observable{
 	}
 	
 	/**
-	 * 
+	 * fonction qui place le bateaux de l'ordi en fonction de l'orientation et de la taille
 	 * @param type
 	 * @param orient 0 : horizontale, 1 : verticale
 	 * @param pos position de la premiere case
@@ -218,31 +190,4 @@ public class Epoque extends Observable{
 		return res;
 	}
 	
-	
-	public void resetPartie(){
-		for(int i=0;i<5;i++){
-			this.flotteJoueur.get(i).reset();
-			this.flotteOrdi.get(i).reset();
-		}
-	}
-	
-	public void hitBoatPlayer(Position p){
-		for( int i=0; i<this.flotteJoueur.size();i++){
-			if(this.flotteJoueur.get(i).checkPosition(p)) this.flotteJoueur.get(i).hit();
-		}
-	}
-	public void hitBoatComputer(Position p){
-		for( int i=0; i<this.flotteOrdi.size();i++){
-			if(this.flotteOrdi.get(i).checkPosition(p)) this.flotteOrdi.get(i).hit();
-		}
-	}
-	
-	
-	
-	
-	
-
-	public String toString(){
-		return "nom de l'epoque : "+this.getName() + "\n info du bateau 2 du joueur:" +this.getBateauJoueur(0).toString() ; 
-	}
 }

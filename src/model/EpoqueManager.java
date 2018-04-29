@@ -35,7 +35,9 @@ public class EpoqueManager {
 		}
 		return unique;
 	}
-	
+	/**
+	 * fonction qui prépare l'epoque et les bateaux pour une nouvelle partie
+	 */
 	public void newGame(){
 		for (int i=0;i<5;i++){
 			actualEpoque.getBateauJoueur(i).reset();
@@ -43,6 +45,12 @@ public class EpoqueManager {
 		}
 	}
 	
+	/**
+	 * fonction qui joue le coup du joueur ou de l'ordi suivant l'id. 
+	 * @param p position a laquelle on souhaite frapper
+	 * @param id identifiant du joueur ordi = 0 et joueur = 1
+	 * @return Liste de position,  taille 0 signifie non touché, taille 1 signifie touché et non coulé, taille n signifie touché/coulé 
+	 */
 	public ArrayList<Position> play(Position p, int id){
 		assert(p!=null & (id==ORDI | id ==JOUEUR)):"Epoque manager : erreur play() id ou pos";
 		ArrayList<Position> pos = new ArrayList<Position>();
@@ -70,7 +78,9 @@ public class EpoqueManager {
 
 		return pos;
 	}
-	
+	/**
+	 * fonction qui va mettre a jour sa liste d'epoque en fonction du fichier XML de sauvegarde
+	 */
 	public void readAllEpoque(){
 		this.epoques = new ArrayList<Epoque>();
 		XMLr.readConfigFile();
@@ -98,7 +108,20 @@ public class EpoqueManager {
 
 		}
 	}
-	
+	/**
+	 * fonction qui va écrire une nouvelle époque dans le fichier XML
+	 * @param nom nom de l'epoque
+	 * @param apparence chemin vers l'image de l'epoque
+	 * @param res2 resistance bateau de taille 2
+	 * @param res3 resistance bateau de taille 3
+	 * @param res4 resistance bateau de taille 4
+	 * @param res5 resistance bateau de taille 5
+	 * @param nom2 nom bateau de taille 2
+	 * @param nom3 nom bateau de taille 3
+	 * @param nom4 nom bateau de taille 4
+	 * @param nom5 nom bateau de taille 5
+	 * @return true si se passe bien 
+	 */
 	public boolean addEpoque(String nom, 
 			String apparence, 
 			String res2, 
@@ -113,43 +136,11 @@ public class EpoqueManager {
 		this.readAllEpoque();
 		return true;
 	}
-	
-
-	public void createDefaultEpoque(){
-		Epoque ep1 = new Epoque(); 
-		epoques.add(ep1);
-		ep1.setName("default");
-		ep1.setApparence("./ep1.jpg");
-
-		ep1.setApparenceBateau(0, "b1.png");
-		ep1.setApparenceBateau(1, "b1.png");
-		ep1.setApparenceBateau(2, "b1.png");
-		ep1.setApparenceBateau(3, "b1.png");
-		ep1.setApparenceBateau(4, "b1.png");
-
-		ep1.setNomBateau(0, "bateau0");
-		ep1.setNomBateau(1, "bateau1");
-		ep1.setNomBateau(2, "bateau2");
-		ep1.setNomBateau(3, "bateau3");
-		ep1.setNomBateau(4, "bateau4");
-
-		ep1.setResistanceBateau(Epoque.JOUEUR, 0, 2);
-		ep1.setResistanceBateau(Epoque.JOUEUR, 1, 2);
-		ep1.setResistanceBateau(Epoque.JOUEUR, 2, 2);
-		ep1.setResistanceBateau(Epoque.JOUEUR, 3, 2);
-		ep1.setResistanceBateau(Epoque.JOUEUR, 4, 2);
-		ep1.setResistanceBateau(Epoque.ORDI, 0, 2);
-		ep1.setResistanceBateau(Epoque.ORDI, 1, 2);
-		ep1.setResistanceBateau(Epoque.ORDI, 2, 2);
-		ep1.setResistanceBateau(Epoque.ORDI, 3, 2);
-		ep1.setResistanceBateau(Epoque.ORDI, 4, 2);
-		actualEpoque=ep1;
-	}
-	
-	public void initActualEpoque(){
-
-	}
-	
+	/**
+	 * fonction permettant la sauvegarde de la partie en cours. uniquement si les bateaux sont tous placés.
+	 * @param isComputerTurn boolean representant si c'est le tour de l'ordi lors de la sauvegarde
+	 * @param diff represente la difficulté lors de la sauvegarde : 0 facile / 1 normal / 2 difficile
+	 */
 	public void save(boolean isComputerTurn, int diff){
 		int[][] boardJoueur = new int[10][10];
 		int[][] boardComputer = new int[10][10];
@@ -159,24 +150,15 @@ public class EpoqueManager {
 				boardComputer[j][i]	= modele.getBoardManager().getCellComputer(new Position(j,i));
 			}
 		}
-		
 		int winPlayer = modele.getHuman().getWin();
 		int winComputer = modele.getComputer().getWin();
 		int failPlayer = modele.getHuman().getFail();
 		int failComputer = modele.getComputer().getFail();
 		this.XMLw.Save(actualEpoque, boardJoueur, boardComputer, isComputerTurn, winPlayer, failPlayer, winComputer, failComputer, diff);
 	}
-	
-	public boolean init() {//initialise l'epoque actuelle
-		if(actualEpoque==null){
-			this.createDefaultEpoque();
-			return true;
-		}else{
-			this.initActualEpoque();
-			return true;
-		}
-	}
-	
+	/**
+	 * permet de charger la partie sauvegardée et d'initialiser les boards et les bateaux.
+	 */
 	public void loadGame(){
 		XMLr.readConfigFile();
 		setActualEpoque(XMLr.getNomEpoque());
@@ -209,6 +191,13 @@ public class EpoqueManager {
 		
 	}
 	
+	/**
+	 * vérifie si on peut poser un bateau sur la case souhaité ainsi que toute celles qu'il va occuper
+	 * @param pos position de depart
+	 * @param type taille du bateau
+	 * @param orient orientation : horizontale = 1, verticale = 0
+	 * @return true si c'est possible de le placer, sinon false
+	 */
 	public boolean checkPlacementPossiblePlayer(Position pos, int type, int orient){
 		Position tmp = new Position(pos.getX(),pos.getY());
 		int res=-1;
@@ -225,7 +214,13 @@ public class EpoqueManager {
 		}
 		return true;
 	}
-	
+	/**
+	 * vérifie si on peut poser un bateau sur la case souhaité ainsi que toute celles qu'il va occuper
+	 * @param pos position de depart
+	 * @param type taille du bateau
+	 * @param orient orientation : horizontale = 1, verticale = 0
+	 * @return true si c'est possible de le placer, sinon false
+	 */
 	public boolean checkPlacementPossibleComputer(Position pos, int type, int orient){
 		Position tmp = new Position(pos.getX(),pos.getY());
 		int res=-1;
@@ -328,13 +323,5 @@ public class EpoqueManager {
 		return Integer.parseInt(XMLr.getDifficulty());
 	}
 	
-	/* Main de test de l'ecriture et lecture dans le fichier xml .
-	public static void main(String[] args){
-		int[][] boardPlayer = new int[10][10];
-		int[][] boardComputer = new int[10][10];
-		EpoqueManager em = EpoqueManager.getInstance();
-		em.XMLw.Save(em.epoques.get(0), boardPlayer, boardComputer, false, 12, 3, 7, 1, 0);
-	}
-	*/
 }
 

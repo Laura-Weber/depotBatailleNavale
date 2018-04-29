@@ -29,7 +29,7 @@ public class Difficile extends Difficulte{
 
 	}
 	
-	public Position exploration(){
+	private Position exploration(){
 		lastPlay = new Position(0 + (int)(Math.random() * ((Board.SIZE - 1) + 1)),0 + (int)(Math.random() * ((Board.SIZE - 1) + 1)));
 		if(bm.getCellHuman(lastPlay) == Board.SHIP){
 			System.out.println("passage en mode degommage");
@@ -40,7 +40,7 @@ public class Difficile extends Difficulte{
 	}
 
 	
-	public Position coule(){
+	private Position coule(){
 		System.out.println("aaa");
 
 		switch(timeout){

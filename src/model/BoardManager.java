@@ -63,7 +63,10 @@ public class BoardManager extends Observable{
 		}
 		return res;
 	}
-	
+	/**
+	 * reinitialise les plateaux pour une nouvelle partie
+	 * @return true si ça c'est bien passé
+	 */
 	public boolean newGame() { 
 		humanBoard = new Board();
 		computerBoard = new Board();
@@ -77,7 +80,7 @@ public class BoardManager extends Observable{
 	}
 	
 	/**
-	 * 
+	 * vérifie la fin de partie
 	 * @return true si un des deux joueurs à gagné, false sinon.
 	 */
 	public boolean isFinish() {
@@ -89,7 +92,7 @@ public class BoardManager extends Observable{
 	}
 	
 	/**
-	 * 
+	 * fonction de placement de bateau pour le joueur
 	 * @param type
 	 * @param orient  0 : horizontale, 1 : verticale
 	 * @param pos
@@ -115,7 +118,7 @@ public class BoardManager extends Observable{
 	}
 	
 	/**
-	 * 
+	 * fonction de placement de bateau pour l'ordinateur
 	 * @param type
 	 * @param orient 0 : horizontale, 1 : verticale
 	 * @param pos position de la premiere case

@@ -16,52 +16,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileXMLReader{
-	public ArrayList<ArrayList<String>> epoques;
-	final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	final String configFile = "config.xml";
-	int nbEpoque = 1;
-	static int X = 0;
-	static int Y = 1;
-	static int RES = 0; 
-	static int NOM = 1;
-	static int IM = 0;
-	static int BATEAU = 2;
-	String[][][][] epoquesTab;
-	String[][][] bateauxPlayer = new String[5][6][2];
-	String[][][] bateauxComputer = new String[5][6][2];
-	int[][] boardP = new int[10][10];
-	int[][] boardC = new int[10][10];
-	String tourOrdi; 	 
-	String nomEpoque; 	
-	String difficulte; 	
-	String reussiPlayer; 	
-	String ratePlayer;	
-	String reussiComputer; 	
-	String rateComputer;	
+	private final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	private final String configFile = "config.xml";
+	private int nbEpoque = 1;
+	private static int X = 0;
+	private static int Y = 1;
+	private static int RES = 0; 
+	private static int NOM = 1;
+	private static int IM = 0;
+	private static int BATEAU = 2;
+	private String[][][][] epoquesTab;
+	private String[][][] bateauxPlayer = new String[5][6][2];
+	private String[][][] bateauxComputer = new String[5][6][2];
+	private int[][] boardP = new int[10][10];
+	private int[][] boardC = new int[10][10];
+	private String tourOrdi; 	 
+	private String nomEpoque; 	
+	private String difficulte; 	
+	private String reussiPlayer; 	
+	private String ratePlayer;	
+	private String reussiComputer; 	
+	private String rateComputer;	
 
 
 
 	public FileXMLReader(){}
-	/*getter lié aux époques*/
-	public int getNBEpoque() {
-		return nbEpoque;
-	}
-	public String getNomEpoque(int i){
-		return epoquesTab[i][NOM][NOM][NOM];
-	}
-	public String getNomBateau(int epoque, int bateau){
-		return epoquesTab[epoque][BATEAU][bateau][NOM];
-	}
-	public String getApparenceEpoque(int i){
-		return epoquesTab[i][IM][IM][IM];
-	}
-	public int getResistanceBateau(int ep, int bateau){
-		return Integer.parseInt(epoquesTab[ep][BATEAU][bateau][RES]);
-	}
-	/*fin des getters epoques*/
+	
+/*getter lié aux époques*/
+	public int getNBEpoque() {return nbEpoque;}
+	public String getNomEpoque(int i){return epoquesTab[i][NOM][NOM][NOM];}
+	public String getNomBateau(int epoque, int bateau){return epoquesTab[epoque][BATEAU][bateau][NOM];}
+	public String getApparenceEpoque(int i){return epoquesTab[i][IM][IM][IM];}
+	public int getResistanceBateau(int ep, int bateau){return Integer.parseInt(epoquesTab[ep][BATEAU][bateau][RES]);}
+/*fin des getters epoques*/
 
-	/*getters liés a la sauvegarde*/
-
+/*getters liés a la sauvegarde*/
 	public String getDifficulty(){return difficulte;}
 	public String getreussiPlayer(){return reussiPlayer;}
 	public String getratePlayer(){return ratePlayer;}
@@ -71,7 +60,6 @@ public class FileXMLReader{
 	public String getTourOrdi(){return tourOrdi;}
 	public int[][] getBoardPlayer(){return boardP;}
 	public int[][] getBoardComputer(){return boardC;}
-
 	public List<Position> getPositionBateauPlayer(int i){
 		List<Position> tmp = new ArrayList<Position>();
 		int j=1;
@@ -81,7 +69,6 @@ public class FileXMLReader{
 		}
 		return tmp;
 	}
-
 	public List<Position> getPositionBateauComputer(int i){
 		List<Position> tmp = new ArrayList<Position>();
 		int j=1;
@@ -93,10 +80,14 @@ public class FileXMLReader{
 	}
 	public int getResistanceBateauPlayer(int i){return Integer.parseInt(bateauxPlayer[i][0][0]);}
 	public int getResistanceBateauComputer(int i){return Integer.parseInt(bateauxComputer[i][0][0]);}
+/*fin getters de la sauvegarde*/
 
-	/*fin getters de la sauvegarde*/
-
-
+	/**
+	 * Fonction qui va aller lire dans le fichier de sauvegarde XML et recupérer chaque données. 
+	 * dans un premier temps les epoques seront récuperées, et stockées sous forme texte dans un tableau.
+	 * ensuite la sauvegarde de la derniere partie est récuperée et stockées
+	 * epoqueManager se servira des getter par la suite pour récupérer les données necessaires
+	 */
 	public void readConfigFile(){
 		try {
 			/*
@@ -163,8 +154,6 @@ public class FileXMLReader{
 				epoquesTab[tmp][BATEAU][4][NOM] = two.getChildNodes().item(0).getTextContent();//nom bateau
 				epoquesTab[tmp][BATEAU][4][RES] = two.getChildNodes().item(1).getTextContent();//resistance
 				tmp=tmp+1;
-				//sauvegarde des données a faire plus tard
-
 			}
 
 			/*------------------------FIN LECTURE EPOQUE-------------------------*/

@@ -46,7 +46,10 @@ public class Board {
 		}
 		return res; 
 	}
-	
+	/**
+	 * remet a 0 la board
+	 * @return
+	 */
 	public boolean reset() { 
 		boolean res = false;
 		if (board!=null) {

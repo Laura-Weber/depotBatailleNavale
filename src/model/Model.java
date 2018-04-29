@@ -36,21 +36,8 @@ public class Model extends Observable{
 	
 	
 	/**
-	 * va chercher le résultat dans EpoqueManager
-	 * @param pos
-	 * @param id
-	 * @return
+	 * initialise tout comme il faut pour lancer une nouvelle partie 
 	 */
-	public ArrayList<Position> play(Position pos, int id) {
-		return epoquemanager.play(pos,id);	
-	}
-	
-	public boolean changeDifficulty(int diff){
-		difficulty = diff;
-		return computer.changeDifficulty(diff);
-	}
-	
-	
 	public void newGame(){
 		this.epoquemanager.newGame();
 		this.bm.newGame();
@@ -59,7 +46,9 @@ public class Model extends Observable{
 		this.computerTurn = false;
 		this.setIsPlacement(true);
 	}
-	
+	/**
+	 * declenche une newGame puis va lire la sauvegarde pour initialiser les anciens coup joué
+	 */
 	public void loadGame(){
 		this.changeDifficulty(epoquemanager.getDifficultySaved());
 		this.newGame();
@@ -68,11 +57,48 @@ public class Model extends Observable{
 		epoquemanager.loadGame();
 		
 	}
-	
+	/**
+	 * change la difficulté courante
+	 * @param diff 0,1,2
+	 * @return true si se passe bien 
+	 */
+	public boolean changeDifficulty(int diff){
+		difficulty = diff;
+		return computer.changeDifficulty(diff);
+	}
+	/**
+	 * La partie est finie quand il n'y a plus de bateaux � toucher
+	 * @return true si c'est fini
+	 */
+	public boolean isFinish() {
+		if(bm.isFinish()){
+			this.isFinish = true;
+			setChanged();
+			notifyObservers();
+		}
+		return bm.isFinish();
+	}
+
+	/**
+	 * sauvegarde la partie courante
+	 */
 	public void save(){
 		epoquemanager.save(computerTurn,difficulty);
 	}
-	
+	/**
+	 * créer une nouvelle époque
+	 * @param nom nom epoque
+	 * @param apparence url image de l'epoque
+	 * @param res2 resistance bateau taille 2
+	 * @param res3 resistance bateau taille 3
+	 * @param res4 resistance bateau taille 4
+	 * @param res5 resistance bateau taille 5
+	 * @param nom2 nom bateau taille 2
+	 * @param nom3 nom bateau taille 3
+	 * @param nom4 nom bateau taille 4
+	 * @param nom5 nom bateau taille 5
+	 * @return
+	 */
 	public boolean createNewEpoque(
 			String nom, 
 			String apparence, 
@@ -87,28 +113,21 @@ public class Model extends Observable{
 		return epoquemanager.addEpoque(nom,apparence,res2,res3,res4,res5,nom2,nom3,nom4,nom5);
 	}
 	
-	
+	/**
+	 * change l'epoque actuel
+	 * @param name nom de l'epoque choisit
+	 * @return true si bien passé
+	 */
 	public boolean changeEpoque(String name){
 		return epoquemanager.setActualEpoque(name);
 	}
 
-	/**
-	 * La partie est finie quand il n'y a plus de bateaux � toucher
-	 * @return
-	 */
-	public boolean isFinish() {
-		if(bm.isFinish()){
-			this.isFinish = true;
-			setChanged();
-			notifyObservers();
-		}
-		return bm.isFinish();
-	}
-	
+
+	/*--------------------FONCTIONS DE PLACEMENTS------------------------*/
 	/**
 	 * Fonction utilis�e lors du placement de l'humain
-	 * @param type
-	 * @param orient
+	 * @param type taille du bateau a placer
+	 * @param orient horizontale ou verticale (1 ou 0)
 	 * @return
 	 */
 	public boolean placementHuman(int type, int orient){
@@ -123,8 +142,8 @@ public class Model extends Observable{
 	
 	/**
 	 * Fonction utilis�e lors du placement de l'ordinateur
-	 * @param type
-	 * @param orient
+	 * @param type taille du bateau a placer
+	 * @param orient horizontale ou verticale (1 ou 0)
 	 * @return
 	 */
 	public boolean placementComputer(int type, int orient, Position p){
@@ -137,15 +156,33 @@ public class Model extends Observable{
 		this.selectedPlacement = null;
 		return res;
 	}
+	/**
+	 * verifie si le placement désiré est possible
+	 * @param pos position de depart 
+	 * @param type taille bateau
+	 * @param orient horizontal ou vertical (1,0)
+	 * @return true si c'est possible false sinon
+	 */
 	public boolean checkPlacementPossiblePlayer(Position pos, int type, int orient){
 		return epoquemanager.checkPlacementPossiblePlayer(pos,type,orient);
 	}
+	/**
+	 * verifie si le placement désiré est possible
+	 * @param pos position de depart 
+	 * @param type taille bateau
+	 * @param orient horizontal ou vertical (1,0)
+	 * @return true si c'est possible false sinon
+	 */
 	public boolean checkPlacementPossibleComputer(Position pos, int type, int orient){
 		return epoquemanager.checkPlacementPossibleComputer(pos,type,orient);
 	}
+	/*----------------------FIN FONCTION PLACEMENTS-------------------*/
+	
+	
+	/*----------------------FONCTION DE FRAPPES-----------------------*/
 	/**
 	 * c'est l'humain qui joue
-	 * @param p
+	 * @param p position de la frappe
 	 */
 	public void playHuman(Position p){
 		if(this.getComputerTurn() == false && !this.isFinish()){
@@ -168,7 +205,7 @@ public class Model extends Observable{
 	
 	/**
 	 * c'est l'ordinateur qui joue
-	 * @param p
+	 * @param p position de la frappe
 	 */
 	public void playComputer(Position p){
 		if(this.getComputerTurn() == true && !this.isFinish()){
@@ -188,6 +225,17 @@ public class Model extends Observable{
 			}
 		}	
 	}
+	/**
+	 * va chercher le résultat dans EpoqueManager
+	 * @param pos
+	 * @param id
+	 * @return
+	 */
+	public ArrayList<Position> play(Position pos, int id) {
+		return epoquemanager.play(pos,id);	
+	}
+	/*---------------FIN DES FRAPPES--------------------*/
+	
 	
 	/*-------------SETTEUR--------------*/
 	
@@ -226,60 +274,23 @@ public class Model extends Observable{
 
 	
 	/*-------------GETTEUR--------------*/
-	
-	public boolean getIsMenu(){
-		return this.isMenu;
-	}
-	
-	public boolean getComputerTurn(){
-		return this.computerTurn;
-	}
-	
-	public BoardManager getBoardManager(){
-		return this.bm;
-	}
-	
-	public EpoqueManager getEpoqueManager(){
-		return this.epoquemanager;
-	}
-	
-	public boolean getIsPlacement(){
-		return this.isPlacement;
-	}
-	
+	public boolean getIsMenu(){return this.isMenu;}
+	public boolean getComputerTurn(){return this.computerTurn;}
+	public BoardManager getBoardManager(){return this.bm;}
+	public EpoqueManager getEpoqueManager(){return this.epoquemanager;}
+	public boolean getIsPlacement(){return this.isPlacement;}	
+	public Player getHuman(){return this.human;}
+	public Player getComputer(){return this.computer;}
+	public ArrayList<String> getAllNameOfEpoques(){return epoquemanager.getAllNameOfEpoques();}
+	public ArrayList<String> getInfoActualEpoque(){return epoquemanager.getInfoActualEpoque();} 
+	public int getSizeEpoque(){return epoquemanager.getAllNameOfEpoques().size();}
+	public int getResistanceOrdi(int bateau){return this.epoquemanager.getActualEpoque().getBateauOrdi(bateau).getResistance();}
+	public int getResistanceJoueur(int bateau){return this.epoquemanager.getActualEpoque().getBateauJoueur(bateau).getResistance();}
+	public int getIndiceBateauPlayer(Position p ){return epoquemanager.getIndiceBateauPlayer(p);}
+	public int getIndiceBateauComputer(Position p ){return epoquemanager.getIndiceBateauComputer(p);}
 	public boolean getIsFinish(){
 		boolean res = this.isFinish;
 		this.isFinish = false;
 		return res;
 	}
-	
-	public Player getHuman(){
-		return this.human;
-	}
-	
-	public Player getComputer(){
-		return this.computer;
-	}
-	
-	public ArrayList<String> getAllNameOfEpoques(){
-		return epoquemanager.getAllNameOfEpoques();
-	}
-	
-	public ArrayList<String> getInfoActualEpoque(){
-		return epoquemanager.getInfoActualEpoque();
-	} 
-	
-	public int getSizeEpoque(){
-		return epoquemanager.getAllNameOfEpoques().size();
-	}
-	public int getResistanceOrdi(int bateau){
-		return this.epoquemanager.getActualEpoque().getBateauOrdi(bateau).getResistance();
-	}
-	public int getResistanceJoueur(int bateau){
-		return this.epoquemanager.getActualEpoque().getBateauJoueur(bateau).getResistance();
-	}
-	
-	public int getIndiceBateauPlayer(Position p ){return epoquemanager.getIndiceBateauPlayer(p);}
-	public int getIndiceBateauComputer(Position p ){return epoquemanager.getIndiceBateauComputer(p);}
-	
 }

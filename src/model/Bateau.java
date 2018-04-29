@@ -82,14 +82,17 @@ public abstract class Bateau extends Observable{
 	
 	public void setPosition(int indice, int x, int y){
 		assert(indice < positions.size() & indice >= 0):"Cases , erreur d'assignation de position indice trop grand ou trop petit";
-		//(positions.get(indice)).setX(x);
-		//(positions.get(indice)).setY(y);
 		positions.add(new Position(x,y));
 		isPlaced=true;
 	}
 	public void setDead(int i) {
 		this.setResistance(0);
 	}
+	/**
+	 * vérifie si le bateau est sur la position p
+	 * @param p position a trouver 
+	 * @return true si le bateau a une de ses position egales a p , false sinon
+	 */
 	public boolean checkPosition(Position p) {
 		if(isPlaced()){
 			for(int i=0;i<taille;i++){
@@ -98,20 +101,33 @@ public abstract class Bateau extends Observable{
 		}
 		return false;
 	}
+	/**
+	 * fonction de vérification , vérifie si  le bateau a été placé
+	 * @return true s'il a été placé, false sinon
+	 */
 	public boolean isPlaced(){
 		return isPlaced;
 	}
+	/**
+	 * remet a son état initial un bateau
+	 */
 	public void reset(){
 		isPlaced=false;
 		this.setResistance(resInit);
 		positions = new ArrayList<Position>();
 		this.isDead = false;
-		
 	}
+	/**
+	 * frappe le bateau, réduit de 1 sa resistance
+	 */
 	public void hit(){
 		this.setResistance(this.resistance-1);
 		if(resistance==0)this.isDead = true;
 	}
+	/**
+	 * verifie que le bateau est mort
+	 * @return true si le bateau est mort (resistance =0) , false sinon
+	 */
 	public boolean isDead(){
 		return isDead;
 	}

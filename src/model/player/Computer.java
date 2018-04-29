@@ -14,7 +14,9 @@ public class Computer extends Player{
 		this.changeDifficulty(FACILE);
 		bm = bom;
 	}
-		
+	/**
+	 * Fonction qui place les bateaux du computer
+	 */
 	public void placement(){
 		int[] values = {2,3,3,4,5};
 		int orient, x, y; // 0 : horizontale, 1 : verticale
@@ -29,7 +31,9 @@ public class Computer extends Player{
 			}
 		}
 	}
-	
+	/**
+	 * fonction qui joue selon la difficultée
+	 */
 	public void play(){
 		this.model.playComputer(algo.play());
 	}
