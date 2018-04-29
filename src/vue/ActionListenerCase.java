@@ -8,6 +8,9 @@ import model.Position;
 
 public class ActionListenerCase implements ActionListener{
 
+	/**
+	 * Classe de l'actionerListener d'une case
+	 */
 	private Model model;
 	private String name;
 	private int iCase;

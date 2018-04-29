@@ -29,12 +29,12 @@ import model.Model;
 public class FenetrePrincipale extends JPanel implements Observer{
 
 	/**
-	 * 
+	 * Jpanel du menu de demarrage, contient les différentes options de jeu
 	 */
 	private static final long serialVersionUID = 1L;
 	private Model model;
-	private BufferedImage image;
-	private String src;
+	private BufferedImage image;//image de fond, change en fonction de l'epoque
+	private String src; //path de l'image de fond, change en fonction de l'epoque
 	private JButton newGame;
 	private JButton continueGame;
 	private JButton changeDifficulties;
@@ -49,10 +49,8 @@ public class FenetrePrincipale extends JPanel implements Observer{
 		try {
 			this.image = ImageIO.read(new File(this.src));
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -69,6 +67,7 @@ public class FenetrePrincipale extends JPanel implements Observer{
 					}
 			});
 		this.add(this.newGame, c);
+		
 		this.continueGame = new JButton("Reprendre la partie");
 		c.gridy = 60;
 		c.gridwidth = 4;
@@ -81,6 +80,7 @@ public class FenetrePrincipale extends JPanel implements Observer{
 				}
 			});
 		this.add(this.continueGame, c);
+		
 		this.changeDifficulties = new JButton("Changer la difficulte");
 		c.gridy = 80;
 		c.gridwidth = 4;
@@ -89,7 +89,6 @@ public class FenetrePrincipale extends JPanel implements Observer{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					String[] values = {"Facile", "Normal", "Difficile"};
-
 					Object selected = JOptionPane.showInputDialog(FenetrePrincipale.this, "Choisissez le niveau de difficulte.", "Difficulte de l'ordinateur", JOptionPane.DEFAULT_OPTION, null, values, "0");	
 					if(selected != null){
 						switch(selected.toString()){
@@ -107,6 +106,7 @@ public class FenetrePrincipale extends JPanel implements Observer{
 				}
 			});
 		this.add(this.changeDifficulties, c);
+		
 		this.changeEpoque = new JButton("Changer d'epoque");
 		c.gridy = 100;
 		c.gridwidth = 4;
@@ -116,11 +116,9 @@ public class FenetrePrincipale extends JPanel implements Observer{
 				public void actionPerformed(ActionEvent e) {
 					String[] values = new String[FenetrePrincipale.this.model.getSizeEpoque()];
 					ArrayList<String> allEpoque = FenetrePrincipale.this.model.getAllNameOfEpoques();
-
 					for(int i = 0; i < FenetrePrincipale.this.model.getSizeEpoque(); i++){
 						values[i] = allEpoque.get(i);
 					}
-
 					Object selected = JOptionPane.showInputDialog(FenetrePrincipale.this, "Choisissez l'epoque.", "Changer d'epoque", JOptionPane.DEFAULT_OPTION, null, values, "0");	
 					for(int i = 0; i < FenetrePrincipale.this.model.getSizeEpoque(); i++){
 						if(!(selected == null) && selected.toString().equals(allEpoque.get(i))){
@@ -130,6 +128,7 @@ public class FenetrePrincipale extends JPanel implements Observer{
 				}
 			});
 		this.add(this.changeEpoque, c);
+		
 		this.newEpoque = new JButton("Creer une nouvelle epoque");
 		c.gridy = 120;
 		c.gridwidth = 4;
@@ -143,6 +142,9 @@ public class FenetrePrincipale extends JPanel implements Observer{
 		this.add(this.newEpoque, c);
 	}
 	
+	/**
+	 * Fonction de creation du JPanel de createEpoque, s'ouvre dans un JOptionPane, envoie les données au model si tout est rempli
+	 */
 	public void createNewEpoque(){
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(21, 1));
@@ -226,6 +228,9 @@ public class FenetrePrincipale extends JPanel implements Observer{
         }
 	}
 	
+	/**
+	 * Permet de dessiner le fond avec la bonne image
+	 */
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(image, 0, 0, 800, 600, null);
@@ -239,8 +244,7 @@ public class FenetrePrincipale extends JPanel implements Observer{
 				this.image = ImageIO.read(new File(this.src));
 				this.repaint();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				//ne fait rien si il ne trouve pas l'image, reste avec le fond courant
 			}	
 		}	
 	}

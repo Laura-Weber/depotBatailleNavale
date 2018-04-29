@@ -13,18 +13,16 @@ import model.Model;
 public class Placement extends JPanel{
 
 	/**
-	 * 
+	 * JPanel du placement, visible que quand isPlacement de Model = true, s'affiche dans la barre de menu
 	 */
 	private static final long serialVersionUID = 1L;
 	private Model model;
-	private JLabel name;
-	private JButton orientation;
+	private JLabel name; //nom du JPanel
+	private JButton orientation;//horizontale, verticale, celui qui est affiché est celui pris en compte
 	private int orient; // 0 : horizontale, 1 : verticale
-	private JComboBox<Object> bateaux;
-	private String[] values = {"2 cases", "3 cases 1", "3 cases 2", "4 cases", "5 cases"};
-	private JButton valider;
-	
-	
+	private JComboBox<Object> bateaux;//liste deroulante
+	private String[] values = {"2 cases", "3 cases 1", "3 cases 2", "4 cases", "5 cases"};//valeur de la liste deroulante
+	private JButton valider;//Quand tout est ok, envoie le placement au model
 	
 	public Placement(Model m){
 		this.model = m;

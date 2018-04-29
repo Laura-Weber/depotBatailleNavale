@@ -15,14 +15,14 @@ import model.Position;
 public class Case extends JButton implements Observer{
 
 	/**
-	 * 
+	 * Represente une case d'un board
 	 */
 	private static final long serialVersionUID = 1L;
 	private static int SIZE = 30;
 	private Model model;
 	private Image image;
-	private Position position;
-	private String name;
+	private Position position; //Position de la case
+	private String name; //Permet d'identifier le proprietaire du board de la case (Computer, Human)
 
 	public Case(Model m, int x, int y, String s){
 		this.model = m;
@@ -34,19 +34,26 @@ public class Case extends JButton implements Observer{
 		this.setOpaque(true);
 	}
 	
+	/**
+	 * Actualise la case en fonction de la valeur dans la classe Board
+	 * @param s Image representant la nouvelle valeur dans la classe Board
+	 */
 	public void setImage(Image s){
 		if(s != null){
 			this.image = s;
-			this.paintComponent(this.getGraphics());
+			this.repaint();
 		}
 	}
-	
+
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if(this.image == null) return;
-		g.drawImage(this.image, 0, 0, Case.SIZE - 2, Case.SIZE - 2, null);
+		g.drawImage(this.image, 0, 0, Case.SIZE - 1, Case.SIZE - 1, null);
 	}
 
+	/**
+	 * Object ici est une position
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		Position tmp = new Position(((Position) arg).getX(), ((Position)arg).getY());

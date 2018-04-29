@@ -28,31 +28,37 @@ import model.player.Human;
 public class Partie extends JPanel implements Observer{
 
 	/**
-	 * 
+	 * JPanel de la partie, contient 2 JPanels qui representent une fenetre de jeu par joueur
 	 */
 	private static final long serialVersionUID = 1L;
 	private Model model;
-	private int SIZE = 10; 
-	private BufferedImage image;
+	private int SIZE = 10; //taille du Board
+	private BufferedImage image; //image de fond de la partie
+	//Composition du JPanel de Human
 	private JPanel human;
 	private JLabel winHuman;
 	private JLabel looseHuman;
 	private JPanel boardHuman;
 	private Case casesHuman[][];
+	//Composition du JPanel de Computer
 	private JPanel computer;
 	private JLabel winComputer;
 	private JLabel looseComputer;
 	private JPanel boardComputer;
 	private Case casesComputer[][];
 
-	public Partie(Model m) throws IOException{
+	public Partie(Model m){
 		this.model = m;
 		this.model.addObserver(this);
 		this.model.getComputer().addObserver(this);
 		this.model.getHuman().addObserver(this);
 		this.setSize(new Dimension(800, 600));
 		this.setLayout(new GridLayout(1,2));
-		this.image = ImageIO.read(new File("./src/vue/fondPartie3.jpg"));
+		try {
+			this.image = ImageIO.read(new File("./src/vue/fondPartie.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 			
 		//***** JPanel de Human *****/
 		this.human = new JPanel();
