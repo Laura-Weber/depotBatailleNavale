@@ -29,7 +29,7 @@ import model.Model;
 public class FenetrePrincipale extends JPanel implements Observer{
 
 	/**
-	 * Jpanel du menu de demarrage, contient les différentes options de jeu
+	 * Jpanel du menu de demarrage, contient les differentes options de jeu
 	 */
 	private static final long serialVersionUID = 1L;
 	private Model model;
@@ -143,7 +143,7 @@ public class FenetrePrincipale extends JPanel implements Observer{
 	}
 	
 	/**
-	 * Fonction de creation du JPanel de createEpoque, s'ouvre dans un JOptionPane, envoie les données au model si tout est rempli
+	 * Fonction de creation du JPanel de createEpoque, s'ouvre dans un JOptionPane, envoie les donnees au model si tout est rempli
 	 */
 	public void createNewEpoque(){
         JPanel panel = new JPanel();

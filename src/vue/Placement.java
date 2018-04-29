@@ -18,7 +18,7 @@ public class Placement extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private Model model;
 	private JLabel name; //nom du JPanel
-	private JButton orientation;//horizontale, verticale, celui qui est affiché est celui pris en compte
+	private JButton orientation;//horizontale, verticale, celui qui est affiche est celui pris en compte
 	private int orient; // 0 : horizontale, 1 : verticale
 	private JComboBox<Object> bateaux;//liste deroulante
 	private String[] values = {"2 cases", "3 cases 1", "3 cases 2", "4 cases", "5 cases"};//valeur de la liste deroulante
